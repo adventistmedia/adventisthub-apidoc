@@ -6,7 +6,6 @@ Represents an event.
 
 Field | Description | Notes
 --------- | ------- | -------
-id<br> *integer* | Unique ID | Read-only
 name<br> *string* | Event name | Required
 summary<br> *string* | Summary of the event
 location<br> *string* | Where the event is happening
@@ -118,7 +117,7 @@ curl http://api.adventisthub.com/api/events/1
 }
 ```
 
-`GET /api/event/{event-id}`
+`GET /api/events/{event-id}`
 
 Read an event.
 

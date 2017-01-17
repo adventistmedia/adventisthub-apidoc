@@ -8,8 +8,8 @@ Field | Description | Notes
 ----- | ----------- | -----
 name<br> *string* | Notification Name | Read-only
 subscribed<br> *boolean* | Whether they are subscribed or not | Read-only
-created_at<br> *datetime* | When the phone number was created | Read-only
-updated_at<br> *datetime* | When the phone number was last updated | Read-only
+created_at<br> *datetime* | When the notification was created | Read-only
+updated_at<br> *datetime* | When the notification was last updated | Read-only
 
 ## List Notifications
 ```shell

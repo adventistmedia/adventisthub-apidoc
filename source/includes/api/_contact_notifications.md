@@ -1,22 +1,20 @@
-# TODO Contact Notifications
+# Contact Notifications
 
-The users notifications.
+The contacts notifications.
 
 ## Fields
 
 Field | Description | Notes
 ----- | ----------- | -----
 name<br> *string* | Notification Name | Read-only
-reason<br> *enum* {opted_out, not_appropriate, other_reason}| The reason for unsubscribing
 subscribed<br> *boolean* | Whether they are subscribed or not | Read-only
-created_at<br> *datetime* | When the phone number was created | Read-only
-updated_at<br> *datetime* | When the phone number was last updated | Read-only
+created_at<br> *datetime* | When the notification was created | Read-only
+updated_at<br> *datetime* | When the notification was last updated | Read-only
 
-* Reason is a required field only when unsubscribing
 
 ## List Notifications
 ```shell
-curl http://api.adventisthub.com/api/account/notifications
+curl http://api.adventisthub.com/api/contacts/45/notifications
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1"
 ```
@@ -24,12 +22,32 @@ curl http://api.adventisthub.com/api/account/notifications
 {
   "data": [
     {
-      "id": "5",
+      "id": "2",
       "type": "notifications",
       "attributes": {
-        "name": "Feature Announcements",
-        "created_at": "2016-10-25T16:12:01.354+11:00",
-        "updated_at": "2016-11-22T07:21:21.124+11:00",
+        "name": "Visit",
+        "created_at": "2016-10-25T16:06:54.810+11:00",
+        "updated_at": "2016-10-25T16:06:54.810+11:00",
+        "subscribed": true
+      }
+    },
+    {
+      "id": "3",
+      "type": "notifications",
+      "attributes": {
+        "name": "SMS Marketing",
+        "created_at": "2016-10-25T16:10:34.643+11:00",
+        "updated_at": "2016-11-07T08:34:14.844+11:00",
+        "subscribed": false
+      }
+    },
+    {
+      "id": "1",
+      "type": "notifications",
+      "attributes": {
+        "name": "Call",
+        "created_at": "2016-10-25T16:04:38.427+11:00",
+        "updated_at": "2016-11-22T07:46:32.047+11:00",
         "subscribed": true
       }
     }
@@ -37,58 +55,57 @@ curl http://api.adventisthub.com/api/account/notifications
 }
 ```
 
-`GET /api/account/notifications`
+`GET /api/contacts/{contact-id}/notifications`
 
-An array of all notifications for an account.
+An array of all notifications for a contact.
 
 ## Subscribe
 
-Subscribe to a notification
-
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/account/notifications/5/subscribe
+curl -X PATCH http://api.adventisthub.com/api/contacts/45/notifications/5/subscribe
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1"
 ```
 ```json
 {
   "data": {
-    "id": "5",
+    "id": "1",
     "type": "notifications",
     "attributes": {
-      "name": "Feature Announcements",
-      "created_at": "2016-10-25T16:12:01.354+11:00",
-      "updated_at": "2016-11-22T07:21:21.124+11:00",
+      "name": "Call",
+      "created_at": "2016-10-25T16:04:38.427+11:00",
+      "updated_at": "2016-11-22T07:50:30.000+11:00",
       "subscribed": true
     }
   }
 }
 ```
 
-`PATCH /api/account/notifications/{notification-id}/subscribe`
+`PATCH /api/contacts/{contact-id}/notifications/{notification-id}/subscribe`
+
+Subscribe to a notification
 
 ## Unsubscribe
 
-Unsubscribe from a notification
-
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/account/notifications/5/unsubscribe
+curl -X PATCH http://api.adventisthub.com/api/contacts/45/notifications/5/unsubscribe
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1"
 ```
 ```json
 {
   "data": {
-    "id": "5",
+    "id": "1",
     "type": "notifications",
     "attributes": {
-      "name": "Feature Announcements",
-      "created_at": "2016-10-25T16:12:01.354+11:00",
-      "updated_at": "2016-11-22T07:22:21.124+11:00",
+      "name": "Call",
+      "created_at": "2016-10-25T16:04:38.427+11:00",
+      "updated_at": "2016-11-22T07:50:30.000+11:00",
       "subscribed": false
     }
   }
 }
 ```
+`PATCH /api/contacts/{contact-id}/notifications/{notification-id}/unsubscribe`
 
-`PATCH /api/account/notifications/{notification-id}/unsubscribe`
+Unsubscribe from a notification
