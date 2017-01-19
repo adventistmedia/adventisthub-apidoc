@@ -14,9 +14,9 @@ updated_at<br> *datetime* | When the attendee was last updated | Read-only
 
 ## List Attendees
 ```shell
-curl http://api.adventisthub.com/api/event_sessions/13/attendees
+curl https://api.adventisthub.com/api/event_sessions/13/attendees
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -53,10 +53,10 @@ An array of all attendees for an event session.
 
 ## Create Attendee
 ```shell
-curl -X POST http://api.adventisthub.com/api/event_sessions/13/attendees
+curl -X POST https://api.adventisthub.com/api/event_sessions/13/attendees
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"attendee": {"contact_id": 2}}'
 ```
 ```json
@@ -81,9 +81,9 @@ Add a new attendee to the event session.
 
 ## Delete Attendee
 ```shell
-curl -X DELETE http://api.adventisthub.com/api/event_sessions/13/attendees/90
+curl -X DELETE https://api.adventisthub.com/api/event_sessions/13/attendees/90
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {

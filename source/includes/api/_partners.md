@@ -16,9 +16,9 @@ updated_at<br> *datetime* | When the partner was last updated | Read-only
 ## Show Partner
 
 ```shell
-curl http://api.adventisthub.com/api/account/partner
+curl https://api.adventisthub.com/api/account/partner
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -56,10 +56,10 @@ Read the current users partner
 
 ## Create Partner
 ```shell
-curl -X POST http://api.adventisthub.com/api/account/partner
+curl -X POST https://api.adventisthub.com/api/account/partner
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"partner": {"name": "Sam Beagul", "email": "sam@email.com"}}'
 ```
 ```json
@@ -82,10 +82,10 @@ curl -X POST http://api.adventisthub.com/api/account/partner
 ## Update Partner
 
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/account/partner
+curl -X PATCH https://api.adventisthub.com/api/account/partner
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"partner": {"name": "John Backster"}}'
 ```
 ```json
@@ -107,9 +107,9 @@ curl -X PATCH http://api.adventisthub.com/api/account/partner
 
 ## Delete Partner
 ```shell
-curl -X DELETE http://api.adventisthub.com/api/account/partner
+curl -X DELETE https://api.adventisthub.com/api/account/partner
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {

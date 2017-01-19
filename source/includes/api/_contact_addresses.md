@@ -29,9 +29,9 @@ updated_at<br> *datetime* | When the address was last updated | Read-only
 
 ## List Addresses
 ```shell
-curl http://api.adventisthub.com/api/contacts/11/addresses
+curl https://api.adventisthub.com/api/contacts/11/addresses
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -69,9 +69,9 @@ An array of a contacts home and mailing addresses.
 
 ## Show Address
 ```shell
-curl http://api.adventisthub.com/api/contacts/11/addresses/34
+curl https://api.adventisthub.com/api/contacts/11/addresses/34
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -108,10 +108,10 @@ Show a contacts address.
 ## Create Address
 
 ```shell
-curl -X POST http://api.adventisthub.com/api/contacts/11/addresses
+curl -X POST https://api.adventisthub.com/api/contacts/11/addresses
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"address": {"location": "mailing", "country_code": "AU", "address1": "148 Fox Valley Road", "city": "Wahroonga", "region": "NSW", "postcode": "2076"}}'
 ```
 ```json
@@ -147,10 +147,10 @@ curl -X POST http://api.adventisthub.com/api/contacts/11/addresses
 ## Update Address
 
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/contacts/11/addresses/35
+curl -X PATCH https://api.adventisthub.com/api/contacts/11/addresses/35
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"address": {"attention": "Adventist Media"}}'
 ```
 ```json
@@ -186,9 +186,9 @@ curl -X PATCH http://api.adventisthub.com/api/contacts/11/addresses/35
 ## Delete Address
 
 ```shell
-curl -X DELETE http://api.adventisthub.com/api/contact/11/addresses/35
+curl -X DELETE https://api.adventisthub.com/api/contact/11/addresses/35
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {

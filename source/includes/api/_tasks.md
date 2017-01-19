@@ -22,9 +22,9 @@ updated_at<br>*datetime* | When the study was last updated | Read-only
 
 ## List Tasks
 ```shell
-curl http://api.adventisthub.com/api/tasks
+curl https://api.adventisthub.com/api/tasks
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 
 ```json
@@ -103,9 +103,9 @@ contact_id<br>*integer* | Show tasks for a selected contact the user is assigned
 ## Show Task
 
 ```shell
-curl http://api.adventisthub.com/api/tasks/9
+curl https://api.adventisthub.com/api/tasks/9
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -137,10 +137,10 @@ Show a task.
 
 ## Create Task
 ```shell
-curl -X POST http://api.adventisthub.com/api/tasks
+curl -X POST https://api.adventisthub.com/api/tasks
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"task": {"title": "Send Sally flowers", "contact_id": 46, "due_date": "2018-01-16"}}'
 ```
 ```json
@@ -171,10 +171,10 @@ curl -X POST http://api.adventisthub.com/api/tasks
 
 ## Update Task
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/tasks/12
+curl -X PATCH https://api.adventisthub.com/api/tasks/12
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"task": {"due_date": ""}}'
 ```
 ```json
@@ -207,9 +207,9 @@ Only tasks created by the user can be updated.
 
 ## Delete Task
 ```shell
-curl -X DELETE http://api.adventisthub.com/api/tasks/2
+curl -X DELETE https://api.adventisthub.com/api/tasks/2
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -241,10 +241,10 @@ Only tasks created by the user can be deleted.
 
 ## Completed Task
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/tasks/12/completed
+curl -X PATCH https://api.adventisthub.com/api/tasks/12/completed
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"task": {"completed_at": "2017-01-17T13:00"}}'
 ```
 ```json
@@ -278,9 +278,9 @@ If the task has response_required set to true feedback is required.
 
 ## Uncompleted Task
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/tasks/12/uncomplete
+curl -X PATCH https://api.adventisthub.com/api/tasks/12/uncomplete
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {

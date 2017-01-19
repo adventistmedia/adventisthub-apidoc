@@ -18,9 +18,9 @@ updated_at<br> *datetime* | When the campaign was last updated | Read-only
 
 ## List campaigns
 ```shell
-curl http://api.adventisthub.com/api/campaigns
+curl https://api.adventisthub.com/api/campaigns
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {

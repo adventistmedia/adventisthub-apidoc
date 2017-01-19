@@ -15,9 +15,9 @@ updated_at<br> *datetime* | When the affiliation was last updated | Read-only
 
 ## List Affiliations
 ```shell
-curl http://api.adventisthub.com/api/contacts/17/affiliations
+curl https://api.adventisthub.com/api/contacts/17/affiliations
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -44,9 +44,9 @@ An array of all affiliations for the contact.
 
 ## Show Affiliation
 ```shell
-curl http://api.adventisthub.com/api/contacts/17/affiliations/12
+curl https://api.adventisthub.com/api/contacts/17/affiliations/12
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -71,10 +71,10 @@ Show a contacts affiliation.
 
 ## Create Affiliation
 ```shell
-curl -X POST http://api.adventisthub.com/api/contacts/17/affiliations
+curl -X POST https://api.adventisthub.com/api/contacts/17/affiliations
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"affiliation": {"name": "Wahroonga Prison", "place_type": "prison"}}'
 ```
 ```json
@@ -98,10 +98,10 @@ curl -X POST http://api.adventisthub.com/api/contacts/17/affiliations
 
 ## Update Affiliation
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/contacts/17/affiliations/13
+curl -X PATCH https://api.adventisthub.com/api/contacts/17/affiliations/13
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"affiliation": {"name": "Wyee Prison", "identifier": "PN555891"}}'
 ```
 ```json
@@ -125,9 +125,9 @@ curl -X PATCH http://api.adventisthub.com/api/contacts/17/affiliations/13
 
 ## Delete Affiliation
 ```shell
-curl -X DELETE http://api.adventisthub.com/api/contacts/17/affiliations/13
+curl -X DELETE https://api.adventisthub.com/api/contacts/17/affiliations/13
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {

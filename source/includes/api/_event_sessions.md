@@ -14,9 +14,9 @@ updated_at<br>*datetime* | When the event sessions was last updated | Read-only
 
 ## List Event Sessions
 ```shell
-curl http://api.adventisthub.com/api/events/24/event_sessions
+curl https://api.adventisthub.com/api/events/24/event_sessions
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 
 ```json
@@ -47,9 +47,9 @@ An array of event sessions for an event.
 ## Show Event Session
 
 ```shell
-curl http://api.adventisthub.com/api/events/24/event_sessions/13
+curl https://api.adventisthub.com/api/events/24/event_sessions/13
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -77,10 +77,10 @@ Read an event session.
 
 ## Create Event Session
 ```shell
-curl -X POST http://api.adventisthub.com/api/events/24/event_sessions
+curl -X POST https://api.adventisthub.com/api/events/24/event_sessions
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"event_session": {"name": "Walking North", "start_time": "2017-01-05T18:30"}}'
 ```
 ```json
@@ -108,10 +108,10 @@ curl -X POST http://api.adventisthub.com/api/events/24/event_sessions
 ## Update Event Sessions
 
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/events/24/event_sessions/15
+curl -X PATCH https://api.adventisthub.com/api/events/24/event_sessions/15
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"event_session": {"name": "The Great Walk"}}'
 
 ```
@@ -139,9 +139,9 @@ curl -X PATCH http://api.adventisthub.com/api/events/24/event_sessions/15
 
 ## Delete Event Session
 ```shell
-curl -X DELETE http://api.adventisthub.com/api/events/24/event_sessions/15
+curl -X DELETE https://api.adventisthub.com/api/events/24/event_sessions/15
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {

@@ -16,9 +16,9 @@ updated_at<br>*datetime* | When the study was last updated | Read-only
 
 ## List Studies
 ```shell
-curl http://api.adventisthub.com/api/studies
+curl https://api.adventisthub.com/api/studies
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 
 ```json
@@ -56,10 +56,10 @@ An array of studies available to the user. Studies are combination of global and
 
 ## Create Study
 ```shell
-curl -X POST http://api.adventisthub.com/api/studies
+curl -X POST https://api.adventisthub.com/api/studies
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"study": {"name": "Where did all the sheep go?"}}'
 ```
 ```json
@@ -83,10 +83,10 @@ curl -X POST http://api.adventisthub.com/api/studies
 ## Update Study
 
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/studies/52
+curl -X PATCH https://api.adventisthub.com/api/studies/52
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"study": {"name": "Finding the sheep"}}'
 ```
 ```json
@@ -109,9 +109,9 @@ curl -X PATCH http://api.adventisthub.com/api/studies/52
 
 ## Delete Study
 ```shell
-curl -X DELETE http://api.adventisthub.com/api/studies/52
+curl -X DELETE https://api.adventisthub.com/api/studies/52
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {

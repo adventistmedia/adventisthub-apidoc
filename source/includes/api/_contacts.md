@@ -30,9 +30,9 @@ updated_at<br>*datetime* | When the contact was last updated | Read-only
 
 ## List Contacts
 ```shell
-curl http://api.adventisthub.com/api/contacts
+curl https://api.adventisthub.com/api/contacts
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 
 ```json
@@ -78,9 +78,9 @@ An array of contacts the user has assigned to them.
 ## Show Event
 
 ```shell
-curl http://api.adventisthub.com/api/contacts/33
+curl https://api.adventisthub.com/api/contacts/33
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -123,10 +123,10 @@ Show a contact.
 
 ## Create Contact
 ```shell
-curl -X POST http://api.adventisthub.com/api/contacts
+curl -X POST https://api.adventisthub.com/api/contacts
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"contact": {"first_name": "Roger", "last_name": "Fox", "gender":"male"}}'
 ```
 ```json
@@ -169,10 +169,10 @@ curl -X POST http://api.adventisthub.com/api/contacts
 
 ## Update Contact
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/contacts/46
+curl -X PATCH https://api.adventisthub.com/api/contacts/46
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"contact": {"date_of_birth": "1991-08-06"}}'
 ```
 ```json

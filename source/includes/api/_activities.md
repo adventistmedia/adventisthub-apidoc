@@ -27,9 +27,9 @@ updated_at<br> *datetime* | When the activity was last updated | Read-only
 
 ## List Activities
 ```shell
-curl http://api.adventisthub.com/api/contacts/17/activities
+curl https://api.adventisthub.com/api/contacts/17/activities
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -144,9 +144,9 @@ An array of all activities for the contact.
 
 ## Show activity
 ```shell
-curl http://api.adventisthub.com/api/contacts/17/activities/34
+curl https://api.adventisthub.com/api/contacts/17/activities/34
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -182,10 +182,10 @@ Show a contacts activity.
 
 ## Create Activity
 ```shell
-curl -X POST http://api.adventisthub.com/api/contacts/17/activities
+curl -X POST https://api.adventisthub.com/api/contacts/17/activities
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"activity": {"occurred_at": "2017-01-01T09:00:00", "activity_type": "visit"}}'
 ```
 ```json
@@ -224,10 +224,10 @@ Activities can only be created for the activity type's: visit, call, baptism, bi
 
 ## Update activity
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/contacts/17/activities/77
+curl -X PATCH https://api.adventisthub.com/api/contacts/17/activities/77
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"activity": {"description": "Really enjoyed visit"}}'
 ```
 ```json
@@ -265,9 +265,9 @@ Update activities that are not auto-generated.
 
 ## Delete activity
 ```shell
-curl -X DELETE http://api.adventisthub.com/api/contacts/17/activities/77
+curl -X DELETE https://api.adventisthub.com/api/contacts/17/activities/77
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {

@@ -29,9 +29,9 @@ calendar_url<br> *string* | The unique private iCal URL for the users calendar t
 
 ## Show Account
 ```shell
-curl http://api.adventisthub.com/api/account
+curl https://api.adventisthub.com/api/account
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -74,10 +74,10 @@ Show the users account.
 ## Update Account
 
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/account
+curl -X PATCH https://api.adventisthub.com/api/account
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"user": {"first_name": "Wallaby"}}'
 ```
 ```json

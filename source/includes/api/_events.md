@@ -23,9 +23,9 @@ event_sessions_count<br>*integer* | The number of Event Sessions the event has |
 
 ## List Events
 ```shell
-curl http://api.adventisthub.com/api/contacts
+curl https://api.adventisthub.com/api/contacts
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 
 ```json
@@ -75,9 +75,9 @@ An array of event objects accessible to the user based on the tokens team.
 ## Show Event
 
 ```shell
-curl http://api.adventisthub.com/api/events/1
+curl https://api.adventisthub.com/api/events/1
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -123,10 +123,10 @@ Read an event.
 
 ## Create Event
 ```shell
-curl -X POST http://api.adventisthub.com/api/events
+curl -X POST https://api.adventisthub.com/api/events
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"event": {"event_type": "bible_study", "name": "Weekly Study", "start_time": "2017-01-16T09:00"}}'
 ```
 ```json
@@ -171,10 +171,10 @@ curl -X POST http://api.adventisthub.com/api/events
 
 ## Update Event
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/events/2
+curl -X PATCH https://api.adventisthub.com/api/events/2
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"event": {"name": "Weekly Study Jan"}}'
 ```
 ```json
@@ -219,9 +219,9 @@ curl -X PATCH http://api.adventisthub.com/api/events/2
 
 ## Delete Event
 ```shell
-curl -X DELETE http://api.adventisthub.com/api/events/2
+curl -X DELETE https://api.adventisthub.com/api/events/2
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {

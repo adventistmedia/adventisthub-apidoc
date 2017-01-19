@@ -14,9 +14,9 @@ updated_at<br> *datetime* | When the notification was last updated | Read-only
 
 ## List Notifications
 ```shell
-curl http://api.adventisthub.com/api/contacts/45/notifications
+curl https://api.adventisthub.com/api/contacts/45/notifications
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -62,9 +62,9 @@ An array of all notifications for a contact.
 ## Subscribe
 
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/contacts/45/notifications/5/subscribe
+curl -X PATCH https://api.adventisthub.com/api/contacts/45/notifications/5/subscribe
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
@@ -88,9 +88,9 @@ Subscribe to a notification
 ## Unsubscribe
 
 ```shell
-curl -X PATCH http://api.adventisthub.com/api/contacts/45/notifications/5/unsubscribe
+curl -X PATCH https://api.adventisthub.com/api/contacts/45/notifications/5/unsubscribe
 -H "Authorization: Bearer token"
--H "Accept: application/vnd.adventisthub.v1"
+-H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
