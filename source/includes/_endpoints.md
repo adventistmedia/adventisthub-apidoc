@@ -6,7 +6,8 @@ After a successful sign in to the application there are several endpoints you ma
 * List Hub Teams - read which teams the user has access to
 * Show Membership - read the users role within the current team
 
-The following endpoints provide defaults that are used throughout API
+The following endpoints provide defaults that are used throughout the App:
+
 * List Approaches
 * List Brands
 * List Campaigns
@@ -15,7 +16,8 @@ The following endpoints provide defaults that are used throughout API
 * List Religions
 * List Studies
 
-Additional endpoints you may like to call
+Additional endpoints you may like to call initially:
+
 * List Alerts - read all alerts currently active for the user
 
 Ready, steady, here come the endpoints...
