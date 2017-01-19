@@ -12,7 +12,7 @@ updated_at<br> *datetime* | When the category was last updated | Read-only
 
 ## List Categories
 ```shell
-curl https://api.adventisthub.com/api/categories
+curl https://hubapi.adventistchurch.com/api/categories
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```

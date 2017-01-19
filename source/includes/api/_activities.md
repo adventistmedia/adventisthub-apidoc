@@ -27,7 +27,7 @@ updated_at<br> *datetime* | When the activity was last updated | Read-only
 
 ## List Activities
 ```shell
-curl https://api.adventisthub.com/api/contacts/17/activities
+curl https://hubapi.adventistchurch.com/api/contacts/17/activities
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -144,7 +144,7 @@ An array of all activities for the contact.
 
 ## Show activity
 ```shell
-curl https://api.adventisthub.com/api/contacts/17/activities/34
+curl https://hubapi.adventistchurch.com/api/contacts/17/activities/34
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -182,7 +182,7 @@ Show a contacts activity.
 
 ## Create Activity
 ```shell
-curl -X POST https://api.adventisthub.com/api/contacts/17/activities
+curl -X POST https://hubapi.adventistchurch.com/api/contacts/17/activities
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -224,7 +224,7 @@ Activities can only be created for the activity type's: visit, call, baptism, bi
 
 ## Update activity
 ```shell
-curl -X PATCH https://api.adventisthub.com/api/contacts/17/activities/77
+curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/17/activities/77
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -265,7 +265,7 @@ Update activities that are not auto-generated.
 
 ## Delete activity
 ```shell
-curl -X DELETE https://api.adventisthub.com/api/contacts/17/activities/77
+curl -X DELETE https://hubapi.adventistchurch.com/api/contacts/17/activities/77
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```

@@ -20,7 +20,7 @@ updated_at<br>*datetime* | When the source object was last updated | Read-only
 
 ## Calendar Listing
 ```shell
-curl https://api.adventisthub.com/api/calendars
+curl https://hubapi.adventistchurch.com/api/calendars
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```

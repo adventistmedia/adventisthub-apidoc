@@ -11,7 +11,7 @@ code<br> *string* | 3 letter iso639-3 language code | Read-only
 
 ## List languages
 ```shell
-curl https://api.adventisthub.com/api/languages
+curl https://hubapi.adventistchurch.com/api/languages
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```

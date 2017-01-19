@@ -15,7 +15,7 @@ updated_at<br> *datetime* | When the phone number was last updated | Read-only
 
 ## List Phone Numbers
 ```shell
-curl https://api.adventisthub.com/api/account/phone_numbers
+curl https://hubapi.adventistchurch.com/api/account/phone_numbers
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -56,7 +56,7 @@ An array of all phone numbers for an account.
 
 ## Show Phone Number
 ```shell
-curl https://api.adventisthub.com/api/account/phone_numbers/5
+curl https://hubapi.adventistchurch.com/api/account/phone_numbers/5
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -84,7 +84,7 @@ Show an account phone number.
 ## Create Phone Number
 
 ```shell
-curl -X POST https://api.adventisthub.com/api/account/phone_numbers
+curl -X POST https://hubapi.adventistchurch.com/api/account/phone_numbers
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -112,7 +112,7 @@ curl -X POST https://api.adventisthub.com/api/account/phone_numbers
 ## Update Phone Number
 
 ```shell
-curl -X PATCH https://api.adventisthub.com/api/account/phone_numbers/19
+curl -X PATCH https://hubapi.adventistchurch.com/api/account/phone_numbers/19
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -140,7 +140,7 @@ curl -X PATCH https://api.adventisthub.com/api/account/phone_numbers/19
 ## Delete Phone Number
 
 ```shell
-curl -X DELETE https://api.adventisthub.com/api/account/phone_numbers/19
+curl -X DELETE https://hubapi.adventistchurch.com/api/account/phone_numbers/19
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```

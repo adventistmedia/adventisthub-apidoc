@@ -23,7 +23,7 @@ updated_at<br>*datetime* | When the event series was last updated | Read-only
 
 ## List Event Series
 ```shell
-curl https://api.adventisthub.com/api/event_series
+curl https://hubapi.adventistchurch.com/api/event_series
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -89,7 +89,7 @@ An array of event series accessible to the user based on the tokens team.
 ## Show Event Series
 
 ```shell
-curl https://api.adventisthub.com/api/event_series/3
+curl https://hubapi.adventistchurch.com/api/event_series/3
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -128,7 +128,7 @@ Read an event series.
 
 ## Create Event Series
 ```shell
-curl -X POST https://api.adventisthub.com/api/event_series
+curl -X POST https://hubapi.adventistchurch.com/api/event_series
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -167,7 +167,7 @@ curl -X POST https://api.adventisthub.com/api/event_series
 
 ## Update Event Series
 ```shell
-curl -X PATCH https://api.adventisthub.com/api/event_series/11
+curl -X PATCH https://hubapi.adventistchurch.com/api/event_series/11
 -H "Authorization: Bearer token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -206,7 +206,7 @@ curl -X PATCH https://api.adventisthub.com/api/event_series/11
 
 ## Delete Event Series
 ```shell
-curl -X DELETE https://api.adventisthub.com/api/event_series/11
+curl -X DELETE https://hubapi.adventistchurch.com/api/event_series/11
 -H "Authorization: Bearer token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
