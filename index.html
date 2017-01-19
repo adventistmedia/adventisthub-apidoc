@@ -149,7 +149,7 @@
 <h1 id="authentication">Authentication</h1>
 
 <h2 id="sign-in">Sign In</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/signin
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/signin
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 -H <span class="s2">"X-Api-Key: adventisthub_app_key"</span>
 -H <span class="s2">"X-Api-Secret: adventisthub_app_secret"</span>
@@ -167,7 +167,7 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code class="prettyprint">https://api.adventisthub.com/api/signin</code></p>
+<p><code class="prettyprint">https://hubapi.adventistchurch.com/api/signin</code></p>
 
 <p>Before authenticating with Adventist Hub, you&rsquo;ll first need to authenticate the user through myAdventist using OAuth 2.
 After authenticating the user through myAdventist, you will receive an access token that can be exchanged for a Adventist Hub API token for all future requests.</p>
@@ -176,7 +176,7 @@ After authenticating the user through myAdventist, you will receive an access to
 For more information on myAdventist, please consult the South Pacific Division of the Seventh-day Adventist Churches Information Services department.
 </aside>
 
-<p>To get the Adventist Hub API token, send a POST request to <code class="prettyprint">https://api.adventisthub.com/api/signin</code>.
+<p>To get the Adventist Hub API token, send a POST request to <code class="prettyprint">https://hubapi.adventistchurch.com/api/signin</code>.
 The request must include the headers <code class="prettyprint">X-Api-Key</code> and <code class="prettyprint">X-Api-Secret</code> where the API key and secret will be provided by Adventist Media.</p>
 
 <p>Remember, when an Adventist Hub token is requested, the token will be unique to the users team. During signin the token will be for the users first team.</p>
@@ -210,19 +210,19 @@ The request must include the headers <code class="prettyprint">X-Api-Key</code> 
 </tbody></table>
 
 <h2 id="sign-out">Sign out</h2>
-<pre class="highlight shell"><code>curl -x DELETE https://api.adventisthub.com/api/signout
+<pre class="highlight shell"><code>curl -x DELETE https://hubapi.adventistchurch.com/api/signout
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code class="prettyprint">https://api.adventisthub.com/api/signout</code></p>
+<p><code class="prettyprint">https://hubapi.adventistchurch.com/api/signout</code></p>
 
 <p>To sign out from Adventist Hub send a DELETE request. This will delete all of the users tokens associated with the app. This has the effect that if the user was to have signed in on multiple devices, all devices would be signed out.</p>
 
 <h2 id="switching-teams">Switching Teams</h2>
-<pre class="highlight shell"><code>curl -x POST https://api.adventisthub.com/api/team_token/7
+<pre class="highlight shell"><code>curl -x POST https://hubapi.adventistchurch.com/api/team_token/7
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -237,7 +237,7 @@ The request must include the headers <code class="prettyprint">X-Api-Key</code> 
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code class="prettyprint">https://api.adventisthub.com/api/team_token/{team-id}</code></p>
+<p><code class="prettyprint">https://hubapi.adventistchurch.com/api/team_token/{team-id}</code></p>
 
 <p>As a user can have multiple teams, your app should allow the user to switch between teams.
 To switch teams, you&rsquo;ll need to request a token for the team to be switched too.</p>
@@ -290,6 +290,10 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <td>Not Found &ndash; The specified object could not be found for the user</td>
 </tr>
 <tr>
+<td>406</td>
+<td>Not Acceptable &ndash; Request format was not JSON</td>
+</tr>
+<tr>
 <td>422</td>
 <td>Unprocessable Entity - The request was OK but there were errors</td>
 </tr>
@@ -300,6 +304,26 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 </tbody></table>
 
           <h1 id="endpoints">Endpoints</h1>
+
+<p>After a successful sign in to the application there are several endpoints you may want to call first up. This includes:</p>
+
+<ul>
+<li>Show Account - read the users basic details</li>
+<li>List Hub Teams - read which teams the user has access to</li>
+<li>Show Membership - read the users role within the current team</li>
+</ul>
+
+<p>The following endpoints provide defaults that are used throughout API
+* List Approaches
+* List Brands
+* List Campaigns
+* List Categories
+* List Languages
+* List Religions
+* List Studies</p>
+
+<p>Additional endpoints you may like to call
+* List Alerts - read all alerts currently active for the user</p>
 
 <p>Ready, steady, here come the endpoints&hellip;</p>
 
@@ -406,7 +430,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p>* Field requirement is dependent on the country of the address</p>
 
 <h2 id="list-addresses">List Addresses</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/account/addresses
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/account/addresses
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -442,7 +466,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p>An array of a users home and mailing addresses.</p>
 
 <h2 id="show-address">Show Address</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/account/addresses/9
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/account/addresses/9
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -476,7 +500,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p>Show a user address.</p>
 
 <h2 id="create-address">Create Address</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/account/addresses
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/account/addresses
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -510,7 +534,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p><code class="prettyprint">POST /api/account/addresses</code></p>
 
 <h2 id="update-address">Update Address</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/account/addresses/33
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/account/addresses/33
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -544,7 +568,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p><code class="prettyprint">PATCH /api/account/addresses/{address-id}</code></p>
 
 <h2 id="delete-address">Delete Address</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/account/addresses/33
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/account/addresses/33
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -611,7 +635,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 </tbody></table>
 
 <h2 id="list-notifications">List Notifications</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/account/notifications
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/account/notifications
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -636,7 +660,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <h2 id="subscribe">Subscribe</h2>
 
 <p>Subscribe to a notification</p>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/account/notifications/5/subscribe
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/account/notifications/5/subscribe
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -657,7 +681,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <h2 id="unsubscribe">Unsubscribe</h2>
 
 <p>Unsubscribe from a notification</p>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/account/notifications/5/unsubscribe
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/account/notifications/5/unsubscribe
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -721,7 +745,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 </tbody></table>
 
 <h2 id="list-phone-numbers">List Phone Numbers</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/account/phone_numbers
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/account/phone_numbers
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -758,7 +782,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p>An array of all phone numbers for an account.</p>
 
 <h2 id="show-phone-number">Show Phone Number</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/account/phone_numbers/5
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/account/phone_numbers/5
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -781,7 +805,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p>Show an account phone number.</p>
 
 <h2 id="create-phone-number">Create Phone Number</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/account/phone_numbers
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/account/phone_numbers
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -804,7 +828,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p><code class="prettyprint">POST /api/account/phone_numbers</code></p>
 
 <h2 id="update-phone-number">Update Phone Number</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/account/phone_numbers/19
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/account/phone_numbers/19
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -827,7 +851,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p><code class="prettyprint">PATCH /api/account/phone_numbers/{phone-number-id}</code></p>
 
 <h2 id="delete-phone-number">Delete Phone Number</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/account/phone_numbers/19
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/account/phone_numbers/19
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -963,7 +987,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 </tbody></table>
 
 <h2 id="show-account">Show Account</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/account
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/account
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1003,7 +1027,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p>Show the users account.</p>
 
 <h2 id="update-account">Update Account</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/account
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/account
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -1142,7 +1166,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p>* study_id is required only when the activity type is a bible_study</p>
 
 <h2 id="list-activities">List Activities</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/contacts/17/activities
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/17/activities
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1255,7 +1279,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p>An array of all activities for the contact.</p>
 
 <h2 id="show-activity">Show activity</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/contacts/17/activities/34
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/17/activities/34
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1289,7 +1313,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p>Show a contacts activity.</p>
 
 <h2 id="create-activity">Create Activity</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/contacts/17/activities
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/contacts/17/activities
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -1327,7 +1351,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p>Activities can only be created for the activity type&rsquo;s: visit, call, baptism, bible_study</p>
 
 <h2 id="update-activity">Update activity</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/contacts/17/activities/77
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/17/activities/77
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -1364,7 +1388,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 Update activities that are not auto-generated.</p>
 
 <h2 id="delete-activity">Delete activity</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/contacts/17/activities/77
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/contacts/17/activities/77
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1445,7 +1469,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-affiliations">List Affiliations</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/contacts/17/affiliations
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/17/affiliations
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1470,7 +1494,7 @@ Update activities that are not auto-generated.</p>
 <p>An array of all affiliations for the contact.</p>
 
 <h2 id="show-affiliation">Show Affiliation</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/contacts/17/affiliations/12
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/17/affiliations/12
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1493,7 +1517,7 @@ Update activities that are not auto-generated.</p>
 <p>Show a contacts affiliation.</p>
 
 <h2 id="create-affiliation">Create Affiliation</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/contacts/17/affiliations
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/contacts/17/affiliations
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -1516,7 +1540,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">POST /api/contacts/{contact-id}/affiliations</code></p>
 
 <h2 id="update-affiliation">Update Affiliation</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/contacts/17/affiliations/13
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/17/affiliations/13
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -1539,7 +1563,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">PATCH /api/contacts/{contact-id}/affiliations/{affiliation-id}</code></p>
 
 <h2 id="delete-affiliation">Delete Affiliation</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/contacts/17/affiliations/13
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/contacts/17/affiliations/13
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1635,7 +1659,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-alerts">List Alerts</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/account/alerts
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/account/alerts
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1682,7 +1706,7 @@ Update activities that are not auto-generated.</p>
 <p>An array of alert objects.</p>
 
 <h2 id="show-alert">Show Alert</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/account/alerts/48
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/account/alerts/48
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1710,7 +1734,7 @@ Update activities that are not auto-generated.</p>
 <p>Show an alert.</p>
 
 <h2 id="accept-alert">Accept Alert</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/account/alerts/31/accept
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/account/alerts/31/accept
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1736,7 +1760,7 @@ Update activities that are not auto-generated.</p>
 <p>Accept an alert that has an accept callback.</p>
 
 <h2 id="decline-alert">Decline Alert</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/account/alerts/31/decline
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/account/alerts/31/decline
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1762,7 +1786,7 @@ Update activities that are not auto-generated.</p>
 <p>Accept an alert that has an decline callback.</p>
 
 <h2 id="delete-alert">Delete Alert</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/account/alerts/48
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/account/alerts/48
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1818,7 +1842,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-approaches">List Approaches</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/approaches
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/approaches
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1880,7 +1904,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-attendees">List Attendees</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/event_sessions/13/attendees
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/event_sessions/13/attendees
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1915,7 +1939,7 @@ Update activities that are not auto-generated.</p>
 <p>An array of all attendees for an event session.</p>
 
 <h2 id="create-attendee">Create Attendee</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/event_sessions/13/attendees
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/event_sessions/13/attendees
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -1939,7 +1963,7 @@ Update activities that are not auto-generated.</p>
 <p>Add a new attendee to the event session.</p>
 
 <h2 id="delete-attendee">Delete Attendee</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/event_sessions/13/attendees/90
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/event_sessions/13/attendees/90
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1991,7 +2015,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-brands">List Brands</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/brands
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/brands
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2084,7 +2108,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="calendar-listing">Calendar Listing</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/calendars
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/calendars
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2170,7 +2194,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-campaigns">List campaigns</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/campaigns
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/campaigns
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2241,7 +2265,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-categories">List Categories</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/categories
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/categories
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2374,7 +2398,7 @@ Update activities that are not auto-generated.</p>
 <p>* Field requirement is dependent on the country of the address</p>
 
 <h2 id="list-addresses">List Addresses</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/contacts/11/addresses
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/11/addresses
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2410,7 +2434,7 @@ Update activities that are not auto-generated.</p>
 <p>An array of a contacts home and mailing addresses.</p>
 
 <h2 id="show-address">Show Address</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/contacts/11/addresses/34
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/11/addresses/34
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2444,7 +2468,7 @@ Update activities that are not auto-generated.</p>
 <p>Show a contacts address.</p>
 
 <h2 id="create-address">Create Address</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/contacts/11/addresses
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/contacts/11/addresses
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -2478,7 +2502,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">POST /api/contact/{contact-id}/addresses</code></p>
 
 <h2 id="update-address">Update Address</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/contacts/11/addresses/35
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/11/addresses/35
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -2512,7 +2536,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">PATCH /api/contacts/{contact-id}/addresses/{address-id}</code></p>
 
 <h2 id="delete-address">Delete Address</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/contact/11/addresses/35
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/contact/11/addresses/35
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2579,7 +2603,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-notifications">List Notifications</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/contacts/45/notifications
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/45/notifications
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2622,7 +2646,7 @@ Update activities that are not auto-generated.</p>
 <p>An array of all notifications for a contact.</p>
 
 <h2 id="subscribe">Subscribe</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/contacts/45/notifications/5/subscribe
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/45/notifications/5/subscribe
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2643,7 +2667,7 @@ Update activities that are not auto-generated.</p>
 <p>Subscribe to a notification</p>
 
 <h2 id="unsubscribe">Unsubscribe</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/contacts/45/notifications/5/unsubscribe
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/45/notifications/5/unsubscribe
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2709,7 +2733,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-phone-numbers">List Phone Numbers</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/contacts/24/phone_numbers
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/24/phone_numbers
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2734,7 +2758,7 @@ Update activities that are not auto-generated.</p>
 <p>An array of all phone numbers for a contact.</p>
 
 <h2 id="show-phone-number">Show Phone Number</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/contacts/24/phone_numbers/8
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/24/phone_numbers/8
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2757,7 +2781,7 @@ Update activities that are not auto-generated.</p>
 <p>Show a contacts phone number.</p>
 
 <h2 id="create-phone-number">Create Phone Number</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/contacts/24/phone_numbers
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/contacts/24/phone_numbers
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -2780,7 +2804,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">POST /api/contacts/{contact-id}/phone_numbers</code></p>
 
 <h2 id="update-phone-number">Update Phone Number</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/contacts/24/phone_numbers/20
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/24/phone_numbers/20
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -2803,7 +2827,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">PATCH /api/contacts/{contact-id}/phone_numbers/{phone-number-id}</code></p>
 
 <h2 id="delete-phone-number">Delete Phone Number</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/contacts/24/phone_numbers/20
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/contacts/24/phone_numbers/20
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2944,7 +2968,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-contacts">List Contacts</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/contacts
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2987,7 +3011,7 @@ Update activities that are not auto-generated.</p>
 <p>An array of contacts the user has assigned to them.</p>
 
 <h2 id="show-event">Show Event</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/contacts/33
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/33
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -3028,7 +3052,7 @@ Update activities that are not auto-generated.</p>
 <p>Show a contact.</p>
 
 <h2 id="create-contact">Create Contact</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/contacts
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/contacts
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -3070,7 +3094,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">POST /api/contacts</code></p>
 
 <h2 id="update-contact">Update Contact</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/contacts/46
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/46
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -3197,7 +3221,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-event-series">List Event Series</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/event_series
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/event_series
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -3258,7 +3282,7 @@ Update activities that are not auto-generated.</p>
 <p>An array of event series accessible to the user based on the tokens team.</p>
 
 <h2 id="show-event-series">Show Event Series</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/event_series/3
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/event_series/3
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -3293,7 +3317,7 @@ Update activities that are not auto-generated.</p>
 <p>Read an event series.</p>
 
 <h2 id="create-event-series">Create Event Series</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/event_series
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/event_series
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -3328,7 +3352,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">POST /api/event_series</code></p>
 
 <h2 id="update-event-series">Update Event Series</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/event_series/11
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/event_series/11
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -3363,7 +3387,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">PATCH /api/event_series/{event-series-id}</code></p>
 
 <h2 id="delete-event-series">Delete Event Series</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/event_series/11
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/event_series/11
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -3436,7 +3460,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-event-sessions">List Event Sessions</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/events/24/event_sessions
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/events/24/event_sessions
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -3464,7 +3488,7 @@ Update activities that are not auto-generated.</p>
 <p>An array of event sessions for an event.</p>
 
 <h2 id="show-event-session">Show Event Session</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/events/24/event_sessions/13
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/events/24/event_sessions/13
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -3490,7 +3514,7 @@ Update activities that are not auto-generated.</p>
 <p>Read an event session.</p>
 
 <h2 id="create-event-session">Create Event Session</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/events/24/event_sessions
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/events/24/event_sessions
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -3516,7 +3540,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">POST /api/events/{event-id}/event_sessions</code></p>
 
 <h2 id="update-event-sessions">Update Event Sessions</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/events/24/event_sessions/15
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/events/24/event_sessions/15
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -3543,7 +3567,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">PATCH /api/events/{event-id}/event_sessions/{event-session-id}</code></p>
 
 <h2 id="delete-event-session">Delete Event Session</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/events/24/event_sessions/15
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/events/24/event_sessions/15
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -3652,7 +3676,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-events">List Events</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/contacts
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="w">
@@ -3699,7 +3723,7 @@ Update activities that are not auto-generated.</p>
 <p>An array of event objects accessible to the user based on the tokens team.</p>
 
 <h2 id="show-event">Show Event</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/events/1
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/events/1
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -3743,7 +3767,7 @@ Update activities that are not auto-generated.</p>
 <p>Read an event.</p>
 
 <h2 id="create-event">Create Event</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/events
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/events
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -3787,7 +3811,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">POST /api/events</code></p>
 
 <h2 id="update-event">Update Event</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/events/2
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/events/2
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -3831,7 +3855,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">PATCH /api/events/{event-id}</code></p>
 
 <h2 id="delete-event">Delete Event</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/events/2
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/events/2
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -3938,7 +3962,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-hub-teams">List Hub Teams</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/hub_teams/all
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/hub_teams/all
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -3983,7 +4007,7 @@ Update activities that are not auto-generated.</p>
 <p>An array of Hub teams the user has membership too.</p>
 
 <h2 id="show-hub-team">Show Hub Team</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/hub_teams
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/hub_teams
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -4035,7 +4059,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-languages">List languages</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/languages
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/languages
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -4062,6 +4086,94 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">GET /api/languages</code></p>
 
 <p>An array of all languages.</p>
+
+          <h1 id="membership">Membership</h1>
+
+<p>Memberships to Hub teams.</p>
+
+<p>It&rsquo;s important to be know the users team role after they&rsquo;ve signed in to avoid calling endpoints the user doesn&rsquo;t have access to or showing the UI components that are not applicable.</p>
+
+<h2 id="fields">Fields</h2>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id<br> <em>integer</em></td>
+<td>ID of the user the membership belongs too</td>
+<td>Read-only</td>
+</tr>
+<tr>
+<td>team_id<br> <em>integer</em></td>
+<td>ID of the team the membership belongs too</td>
+<td>Read-only</td>
+</tr>
+<tr>
+<td>role<br> <em>enum</em>{member, leader, manager}</td>
+<td>Role within the team the user has been given</td>
+<td>Read-only</td>
+</tr>
+<tr>
+<td>created_at<br> <em>datetime</em></td>
+<td>When the membership was created</td>
+<td>Read-only</td>
+</tr>
+<tr>
+<td>updated_at<br> <em>datetime</em></td>
+<td>When the membership was last updated</td>
+<td>Read-only</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-memberships">List Memberships</h2>
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/memberships
+-H <span class="s2">"Authorization: Bearer token"</span>
+-H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"memberships"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"member"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:26:36.690+11:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:26:36.690+11:00"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code class="prettyprint">GET /api/memberships</code></p>
+
+<p>An array of all team memberships.</p>
+
+<h2 id="show-membership">Show Membership</h2>
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/memberships/20
+-H <span class="s2">"Authorization: Bearer token"</span>
+-H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"memberships"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"member"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:26:36.690+11:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:26:36.690+11:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code class="prettyprint">GET /api/memberships/{membership-id}</code></p>
+
+<p>A team membership</p>
 
           <h1 id="partner">Partner</h1>
 
@@ -4101,7 +4213,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="show-partner">Show Partner</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/account/partner
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/account/partner
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -4136,7 +4248,7 @@ Update activities that are not auto-generated.</p>
 <p>Read the current users partner</p>
 
 <h2 id="create-partner">Create Partner</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/account/partner
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/account/partner
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -4157,7 +4269,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">POST /api/account/partner</code></p>
 
 <h2 id="update-partner">Update Partner</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/account/partner
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/account/partner
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -4178,7 +4290,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">PATCH /api/account/partner</code></p>
 
 <h2 id="delete-partner">Delete Partner</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/account/partner
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/account/partner
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -4232,7 +4344,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-religions">List Religions</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/religions
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/religions
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -4307,7 +4419,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-studies">List Studies</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/studies
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/studies
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -4342,7 +4454,7 @@ Update activities that are not auto-generated.</p>
 <p>An array of studies available to the user. Studies are combination of global and user created studies.</p>
 
 <h2 id="create-study">Create Study</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/studies
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/studies
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -4364,7 +4476,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">POST /api/studies</code></p>
 
 <h2 id="update-study">Update Study</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/studies/52
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/studies/52
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -4386,7 +4498,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">PATCH /api/studies/{study-id}</code></p>
 
 <h2 id="delete-study">Delete Study</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/studies/52
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/studies/52
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -4486,7 +4598,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-tasks">List Tasks</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/tasks
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/tasks
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -4572,7 +4684,7 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="show-task">Show Task</h2>
-<pre class="highlight shell"><code>curl https://api.adventisthub.com/api/tasks/9
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/tasks/9
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -4602,7 +4714,7 @@ Update activities that are not auto-generated.</p>
 <p>Show a task.</p>
 
 <h2 id="create-task">Create Task</h2>
-<pre class="highlight shell"><code>curl -X POST https://api.adventisthub.com/api/tasks
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/tasks
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -4632,7 +4744,7 @@ Update activities that are not auto-generated.</p>
 <p><code class="prettyprint">POST /api/tasks</code></p>
 
 <h2 id="update-task">Update Task</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/tasks/12
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/tasks/12
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -4664,7 +4776,7 @@ Update activities that are not auto-generated.</p>
 <p>Only tasks created by the user can be updated.</p>
 
 <h2 id="delete-task">Delete Task</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://api.adventisthub.com/api/tasks/2
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/tasks/2
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -4694,7 +4806,7 @@ Update activities that are not auto-generated.</p>
 <p>Only tasks created by the user can be deleted.</p>
 
 <h2 id="completed-task">Completed Task</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/tasks/12/completed
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/tasks/12/completed
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
@@ -4727,7 +4839,7 @@ Update activities that are not auto-generated.</p>
 If the task has response_required set to true feedback is required.</p>
 
 <h2 id="uncompleted-task">Uncompleted Task</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://api.adventisthub.com/api/tasks/12/uncomplete
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/tasks/12/uncomplete
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
