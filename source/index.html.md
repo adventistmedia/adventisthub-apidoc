@@ -32,6 +32,7 @@ includes:
   - api/events
   - api/hub_teams
   - api/languages
+  - api/memberships
   - api/partners
   - api/religions
   - api/studies
