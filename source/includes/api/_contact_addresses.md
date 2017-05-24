@@ -13,7 +13,6 @@ attention<br> *string* | Attention
 address1<br> *string* | Address line 1 | Required
 address2<br> *string* | Address line 2
 address3<br> *string* | Address line 3
-locality<br> *string* | Locality/Suburb | *Required
 city<br> *string* | City | *Required
 region<br> *string* | Region/State/Province | *Required
 postcode<br> *string* | Postcode/Zipcode | *Required
@@ -44,7 +43,6 @@ curl https://hubapi.adventistchurch.com/api/contacts/11/addresses
         "address1": "150 Fox Valley Road",
         "address2": null,
         "address3": null,
-        "locality": null,
         "city": "Wahroonga",
         "region": "NSW",
         "postcode": "2076",
@@ -83,7 +81,6 @@ curl https://hubapi.adventistchurch.com/api/contacts/11/addresses/34
       "address1": "150 Fox Valley Road",
       "address2": null,
       "address3": null,
-      "locality": null,
       "city": "Wahroonga",
       "region": "NSW",
       "postcode": "2076",
@@ -124,7 +121,6 @@ curl -X POST https://hubapi.adventistchurch.com/api/contacts/11/addresses
       "address1": "148 Fox Valley Road",
       "address2": null,
       "address3": null,
-      "locality": null,
       "city": "Wahroonga",
       "region": "NSW",
       "postcode": "2076",
@@ -163,7 +159,6 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/11/addresses/35
       "address1": "148 Fox Valley Road",
       "address2": null,
       "address3": null,
-      "locality": null,
       "city": "Wahroonga",
       "region": "NSW",
       "postcode": "2076",
@@ -200,7 +195,6 @@ curl -X DELETE https://hubapi.adventistchurch.com/api/contact/11/addresses/35
       "address1": "148 Fox Valley Road",
       "address2": null,
       "address3": null,
-      "locality": null,
       "city": "Wahroonga",
       "region": "NSW",
       "postcode": "2076",

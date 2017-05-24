@@ -11,6 +11,7 @@ summary<br> *string* | Summary of the event
 location<br> *string* | Where the event is happening
 event_type<br>*enum* {bible_study, seminar} | The type of the event | Required
 team_id<br>*integer* | ID of the Hub or HQ team the event belongs too | Read-only
+contact_id<br>*integer* | ID of the contact who owns the event | Read-only
 category_id<br>*integer* | ID of the category the event belongs too | Required
 events_count<br>*integer* | Number of events associated with the event series | Read-only
 approach_id<br>*integer* | ID of the approach the event belongs too
@@ -40,7 +41,7 @@ curl https://hubapi.adventistchurch.com/api/event_series
         "location": "Locations throughout Sydney",
         "event_type": "seminar",
         "team_id": 1,
-        "user_id": 9,
+        "contact_id": 9,
         "category_id": 10,
         "events_count": 0,
         "campaign_id": null,
@@ -64,7 +65,7 @@ curl https://hubapi.adventistchurch.com/api/event_series
         "location": null,
         "event_type": "bible_study",
         "team_id": 6,
-        "user_id": 5,
+        "contact_id": 5,
         "category_id": 4,
         "events_count": 4,
         "campaign_id": null,
@@ -104,7 +105,7 @@ curl https://hubapi.adventistchurch.com/api/event_series/3
       "location": null,
       "event_type": "bible_study",
       "team_id": 6,
-      "user_id": 5,
+      "contact_id": 5,
       "category_id": 4,
       "events_count": 4,
       "campaign_id": null,
@@ -145,7 +146,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/event_series
       "location": null,
       "event_type": "bible_study",
       "team_id": 6,
-      "user_id": 5,
+      "contact_id": 5,
       "category_id": 20,
       "events_count": 0,
       "campaign_id": null,
@@ -184,7 +185,7 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/event_series/11
       "location": null,
       "event_type": "bible_study",
       "team_id": 6,
-      "user_id": 5,
+      "contact_id": 5,
       "category_id": 20,
       "events_count": 0,
       "campaign_id": null,
@@ -221,7 +222,7 @@ curl -X DELETE https://hubapi.adventistchurch.com/api/event_series/11
       "location": null,
       "event_type": "bible_study",
       "team_id": 6,
-      "user_id": 5,
+      "contact_id": 5,
       "category_id": 20,
       "events_count": 0,
       "campaign_id": null,

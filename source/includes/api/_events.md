@@ -20,7 +20,7 @@ category_id<br>*integer* | ID of the category the event belongs too | Required
 created_at<br>*datetime* | When the event was created | Read-only
 updated_at<br>*datetime* | When the event was last updated | Read-only
 event_sessions_count<br>*integer* | The number of Event Sessions the event has | Read-only
-
+shared<br>*boolean* | true if the event is viewable with other team members
 ## List Events
 ```shell
 curl https://hubapi.adventistchurch.com/api/contacts
@@ -49,7 +49,8 @@ curl https://hubapi.adventistchurch.com/api/contacts
         "campaign_id": null,
         "approach_id": null,
         "brand_id": null,
-        "event_sessions_count": 1
+        "event_sessions_count": 1,
+        "shared": true
       },
       "relationships": {
         "event_sessions": {
@@ -98,7 +99,8 @@ curl https://hubapi.adventistchurch.com/api/events/1
       "campaign_id": null,
       "approach_id": null,
       "brand_id": null,
-      "event_sessions_count": 1
+      "event_sessions_count": 1,
+      "shared": true
     },
     "relationships": {
       "event_sessions": {
@@ -148,7 +150,8 @@ curl -X POST https://hubapi.adventistchurch.com/api/events
       "campaign_id": null,
       "approach_id": null,
       "brand_id": null,
-      "event_sessions_count": 1
+      "event_sessions_count": 1,
+      "shared": false
     },
     "relationships": {
       "event_sessions": {
@@ -196,7 +199,8 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/events/2
       "campaign_id": null,
       "approach_id": null,
       "brand_id": null,
-      "event_sessions_count": 1
+      "event_sessions_count": 1,
+      "shared": false
     },
     "relationships": {
       "event_sessions": {
@@ -242,7 +246,8 @@ curl -X DELETE https://hubapi.adventistchurch.com/api/events/2
       "campaign_id": null,
       "approach_id": null,
       "brand_id": null,
-      "event_sessions_count": 1
+      "event_sessions_count": 1,
+      "shared": false
     },
     "relationships": {
       "event_sessions": {

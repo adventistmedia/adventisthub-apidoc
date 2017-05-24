@@ -10,9 +10,7 @@ first_name<br> *string* | First name | Required
 last_name<br> *string* | Last name | Required
 name<br> *string* | First and last name | Read-only
 email<br> *string* | Email address
-status<br> *enum* {active, unavailable, baptized, do_not_contact, deleted} | Status of contact. Defaults to active
-hub_team_id<br> *integer* | ID of the hub team the contact belongs to. Defaults to tokens team
-user_id<br>*integer* | ID of the user the contact belongs to | Read-only
+status<br> *enum* {non_member, member, deceased, deleted} | Status of contact. Defaults to non_member
 lat<br> *float* | Latitude of home address | Read-only
 lng<br> *float* | Longitude of home address | Read-only
 language_id<br>*integer* | ID of the language (primarily spoken) by the contact
@@ -20,8 +18,7 @@ date_of_birth<br>*date* | Date of birth
 gender<br> *enum* {gender_unknown, female, male} | Gender. Defaults to gender_unknown
 religion_id<br>*integer* | ID of the religion the contact belongs too
 activities_count<br>*integer* | Number of activities associated with the contact | Read-only
-visit_frequency<br>*integer* | The number of weeks between visits. Defaults to the users default visit frequency
-next_visit<br>*date* | Scheduled date for the next visit/interaction with the contact | Read-only
+last_visit<br>*date* | Date the contact last had a completed activity of type visit, call or bible_study | Read-only
 approach_id<br>*integer* | ID of the approach the contact belongs too
 brand_id<br>*integer* | ID of the brand the contact belongs too
 campaign_id<br>*integer* | ID of the campaign the contact belongs too
@@ -49,20 +46,19 @@ curl https://hubapi.adventistchurch.com/api/contacts
         "status": "active",
         "created_at": "2016-11-30T11:10:00.891+11:00",
         "updated_at": "2016-11-30T11:16:34.988+11:00",
-        "hub_team_id": 6,
-        "user_id": 5,
+        "created_by_id": 1,
         "lat": null,
         "lng": null,
         "language_id": 1,
-        "date_of_birth": "1950-02-01",
-        "gender": "female",
-        "religion_id": 7,
-        "activities_count": 14,
-        "visit_frequency": 1,
-        "next_visit": "2016-12-05",
-        "campaign_id": null,
-        "approach_id": null,
-        "brand_id": null
+        "next_visit":null,
+        "available":true,
+        "available_until":null,
+        "date_of_birth":"1960-05-11",
+        "gender":"male",
+        "religion_id":25,
+        "campaign_id":null,
+        "approach_id":null,
+        "brand_id":null
       },
       "links": {
         "self": "/api/contacts/33"
@@ -95,20 +91,19 @@ curl https://hubapi.adventistchurch.com/api/contacts/33
       "status": "active",
       "created_at": "2016-11-30T11:10:00.891+11:00",
       "updated_at": "2016-11-30T11:16:34.988+11:00",
-      "hub_team_id": 6,
-      "user_id": 5,
+      "created_by_id": 1,
       "lat": null,
       "lng": null,
       "language_id": 1,
-      "date_of_birth": "1950-02-01",
-      "gender": "female",
-      "religion_id": 7,
-      "activities_count": 14,
-      "visit_frequency": 1,
-      "next_visit": "2016-12-05",
-      "campaign_id": null,
-      "approach_id": null,
-      "brand_id": null
+      "next_visit":null,
+      "available":true,
+      "available_until":null,
+      "date_of_birth":"1960-05-11",
+      "gender":"male",
+      "religion_id":25,
+      "campaign_id":null,
+      "approach_id":null,
+      "brand_id":null
     },
     "links": {
       "self": "/api/contacts/33"
@@ -142,21 +137,19 @@ curl -X POST https://hubapi.adventistchurch.com/api/contacts
       "status": "active",
       "created_at": "2017-01-17T08:53:13.492+11:00",
       "updated_at": "2017-01-17T08:53:13.492+11:00",
-      "hub_team_id": 6,
-      "user_id": 5,
+      "created_by_id": 1,
       "lat": null,
       "lng": null,
       "language_id": 1,
-      "date_of_birth": null,
-      "gender": "male",
-      "religion_id": null,
-      "activities_count": 0,
-      "visit_frequency": 1,
-      "next_visit": "2017-01-24",
-      "support_alert_id": null,
-      "campaign_id": null,
-      "approach_id": null,
-      "brand_id": null
+      "next_visit":null,
+      "available":true,
+      "available_until":null,
+      "date_of_birth":null,
+      "gender":"male",
+      "religion_id":null,
+      "campaign_id":null,
+      "approach_id":null,
+      "brand_id":null
     },
     "links": {
       "self": "/api/contacts/46"
@@ -188,21 +181,19 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/46
       "status": "active",
       "created_at": "2017-01-17T08:53:13.492+11:00",
       "updated_at": "2017-01-17T08:59:03.970+11:00",
-      "hub_team_id": 6,
-      "user_id": 5,
+      "created_by_id": 1,
       "lat": null,
       "lng": null,
       "language_id": 1,
-      "date_of_birth": "1991-08-06",
-      "gender": "male",
-      "religion_id": null,
-      "activities_count": 0,
-      "visit_frequency": 1,
-      "next_visit": "2017-01-24",
-      "support_alert_id": null,
-      "campaign_id": null,
-      "approach_id": null,
-      "brand_id": null
+      "next_visit":null,
+      "available":true,
+      "available_until":null,
+      "date_of_birth":"1991-08-06",
+      "gender":"male",
+      "religion_id":null,
+      "campaign_id":null,
+      "approach_id":null,
+      "brand_id":null
     },
     "links": {
       "self": "/api/contacts/46"

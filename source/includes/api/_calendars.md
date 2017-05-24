@@ -33,7 +33,7 @@ curl https://hubapi.adventistchurch.com/api/calendars
       "attributes": {
         "title": "Contact Visit: Jasmine Fondu",
         "description": null,
-        "location": "21 Hetton St, BELLBIRD NSW 2325, Australia",
+        "location": "1232421 Hetton St, BELLBIRD NSW 2325, Australia",
         "start_time": "2016-10-26T09:00:00.000+00:00",
         "end_time": "2016-10-26T10:00:00.000+00:00",
         "source_id": 10,

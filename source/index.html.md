@@ -36,7 +36,6 @@ includes:
   - api/partners
   - api/religions
   - api/studies
-  - api/tasks
 
 search: true
 ---
@@ -46,6 +45,14 @@ search: true
 Welcome to the Adventist Hub API documentation. You can use the API to access Hub Team related endpoints. The API doesn't cover endpoints specific to Hub team managers, mentors, or HQ teams.
 
 To begin, you'll need to contact [Adventist Media](http://adventistmedia.org.au) to request an application key and secret.
+
+# Good to know
+
+Adventist Hub is focused around the idea of a contact - a person who is either a church member or a non-church member.
+
+A contact can be sent an invitation to activate their account allowing them to view all teams they memberships to with a role of team_member, leader or owner. (By default they will have the role "no_role")
+
+Throughout the documentation we will refer to a contact with an activated account as a user.
 
 # Making Requests
 
@@ -64,7 +71,7 @@ You can use a token for one team to request a token for another team.
 
 With this in mind, data received from the API for the user and stored locally should have a team_id column (or similar) to separate the users data by team.
 
-Tokens do not expire but the user can sign in to the Hub via a web browser and remove an applications access therefore delete the tokens.
+Tokens do not expire but the user can sign in to the Hub via a web browser and remove an applications access therefore deleting the tokens.
 
 ## Responses
 
@@ -80,7 +87,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/signin
 -H "X-Api-Key: adventisthub_app_key"
 -H "X-Api-Secret: adventisthub_app_secret"
 -H "Content-type: application/json"
--d '{"provider": "myadventist", "provider_token": "provider_access_token", "provider_uid": "provider_uid"}'
+-d '{"provider_token": "provider_access_token", "provider_uid": "provider_uid"}'
 ```
 ```json
 {
@@ -88,7 +95,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/signin
     "id": "1",
     "type": "app_tokens",
     "attributes": {
-      "user_id": 5,
+      "contact_id": 5,
       "team_id": 2,
       "token": "V4saems7F97MnCf7efDojfgC8qU6JsGTKfEgZz6RFf555dsQFM"
     }
@@ -115,7 +122,6 @@ The following fields are required:
 
 Field | Description | Notes
 ----- | ----------- | -----
-provider<br> *string* | The name of the provider. Should be myadventist | Required
 provider_token<br> *datetime* | The OAuth access token you received from myAdventist after successfully logging the user in | Required
 provider_uid<br> *datetime* | Providers unique user ID | Required
 
@@ -148,7 +154,7 @@ curl -x POST https://hubapi.adventistchurch.com/api/team_token/7
     "id": "53",
     "type": "app_tokens",
     "attributes": {
-      "user_id": 5,
+      "contact_id": 5,
       "team_id": 7,
       "token": "ojfgC8qU65dsQFMV4saems7F97MnCf7efDJsGTKfEgZz6RFf55"
     }

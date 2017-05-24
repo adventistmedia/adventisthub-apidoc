@@ -13,7 +13,6 @@ attention<br> *string* | Attention
 address1<br> *string* | Address line 1 | Required
 address2<br> *string* | Address line 2
 address3<br> *string* | Address line 3
-locality<br> *string* | Locality/Suburb | *Required
 city<br> *string* | City | *Required
 region<br> *string* | Region/State/Province | *Required
 postcode<br> *string* | Postcode/Zipcode | *Required
@@ -44,7 +43,6 @@ curl https://hubapi.adventistchurch.com/api/account/addresses
         "address1": "130 Fox Valley Rd",
         "address2": "",
         "address3": "",
-        "locality": null,
         "city": "Denham Court",
         "region": "NSW",
         "postcode": "2565",
@@ -83,7 +81,6 @@ curl https://hubapi.adventistchurch.com/api/account/addresses/9
       "address1": "130 Fox Valley Rd",
       "address2": "",
       "address3": "",
-      "locality": null,
       "city": "Denham Court",
       "region": "NSW",
       "postcode": "2565",
@@ -125,7 +122,6 @@ curl -X POST https://hubapi.adventistchurch.com/api/account/addresses
       "address1": "150 Fox Valley Road",
       "address2": null,
       "address3": null,
-      "locality": null,
       "city": "Wahroonga",
       "region": "NSW",
       "postcode": "2076",
@@ -164,7 +160,6 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/account/addresses/33
       "address1": "150 Fox Valley Road",
       "address2": null,
       "address3": null,
-      "locality": null,
       "city": "Wahroonga",
       "region": "NSW",
       "postcode": "2076",
@@ -201,7 +196,6 @@ curl -X DELETE https://hubapi.adventistchurch.com/api/account/addresses/33
       "address1": "150 Fox Valley Road",
       "address2": null,
       "address3": null,
-      "locality": null,
       "city": "Wahroonga",
       "region": "NSW",
       "postcode": "2076",

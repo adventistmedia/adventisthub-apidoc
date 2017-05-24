@@ -9,8 +9,8 @@ By default the application has a global set of baptismal and baptismal supplemen
 Field | Description | Notes
 --------- | ------- | -------
 name<br>*string* | Event name | Required
-user_id<br> *integer* | ID of the user the study belongs too | Read-only
-study_type<br>*enum*{baptismal, baptismal_supplementary, user_study} |  Type of study. Studies created by users will be set to user_study | Read-only
+contact_id<br> *integer* | ID of the contact the study belongs too | Read-only
+study_type<br>*enum*{baptismal, baptismal_supplementary, user_study} |  Type of study. Studies created by contacts will be set to user_study | Read-only
 created_at<br>*datetime* | When the study was created | Read-only
 updated_at<br>*datetime* | When the study was last updated | Read-only
 
@@ -29,7 +29,7 @@ curl https://hubapi.adventistchurch.com/api/studies
       "type": "studies",
       "attributes": {
         "name": "32. Revelation 17",
-        "user_id": null,
+        "contact_id": null,
         "study_type": "baptismal",
         "created_at": "2017-01-04T14:47:04.448+11:00",
         "updated_at": "2017-01-04T14:47:04.448+11:00"
@@ -40,7 +40,7 @@ curl https://hubapi.adventistchurch.com/api/studies
       "type": "studies",
       "attributes": {
         "name": "06. Gifts of Spirit",
-        "user_id": null,
+        "contact_id": null,
         "study_type": "baptismal_supplementary",
         "created_at": "2017-01-04T14:47:04.448+11:00",
         "updated_at": "2017-01-04T14:47:04.448+11:00"
@@ -69,7 +69,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/studies
     "type": "studies",
     "attributes": {
       "name": "Where did all the sheep go?",
-      "user_id": 5,
+      "contact_id": 5,
       "study_type": "user_study",
       "created_at": "2017-01-17T12:05:15.817+11:00",
       "updated_at": "2017-01-17T12:05:15.817+11:00"
@@ -96,7 +96,7 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/studies/52
     "type": "studies",
     "attributes": {
       "name": "Finding the sheep",
-      "user_id": 5,
+      "contact_id": 5,
       "study_type": "user_study",
       "created_at": "2017-01-17T12:05:15.817+11:00",
       "updated_at": "2017-01-17T12:09:44.464+11:00"
@@ -120,7 +120,7 @@ curl -X DELETE https://hubapi.adventistchurch.com/api/studies/52
     "type": "studies",
     "attributes": {
       "name": "Finding the sheep",
-      "user_id": 5,
+      "contact_id": 5,
       "study_type": "user_study",
       "created_at": "2017-01-17T12:05:15.817+11:00",
       "updated_at": "2017-01-17T12:09:44.464+11:00"
