@@ -122,6 +122,14 @@
 
 <p>To begin, you&rsquo;ll need to contact <a href="http://adventistmedia.org.au">Adventist Media</a> to request an application key and secret.</p>
 
+<h1 id="good-to-know">Good to know</h1>
+
+<p>Adventist Hub is focused around the idea of a contact - a person who is either a church member or a non-church member.</p>
+
+<p>A contact can be sent an invitation to activate their account allowing them to view all teams they memberships to with a role of team_member, leader or owner. (By default they will have the role &ldquo;no_role&rdquo;)</p>
+
+<p>Throughout the documentation we will refer to a contact with an activated account as a user.</p>
+
 <h1 id="making-requests">Making Requests</h1>
 
 <h2 id="headers">Headers</h2>
@@ -140,7 +148,7 @@
 
 <p>With this in mind, data received from the API for the user and stored locally should have a team_id column (or similar) to separate the users data by team.</p>
 
-<p>Tokens do not expire but the user can sign in to the Hub via a web browser and remove an applications access therefore delete the tokens.</p>
+<p>Tokens do not expire but the user can sign in to the Hub via a web browser and remove an applications access therefore deleting the tokens.</p>
 
 <h2 id="responses">Responses</h2>
 
@@ -154,13 +162,13 @@
 -H <span class="s2">"X-Api-Key: adventisthub_app_key"</span>
 -H <span class="s2">"X-Api-Secret: adventisthub_app_secret"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--d <span class="s1">'{"provider": "myadventist", "provider_token": "provider_access_token", "provider_uid": "provider_uid"}'</span>
+-d <span class="s1">'{"provider_token": "provider_access_token", "provider_uid": "provider_uid"}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app_tokens"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"V4saems7F97MnCf7efDojfgC8qU6JsGTKfEgZz6RFf555dsQFM"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -192,11 +200,6 @@ The request must include the headers <code class="prettyprint">X-Api-Key</code> 
 <th>Notes</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>provider<br> <em>string</em></td>
-<td>The name of the provider. Should be myadventist</td>
-<td>Required</td>
-</tr>
 <tr>
 <td>provider_token<br> <em>datetime</em></td>
 <td>The OAuth access token you received from myAdventist after successfully logging the user in</td>
@@ -230,7 +233,7 @@ The request must include the headers <code class="prettyprint">X-Api-Key</code> 
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app_tokens"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
       </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ojfgC8qU65dsQFMV4saems7F97MnCf7efDJsGTKfEgZz6RFf55"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -309,7 +312,7 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 
 <ul>
 <li>Show Account - read the users basic details</li>
-<li>List Hub Teams - read which teams the user has access to</li>
+<li>List Hub Teams - read which teams the user has memberships to</li>
 <li>Show Membership - read the users role within the current team</li>
 </ul>
 
@@ -375,11 +378,6 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <td>address3<br> <em>string</em></td>
 <td>Address line 3</td>
 <td></td>
-</tr>
-<tr>
-<td>locality<br> <em>string</em></td>
-<td>Locality/Suburb</td>
-<td>*Required</td>
 </tr>
 <tr>
 <td>city<br> <em>string</em></td>
@@ -449,7 +447,6 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
         </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"130 Fox Valley Rd"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nt">"address3"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"locality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Denham Court"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSW"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2565"</span><span class="p">,</span><span class="w">
@@ -484,7 +481,6 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
       </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"130 Fox Valley Rd"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address3"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"locality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Denham Court"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSW"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2565"</span><span class="p">,</span><span class="w">
@@ -520,7 +516,6 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
       </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150 Fox Valley Road"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"locality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSW"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2076"</span><span class="p">,</span><span class="w">
@@ -554,7 +549,6 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
       </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150 Fox Valley Road"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"locality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSW"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2076"</span><span class="p">,</span><span class="w">
@@ -586,7 +580,6 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
       </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150 Fox Valley Road"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"locality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSW"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2076"</span><span class="p">,</span><span class="w">
@@ -911,19 +904,9 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <td></td>
 </tr>
 <tr>
-<td>status<br> <em>enum</em> {pending, active, disabled}</td>
-<td>Account status</td>
+<td>status<br> <em>enum</em> {non_member, member, deceased}</td>
+<td>Membership status</td>
 <td>Read-only</td>
-</tr>
-<tr>
-<td>job<br> <em>enum</em> {member, assistant_pastor, bible_worker, chaplain, pastor}</td>
-<td>Job within church organisation</td>
-<td></td>
-</tr>
-<tr>
-<td>dashboard_language<br> <em>string</em></td>
-<td>Preferred language code to see the dashboard in. By default this is en (English)</td>
-<td></td>
 </tr>
 <tr>
 <td>available<br> <em>boolean</em></td>
@@ -976,16 +959,6 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <td>Read-only</td>
 </tr>
 <tr>
-<td>visit_frequency<br> <em>integer</em></td>
-<td>the default number of weeks between visiting a contact</td>
-<td></td>
-</tr>
-<tr>
-<td>mentorships_count<br> <em>integer</em></td>
-<td>If the user is a mentor, the number of mentorships they have</td>
-<td>Read-only</td>
-</tr>
-<tr>
 <td>calendar_url<br> <em>string</em></td>
 <td>The unique private iCal URL for the users calendar to subscribe to</td>
 <td>Read-only</td>
@@ -998,29 +971,25 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contacts"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dan"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ratherbe"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dan Ratherbe"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dan@email.com"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"job"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bible_worker"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"dashboard_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Underwood"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dan Underwood"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"danunderwood@email.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"member"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"unavailable_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-02T10:13:58.246+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T09:32:15.632+11:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-22T16:57:46.956+10:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-24T10:39:50.119+10:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sydney"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australia"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"hub_teams_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">-33.000000</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">150.000000</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"visit_frequency"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"mentorships_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"calendar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webcal://hub.adventistchurch.com/calendars/user/5/gQ4ttSQcN94mv9xeDbiddzXg/feed.ics"</span><span class="w">
+      </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"calendar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webcal://hub.adventistchurch.com/contacts/1/calendars/kaQaKqcMHX63ScxrA9gJhk91/feed.ics"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/account"</span><span class="w">
@@ -1037,32 +1006,28 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
--d <span class="s1">'{"user": {"first_name": "Wallaby"}}'</span>
+-d <span class="s1">'{"contact": {"first_name": "Wallaby"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contacts"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wallaby"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ratherbe"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wallaby Ratherbe"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dan@email.com"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"job"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bible_worker"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"dashboard_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Underwood"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wallaby Underwood"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"danunderwood@email.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"member"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"unavailable_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-02T10:13:58.246+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T09:32:15.632+11:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-22T16:57:46.956+10:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-24T10:48:08.220+10:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sydney"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australia"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"hub_teams_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">-33.000000</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">150.000000</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"visit_frequency"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"mentorships_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"calendar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webcal://hub.adventistchurch.com/calendars/user/5/gQ4ttSQcN94mv9xeDbiddzXg/feed.ics"</span><span class="w">
+      </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"calendar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webcal://hub.adventistchurch.com/contacts/1/calendars/kaQaKqcMHX63ScxrA9gJhk91/feed.ics"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/account"</span><span class="w">
@@ -1088,24 +1053,19 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 </tr>
 </thead><tbody>
 <tr>
-<td>activity_type<br> <em>enum</em> {visit, call, email, sms, baptism, bible_study, event_attendance}</td>
+<td>activity_type<br> <em>enum</em> {visit, call, baptism, bible_study, event_attendance, enquiry, email_marketing, sms_marketing, decision}</td>
 <td>Type of activity</td>
 <td>Required</td>
 </tr>
 <tr>
-<td>user_id<br> <em>integer</em></td>
-<td>ID of user who created the activity</td>
+<td>contact_id<br> <em>integer</em></td>
+<td>ID of contact the activity belongs to</td>
 <td>Read-only</td>
 </tr>
 <tr>
 <td>team_id<br> <em>integer</em></td>
 <td>ID of team the activity was associated to</td>
 <td>Read-only</td>
-</tr>
-<tr>
-<td>occurred_at<br> <em>datetime</em></td>
-<td>Time the activity occurred</td>
-<td>Required</td>
 </tr>
 <tr>
 <td>subject<br> <em>string</em></td>
@@ -1121,6 +1081,31 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <td>autogenerated<br> <em>boolean</em></td>
 <td>Auto-generated activities are automatically created based on another action</td>
 <td>Read-only</td>
+</tr>
+<tr>
+<td>completed_at<br> <em>datetime</em></td>
+<td>Time the activity was completed</td>
+<td>**Required</td>
+</tr>
+<tr>
+<td>completed_by<br> <em>integer</em></td>
+<td>ID of the user who completed the activity</td>
+<td>**Required</td>
+</tr>
+<tr>
+<td>feedback<br> <em>text</em></td>
+<td>Feedback for a completed activity</td>
+<td>**Required</td>
+</tr>
+<tr>
+<td>due_at<br> <em>datetime</em></td>
+<td>Time the activity was should be completed</td>
+<td>***Required</td>
+</tr>
+<tr>
+<td>assigned_to_id<br> <em>integer</em></td>
+<td>ID of the user who is assigned to do the activity</td>
+<td>***Required</td>
 </tr>
 <tr>
 <td>study_id<br> <em>integer</em></td>
@@ -1153,8 +1138,8 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <td></td>
 </tr>
 <tr>
-<td>contact_id<br> <em>integer</em></td>
-<td>ID of contact</td>
+<td>created_by_id<br> <em>integer</em></td>
+<td>ID of contact who created the activity</td>
 <td>Read-only</td>
 </tr>
 <tr>
@@ -1169,112 +1154,74 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 </tr>
 </tbody></table>
 
-<p>* study_id is required only when the activity type is a bible_study</p>
+<p>* study_id is required only when the activity type is a bible_study
+** required for a completed activity
+*** required for a todo activity</p>
 
 <h2 id="list-activities">List Activities</h2>
-<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/17/activities
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/3/activities
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"baptism"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"call"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"occurred_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:30:00.000+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"due_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-26T12:55:00.000+10:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:40:14.338+11:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:40:14.338+11:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Give them a call before midnight"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-23T08:04:59.806+10:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-23T08:06:11.673+10:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"autogenerated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"completed_by_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"todo"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/17/activities/34"</span><span class="w">
+        </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/3/activities/3"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"33"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bible_study"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"decision"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"occurred_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-28T11:30:00.000+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"due_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:39:13.553+11:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:40:25.417+11:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Have someone meet me"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-23T07:57:46.223+10:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-23T07:57:46.223+10:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"autogenerated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="w">
+        </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"completed_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-23T08:00:00.000+10:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="s2">"created at visit for this"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/17/activities/33"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visit"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"occurred_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-25T11:30:00.000+11:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Discussed their thoughts on a healthy lifestyle"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:38:54.918+11:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:40:32.667+11:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"autogenerated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/17/activities/32"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"39"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event_attendance"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"occurred_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-17T08:00:00.000+11:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Desmond Dose Doco"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Attended the event Desmond Dose Doco"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-01T11:08:21.220+11:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-01T11:08:21.220+11:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"autogenerated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/17/activities/39"</span><span class="w">
+        </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/3/activities/1"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -1285,32 +1232,39 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p>An array of all activities for the contact.</p>
 
 <h2 id="show-activity">Show activity</h2>
-<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/17/activities/34
+<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/contacts/3/activities/3
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"baptism"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"occurred_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:30:00.000+11:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:40:14.338+11:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:40:14.338+11:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"autogenerated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/17/activities/34"</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"call"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"due_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-26T12:55:00.000+10:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Give them a call before midnight"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-23T08:04:59.806+10:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-23T08:06:11.673+10:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"autogenerated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"completed_by_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"todo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/3/activities/3"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1319,73 +1273,84 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 <p>Show a contacts activity.</p>
 
 <h2 id="create-activity">Create Activity</h2>
-<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/contacts/17/activities
+<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/contacts/3/activities
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
--d <span class="s1">'{"activity": {"occurred_at": "2017-01-01T09:00:00", "activity_type": "visit"}}'</span>
+-d <span class="s1">'{"activity": {"status": "todo", "due_at": "2017-01-01T09:00:00", "activity_type": "visit"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"77"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visit"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"occurred_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-01T20:00:00.000+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"due_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-01T09:00:00.000+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T15:41:02.069+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T15:41:02.069+11:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-24T11:46:30.689+10:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-24T11:46:30.689+10:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"autogenerated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"completed_by_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"todo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/17/activities/77"</span><span class="w">
+      </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/3/activities/4"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><code class="prettyprint">POST /api/contacts/{contact-id}/activities</code></p>
 
-<p>Activities can only be created for the activity type&rsquo;s: visit, call, baptism, bible_study</p>
+<p>Todo activities can only be created for the activity type&rsquo;s: visit, call, baptism, bible_study
+Completed activities can only be created for the activity types: visit, call, baptism, bible_study, enquiry, decision</p>
 
 <h2 id="update-activity">Update activity</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/17/activities/77
+<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/3/activities/4
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 -d <span class="s1">'{"activity": {"description": "Really enjoyed visit"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"77"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visit"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"occurred_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-01T20:00:00.000+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"due_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-01T09:00:00.000+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Really enjoyed visit"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T15:41:02.069+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T15:44:22.828+11:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-24T11:46:30.689+10:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-24T11:48:49.948+10:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"autogenerated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"completed_by_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"todo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/17/activities/77"</span><span class="w">
+      </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/3/activities/4"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1394,33 +1359,38 @@ To switch teams, you&rsquo;ll need to request a token for the team to be switche
 Update activities that are not auto-generated.</p>
 
 <h2 id="delete-activity">Delete activity</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/contacts/17/activities/77
+<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/contacts/17/activities/4
 -H <span class="s2">"Authorization: Bearer token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"77"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visit"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"occurred_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-01T20:00:00.000+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"due_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-01T09:00:00.000+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Really enjoyed visit"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T15:41:02.069+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T15:44:22.828+11:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-24T11:46:30.689+10:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-24T11:48:49.948+10:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"autogenerated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"completed_by_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"todo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/17/activities/77"</span><span class="w">
+      </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/3/activities/4"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1633,26 +1603,6 @@ Update activities that are not auto-generated.</p>
 <td>Read-only</td>
 </tr>
 <tr>
-<td>decision<br><em>enum</em> {undecided, accepted, declined}</td>
-<td>The decision (if one was required) the user made</td>
-<td>Read-only</td>
-</tr>
-<tr>
-<td>callback<br><em>boolean</em></td>
-<td>Whether a callback is required</td>
-<td>Read-only</td>
-</tr>
-<tr>
-<td>accept_callback<br><em>boolean</em></td>
-<td>Whether an accept callback can be made</td>
-<td>Read-only</td>
-</tr>
-<tr>
-<td>decline_callback<br><em>boolean</em></td>
-<td>Whether a decline callback can be made</td>
-<td>Read-only</td>
-</tr>
-<tr>
 <td>created_at<br><em>datetime</em></td>
 <td>When the alert was created</td>
 <td>Read-only</td>
@@ -1679,10 +1629,6 @@ Update activities that are not auto-generated.</p>
         </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.survey.com/1234"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"decision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"undecided"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"accept_callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"decline_callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-22T09:15:40.236+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-22T12:20:53.619+11:00"</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -1692,14 +1638,10 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alerts"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contact transfer request"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dan Ratherbe would like to transfer their contact Jasmine Fondu to you"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dan Underwood would like to transfer their contact Jasmine Fondu to you"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://hub.adventistchurch.com/assignment_requests?tid=4"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nt">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"decision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"undecided"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"accept_callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"decline_callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-22T09:05:34.421+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-22T09:06:41.240+11:00"</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -1725,10 +1667,6 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nt">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"decision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"undecided"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"accept_callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"decline_callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T15:33:07.224+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T15:33:07.224+11:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -1748,14 +1686,10 @@ Update activities that are not auto-generated.</p>
   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alerts"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contact transfer request"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dan Ratherbe would like to transfer their contact Jasmine Fondu to you"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dan Underwood would like to transfer their contact Jasmine Fondu to you"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"decision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"accept_callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"decline_callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-22T09:05:34.421+11:00"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-22T09:06:41.240+11:00"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -1774,14 +1708,10 @@ Update activities that are not auto-generated.</p>
   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alerts"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contact transfer request"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dan Ratherbe would like to transfer their contact Jasmine Fondu to you"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dan Underwood would like to transfer their contact Jasmine Fondu to you"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"decision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"declined"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"accept_callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"decline_callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-22T09:05:34.421+11:00"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-22T09:06:41.240+11:00"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -1805,10 +1735,6 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nt">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"decision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"undecided"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"accept_callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"decline_callback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T15:33:07.224+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T15:33:07.224+11:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -2125,7 +2051,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contact Visit: Jasmine Fondu"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21 Hetton St, BELLBIRD NSW 2325, Australia"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232421 Hetton St, BELLBIRD NSW 2325, Australia"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-26T09:00:00.000+00:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-26T10:00:00.000+00:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"source_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
@@ -2345,11 +2271,6 @@ Update activities that are not auto-generated.</p>
 <td></td>
 </tr>
 <tr>
-<td>locality<br> <em>string</em></td>
-<td>Locality/Suburb</td>
-<td>*Required</td>
-</tr>
-<tr>
 <td>city<br> <em>string</em></td>
 <td>City</td>
 <td>*Required</td>
@@ -2417,7 +2338,6 @@ Update activities that are not auto-generated.</p>
         </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150 Fox Valley Road"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"address2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"locality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSW"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2076"</span><span class="p">,</span><span class="w">
@@ -2452,7 +2372,6 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150 Fox Valley Road"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"locality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSW"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2076"</span><span class="p">,</span><span class="w">
@@ -2488,7 +2407,6 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"148 Fox Valley Road"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"locality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSW"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2076"</span><span class="p">,</span><span class="w">
@@ -2522,7 +2440,6 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"148 Fox Valley Road"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"locality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSW"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2076"</span><span class="p">,</span><span class="w">
@@ -2554,7 +2471,6 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"148 Fox Valley Road"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"locality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSW"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2076"</span><span class="p">,</span><span class="w">
@@ -2887,19 +2803,9 @@ Update activities that are not auto-generated.</p>
 <td></td>
 </tr>
 <tr>
-<td>status<br> <em>enum</em> {active, unavailable, baptized, do_not_contact, deleted}</td>
-<td>Status of contact. Defaults to active</td>
+<td>status<br> <em>enum</em> {non_member, member, deceased, deleted}</td>
+<td>Status of contact. Defaults to non_member</td>
 <td></td>
-</tr>
-<tr>
-<td>hub_team_id<br> <em>integer</em></td>
-<td>ID of the hub team the contact belongs to. Defaults to tokens team</td>
-<td></td>
-</tr>
-<tr>
-<td>user_id<br><em>integer</em></td>
-<td>ID of the user the contact belongs to</td>
-<td>Read-only</td>
 </tr>
 <tr>
 <td>lat<br> <em>float</em></td>
@@ -2937,13 +2843,8 @@ Update activities that are not auto-generated.</p>
 <td>Read-only</td>
 </tr>
 <tr>
-<td>visit_frequency<br><em>integer</em></td>
-<td>The number of weeks between visits. Defaults to the users default visit frequency</td>
-<td></td>
-</tr>
-<tr>
-<td>next_visit<br><em>date</em></td>
-<td>Scheduled date for the next visit/interaction with the contact</td>
+<td>last_visit<br><em>date</em></td>
+<td>Date the contact last had a completed activity of type visit, call or bible_study</td>
 <td>Read-only</td>
 </tr>
 <tr>
@@ -2990,20 +2891,19 @@ Update activities that are not auto-generated.</p>
         </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-30T11:10:00.891+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-30T11:16:34.988+11:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"hub_team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"date_of_birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1950-02-01"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"female"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"religion_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"activities_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"visit_frequency"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"next_visit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-05"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="nt">"next_visit"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"available"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"available_until"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_of_birth"</span><span class="p">:</span><span class="s2">"1960-05-11"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"male"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"religion_id"</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="kc">null</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/33"</span><span class="w">
@@ -3032,20 +2932,19 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-30T11:10:00.891+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-30T11:16:34.988+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"hub_team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"date_of_birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1950-02-01"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"female"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"religion_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"activities_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"visit_frequency"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"next_visit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-05"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"next_visit"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"available"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"available_until"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date_of_birth"</span><span class="p">:</span><span class="s2">"1960-05-11"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"male"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"religion_id"</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/33"</span><span class="w">
@@ -3075,21 +2974,19 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T08:53:13.492+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T08:53:13.492+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"hub_team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"date_of_birth"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"male"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"religion_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"activities_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"visit_frequency"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"next_visit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-24"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"support_alert_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"next_visit"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"available"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"available_until"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date_of_birth"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"male"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"religion_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/46"</span><span class="w">
@@ -3117,21 +3014,19 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T08:53:13.492+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T08:59:03.970+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"hub_team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"date_of_birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1991-08-06"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"male"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"religion_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"activities_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"visit_frequency"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"next_visit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-24"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"support_alert_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"next_visit"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"available"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"available_until"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date_of_birth"</span><span class="p">:</span><span class="s2">"1991-08-06"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"male"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"religion_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/46"</span><span class="w">
@@ -3177,6 +3072,11 @@ Update activities that are not auto-generated.</p>
 <tr>
 <td>team_id<br><em>integer</em></td>
 <td>ID of the Hub or HQ team the event belongs too</td>
+<td>Read-only</td>
+</tr>
+<tr>
+<td>contact_id<br><em>integer</em></td>
+<td>ID of the contact who owns the event</td>
 <td>Read-only</td>
 </tr>
 <tr>
@@ -3241,7 +3141,7 @@ Update activities that are not auto-generated.</p>
         </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Locations throughout Sydney"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seminar"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
         </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
         </span><span class="nt">"events_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3265,7 +3165,7 @@ Update activities that are not auto-generated.</p>
         </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bible_study"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
         </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
         </span><span class="nt">"events_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
         </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3301,7 +3201,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bible_study"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
       </span><span class="nt">"events_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3338,7 +3238,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bible_study"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
       </span><span class="nt">"events_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3373,7 +3273,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bible_study"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
       </span><span class="nt">"events_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3406,7 +3306,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bible_study"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
       </span><span class="nt">"events_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3679,6 +3579,11 @@ Update activities that are not auto-generated.</p>
 <td>The number of Event Sessions the event has</td>
 <td>Read-only</td>
 </tr>
+<tr>
+<td>shared<br><em>boolean</em></td>
+<td>true if the event is viewable with other team members</td>
+<td></td>
+</tr>
 </tbody></table>
 
 <h2 id="list-events">List Events</h2>
@@ -3705,7 +3610,8 @@ Update activities that are not auto-generated.</p>
         </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"event_sessions_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="nt">"event_sessions_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"event_sessions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3750,7 +3656,8 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_sessions_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="nt">"event_sessions_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"event_sessions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3796,7 +3703,8 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_sessions_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="nt">"event_sessions_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"event_sessions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3840,7 +3748,8 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_sessions_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="nt">"event_sessions_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"event_sessions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3882,7 +3791,8 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_sessions_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="nt">"event_sessions_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"event_sessions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4097,7 +4007,7 @@ Update activities that are not auto-generated.</p>
 
 <p>Memberships to Hub teams.</p>
 
-<p>It&rsquo;s important to be know the users team role after they&rsquo;ve signed in to avoid calling endpoints the user doesn&rsquo;t have access to or showing the UI components that are not applicable.</p>
+<p>It&rsquo;s important to know the users team role after they&rsquo;ve signed in to avoid calling endpoints the user doesn&rsquo;t have access to or showing the UI components that are not applicable.</p>
 
 <h2 id="fields">Fields</h2>
 
@@ -4109,7 +4019,7 @@ Update activities that are not auto-generated.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>user_id<br> <em>integer</em></td>
+<td>contact_id<br> <em>integer</em></td>
 <td>ID of the user the membership belongs too</td>
 <td>Read-only</td>
 </tr>
@@ -4119,7 +4029,7 @@ Update activities that are not auto-generated.</p>
 <td>Read-only</td>
 </tr>
 <tr>
-<td>role<br> <em>enum</em>{member, leader, manager}</td>
+<td>role<br> <em>enum</em>{team_member, leader, owner}</td>
 <td>Role within the team the user has been given</td>
 <td>Read-only</td>
 </tr>
@@ -4145,9 +4055,9 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"memberships"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
         </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"member"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team_member"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:26:36.690+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:26:36.690+11:00"</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -4168,9 +4078,9 @@ Update activities that are not auto-generated.</p>
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"memberships"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"member"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team_member"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:26:36.690+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:26:36.690+11:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -4403,13 +4313,13 @@ Update activities that are not auto-generated.</p>
 <td>Required</td>
 </tr>
 <tr>
-<td>user_id<br> <em>integer</em></td>
-<td>ID of the user the study belongs too</td>
+<td>contact_id<br> <em>integer</em></td>
+<td>ID of the contact the study belongs too</td>
 <td>Read-only</td>
 </tr>
 <tr>
 <td>study_type<br><em>enum</em>{baptismal, baptismal_supplementary, user_study}</td>
-<td>Type of study. Studies created by users will be set to user_study</td>
+<td>Type of study. Studies created by contacts will be set to user_study</td>
 <td>Read-only</td>
 </tr>
 <tr>
@@ -4435,7 +4345,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"studies"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32. Revelation 17"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"study_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"baptismal"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-04T14:47:04.448+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-04T14:47:04.448+11:00"</span><span class="w">
@@ -4446,7 +4356,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"studies"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06. Gifts of Spirit"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"study_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"baptismal_supplementary"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-04T14:47:04.448+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-04T14:47:04.448+11:00"</span><span class="w">
@@ -4471,7 +4381,7 @@ Update activities that are not auto-generated.</p>
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"studies"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Where did all the sheep go?"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="nt">"study_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_study"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:05:15.817+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:05:15.817+11:00"</span><span class="w">
@@ -4493,7 +4403,7 @@ Update activities that are not auto-generated.</p>
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"studies"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finding the sheep"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="nt">"study_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_study"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:05:15.817+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:09:44.464+11:00"</span><span class="w">
@@ -4513,7 +4423,7 @@ Update activities that are not auto-generated.</p>
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"studies"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finding the sheep"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="nt">"study_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_study"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:05:15.817+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:09:44.464+11:00"</span><span class="w">
@@ -4522,357 +4432,6 @@ Update activities that are not auto-generated.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><code class="prettyprint">DELETE /api/studies/{study-id}</code></p>
-
-          <h1 id="task">Task</h1>
-
-<p>A task to be completed by a user. A task can be specific to a contact.</p>
-
-<h2 id="fields">Fields</h2>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-<th>Notes</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>title<br><em>string</em></td>
-<td>Title</td>
-<td>Required</td>
-</tr>
-<tr>
-<td>description<br><em>text</em></td>
-<td>Description</td>
-<td></td>
-</tr>
-<tr>
-<td>priority<br><em>enum</em>{no_priority, low_priority, high_priority}</td>
-<td>Priority of task. Defaults to no_priority</td>
-<td></td>
-</tr>
-<tr>
-<td>contact_id<br> <em>integer</em></td>
-<td>ID of the contact the task belongs too</td>
-<td></td>
-</tr>
-<tr>
-<td>user_id<br> <em>integer</em></td>
-<td>ID of the user the task belongs too</td>
-<td>Read-only</td>
-</tr>
-<tr>
-<td>due_date<br> <em>date</em></td>
-<td>Date the task is due to be completed</td>
-<td></td>
-</tr>
-<tr>
-<td>status<br><em>enum</em>{active, completed}</td>
-<td>Status of task. Defaults to active</td>
-<td>Read-only</td>
-</tr>
-<tr>
-<td>feedback<br><em>text</em></td>
-<td>Feedback the user provides if a response is required</td>
-<td></td>
-</tr>
-<tr>
-<td>response_required<br><em>boolean</em></td>
-<td>Whether the user is required to provide a response when completing the task</td>
-<td>Read-only</td>
-</tr>
-<tr>
-<td>completed_at<br><em>datetime</em></td>
-<td>When the task was completed</td>
-<td>Read-only</td>
-</tr>
-<tr>
-<td>created_by_id<br> <em>integer</em></td>
-<td>ID of the user who created the task</td>
-<td>Read-only</td>
-</tr>
-<tr>
-<td>created_at<br><em>datetime</em></td>
-<td>When the study was created</td>
-<td>Read-only</td>
-</tr>
-<tr>
-<td>updated_at<br><em>datetime</em></td>
-<td>When the study was last updated</td>
-<td>Read-only</td>
-</tr>
-</tbody></table>
-
-<h2 id="list-tasks">List Tasks</h2>
-<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/tasks
--H <span class="s2">"Authorization: Bearer token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tasks"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Delivery Beyond the Search"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"After 3pm ideally"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no_priority"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"response_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-22T12:39:34.272+11:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:33:31.565+11:00"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Tasks filtered with parameters</p>
-</blockquote>
-<pre class="highlight shell"><code>curl -X GET http://api.crm.localhost:3000/api/tasks
--H <span class="s2">"Authorization: Bearer cEQcQdo66DUTzdfzJJeJCvd6A2y8xMXqcMApSj99HjBB4rWVBm"</span>
--H <span class="s2">"Content-type: application/json"</span>
--d <span class="s1">'{"status": "archived", "contact_id":37}'</span>
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tasks"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meet at the blue gum tree"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no_priority"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"response_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-03T08:12:04.577+11:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-03T08:11:40.740+11:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-03T08:12:04.578+11:00"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><code class="prettyprint">GET /api/tasks</code></p>
-
-<p>An array of tasks for the user.</p>
-
-<h3 id="parameters">Parameters</h3>
-
-<p>Parameters can be added to filter tasks.</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-<th>Options</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status<br><em>string</em></td>
-<td>Filter by the status of tasks</td>
-<td>active, completed</td>
-</tr>
-<tr>
-<td>contact_id<br><em>integer</em></td>
-<td>Show tasks for a selected contact the user is assigned to</td>
-<td>Any valid contact_id</td>
-</tr>
-</tbody></table>
-
-<h2 id="show-task">Show Task</h2>
-<pre class="highlight shell"><code>curl https://hubapi.adventistchurch.com/api/tasks/9
--H <span class="s2">"Authorization: Bearer token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tasks"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Delivery Beyond the Search"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"After 3pm ideally"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no_priority"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"response_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-22T12:39:34.272+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:33:31.565+11:00"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><code class="prettyprint">GET /api/tasks/{task-id}</code></p>
-
-<p>Show a task.</p>
-
-<h2 id="create-task">Create Task</h2>
-<pre class="highlight shell"><code>curl -X POST https://hubapi.adventistchurch.com/api/tasks
--H <span class="s2">"Authorization: Bearer token"</span>
--H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
--d <span class="s1">'{"task": {"title": "Send Sally flowers", "contact_id": 46, "due_date": "2018-01-16"}}'</span>
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tasks"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Send Sally flowers"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no_priority"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-16"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"response_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:45:07.718+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:45:07.718+11:00"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><code class="prettyprint">POST /api/tasks</code></p>
-
-<h2 id="update-task">Update Task</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/tasks/12
--H <span class="s2">"Authorization: Bearer token"</span>
--H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
--d <span class="s1">'{"task": {"due_date": ""}}'</span>
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tasks"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Send Sally flowers"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no_priority"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"response_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:45:07.718+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:50:40.481+11:00"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><code class="prettyprint">PATCH /api/tasks/{task-id}</code></p>
-
-<p>Only tasks created by the user can be updated.</p>
-
-<h2 id="delete-task">Delete Task</h2>
-<pre class="highlight shell"><code>curl -X DELETE https://hubapi.adventistchurch.com/api/tasks/2
--H <span class="s2">"Authorization: Bearer token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tasks"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Send Sally flowers"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no_priority"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"response_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:45:07.718+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:50:40.481+11:00"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><code class="prettyprint">DELETE /api/tasks/{task-id}</code></p>
-
-<p>Only tasks created by the user can be deleted.</p>
-
-<h2 id="completed-task">Completed Task</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/tasks/12/completed
--H <span class="s2">"Authorization: Bearer token"</span>
--H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
--d <span class="s1">'{"task": {"completed_at": "2017-01-17T13:00"}}'</span>
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tasks"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Send Sally flowers"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no_priority"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-16"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"response_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T13:00:00.000+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:57:54.488+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T13:04:29.271+11:00"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><code class="prettyprint">PATCH /api/tasks/{task-id}/completed</code></p>
-
-<p>Complete a task.
-If the task has response_required set to true feedback is required.</p>
-
-<h2 id="uncompleted-task">Uncompleted Task</h2>
-<pre class="highlight shell"><code>curl -X PATCH https://hubapi.adventistchurch.com/api/tasks/12/uncomplete
--H <span class="s2">"Authorization: Bearer token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tasks"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Send Sally flowers"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no_priority"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-16"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"response_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:57:54.488+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T14:23:31.105+11:00"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><code class="prettyprint">PATCH /api/tasks/{task-id}/uncomplete</code></p>
-
-<p>Uncomplete a task.</p>
 
       </div>
       <div class="dark-box">
