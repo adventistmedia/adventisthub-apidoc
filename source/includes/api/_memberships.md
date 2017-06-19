@@ -17,7 +17,7 @@ updated_at<br> *datetime* | When the membership was last updated | Read-only
 ## List Memberships
 ```shell
 curl https://hubapi.adventistchurch.com/api/memberships
--H "Authorization: Bearer token"
+-H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
@@ -45,7 +45,7 @@ An array of all team memberships.
 ## Show Membership
 ```shell
 curl https://hubapi.adventistchurch.com/api/memberships/20
--H "Authorization: Bearer token"
+-H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json

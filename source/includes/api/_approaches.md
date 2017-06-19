@@ -13,7 +13,7 @@ updated_at<br> *datetime* | When the approach was last updated | Read-only
 ## List Approaches
 ```shell
 curl https://hubapi.adventistchurch.com/api/approaches
--H "Authorization: Bearer token"
+-H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json

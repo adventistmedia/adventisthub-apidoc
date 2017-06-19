@@ -16,7 +16,7 @@ updated_at<br> *datetime* | When the affiliation was last updated | Read-only
 ## List Affiliations
 ```shell
 curl https://hubapi.adventistchurch.com/api/contacts/17/affiliations
--H "Authorization: Bearer token"
+-H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
@@ -45,7 +45,7 @@ An array of all affiliations for the contact.
 ## Show Affiliation
 ```shell
 curl https://hubapi.adventistchurch.com/api/contacts/17/affiliations/12
--H "Authorization: Bearer token"
+-H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
@@ -72,7 +72,7 @@ Show a contacts affiliation.
 ## Create Affiliation
 ```shell
 curl -X POST https://hubapi.adventistchurch.com/api/contacts/17/affiliations
--H "Authorization: Bearer token"
+-H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"affiliation": {"name": "Wahroonga Prison", "place_type": "prison"}}'
@@ -99,7 +99,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/contacts/17/affiliations
 ## Update Affiliation
 ```shell
 curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/17/affiliations/13
--H "Authorization: Bearer token"
+-H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"affiliation": {"name": "Wyee Prison", "identifier": "PN555891"}}'
@@ -126,7 +126,7 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/17/affiliations/13
 ## Delete Affiliation
 ```shell
 curl -X DELETE https://hubapi.adventistchurch.com/api/contacts/17/affiliations/13
--H "Authorization: Bearer token"
+-H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json

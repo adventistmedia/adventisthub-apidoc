@@ -29,7 +29,7 @@ updated_at<br> *datetime* | When the address was last updated | Read-only
 ## List Addresses
 ```shell
 curl https://hubapi.adventistchurch.com/api/account/addresses
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
@@ -68,7 +68,7 @@ An array of a users home and mailing addresses.
 ## Show Address
 ```shell
 curl https://hubapi.adventistchurch.com/api/account/addresses/9
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
@@ -107,7 +107,7 @@ Show a user address.
 
 ```shell
 curl -X POST https://hubapi.adventistchurch.com/api/account/addresses
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"address": {"location": "mailing", "country_code": "AU", "address1": "150 Fox Valley Road", "city": "Wahroonga", "region": "NSW", "postcode": "2076"}}'
@@ -145,7 +145,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/account/addresses
 
 ```shell
 curl -X PATCH https://hubapi.adventistchurch.com/api/account/addresses/33
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"address": {"attention": "Adventist Media"}}'
@@ -183,7 +183,7 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/account/addresses/33
 
 ```shell
 curl -X DELETE https://hubapi.adventistchurch.com/api/account/addresses/33
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json

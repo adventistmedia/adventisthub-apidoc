@@ -65,11 +65,13 @@ All requests other than the signin endpoint require a token in the header `Autho
 
 ## Tokens
 
-An Adventist Hub API token is unique to a particular team. This means if a user has membership to multiple Hub teams, you will need a token for each team.
+There are two types of tokens used to make a request to an endpoint.
 
-You can use a token for one team to request a token for another team.
+A contact tokens is received after sign in and can be used query endpoints related the users account, tokens or app defaults.
 
-With this in mind, data received from the API for the user and stored locally should have a team_id column (or similar) to separate the users data by team.
+For each team the user has membership too, a team token is required to interact with endpoints related to the team.
+
+With this in mind, data received from the API relating to a team (contacts, events, etc) and stored locally should have a team_id column (or similar) to separate the users data by team.
 
 Tokens do not expire but the user can sign in to the Hub via a web browser and remove an applications access therefore deleting the tokens.
 
@@ -96,7 +98,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/signin
     "type": "app_tokens",
     "attributes": {
       "contact_id": 5,
-      "team_id": 2,
+      "team_id": null,
       "token": "V4saems7F97MnCf7efDojfgC8qU6JsGTKfEgZz6RFf555dsQFM"
     }
   }
@@ -105,16 +107,14 @@ curl -X POST https://hubapi.adventistchurch.com/api/signin
 `https://hubapi.adventistchurch.com/api/signin`
 
 Before authenticating with Adventist Hub, you'll first need to authenticate the user through myAdventist using OAuth 2.
-After authenticating the user through myAdventist, you will receive an access token that can be exchanged for a Adventist Hub API token for all future requests.
+After authenticating the user through myAdventist, you will receive a myAdventist access token that can be exchanged for a Adventist Hub API contact token for future requests.
 
 <aside class="notice">
 For more information on myAdventist, please consult the South Pacific Division of the Seventh-day Adventist Churches Information Services department.
 </aside>
 
-To get the Adventist Hub API token, send a POST request to `https://hubapi.adventistchurch.com/api/signin`.
+To get the Adventist Hub API contact token, send a POST request to `https://hubapi.adventistchurch.com/api/signin`.
 The request must include the headers `X-Api-Key` and `X-Api-Secret` where the API key and secret will be provided by Adventist Media.
-
-Remember, when an Adventist Hub token is requested, the token will be unique to the users team. During signin the token will be for the users first team.
 
 The following fields are required:
 
@@ -142,28 +142,37 @@ curl -x DELETE https://hubapi.adventistchurch.com/api/signout
 
 To sign out from Adventist Hub send a DELETE request. This will delete all of the users tokens associated with the app. This has the effect that if the user was to have signed in on multiple devices, all devices would be signed out.
 
-## Switching Teams
+## Team Tokens
 ```shell
-curl -x POST https://hubapi.adventistchurch.com/api/team_token/7
--H "Authorization: Bearer token"
+curl https://hubapi.adventistchurch.com/api/team_tokens
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
 {
-  "data": {
-    "id": "53",
-    "type": "app_tokens",
-    "attributes": {
-      "contact_id": 5,
-      "team_id": 7,
-      "token": "ojfgC8qU65dsQFMV4saems7F97MnCf7efDJsGTKfEgZz6RFf55"
-    }
-  }
+  "data": [
+      {
+          "id": "2",
+          "type": "app_tokens",
+          "attributes": {
+            "contact_id": 5,
+            "team_id": 2,
+            "token": "KEE3Pwi9GfBopSeisFC9gdrNHdWRgG5pwY4Dfqjve2sjhT8YCC"
+          }
+      },
+      {
+          "id": "3",
+          "type": "app_tokens",
+          "attributes": {
+            "contact_id": 5,
+            "team_id": 3,
+            "token": "NBYBeUG6PLAWaZs9WV5HgcreQpWYoTs4U899zs3z4ExsjSUrD9"
+          }
+      }
+    ]
 }
 ```
-`https://hubapi.adventistchurch.com/api/team_token/{team-id}`
+`https://hubapi.adventistchurch.com/api/team_tokens`
 
-As a user can have multiple teams, your app should allow the user to switch between teams.
-To switch teams, you'll need to request a token for the team to be switched too.
-
-To get a list of all teams available to a user, use the Hub Teams endpoint.
+As a user can belong to multiple teams so your app should allow the user to switch between teams.
+Sending a request to team tokens will give you tokens for all active teams the contact has membership too with a role.

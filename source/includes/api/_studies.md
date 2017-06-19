@@ -16,8 +16,8 @@ updated_at<br>*datetime* | When the study was last updated | Read-only
 
 ## List Studies
 ```shell
-curl https://hubapi.adventistchurch.com/api/studies
--H "Authorization: Bearer token"
+curl https://hubapi.adventistchurch.com/api/account/studies
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 
@@ -49,15 +49,15 @@ curl https://hubapi.adventistchurch.com/api/studies
   ]
 }
 ```
-`GET /api/studies`
+`GET /api/account/studies`
 
 An array of studies available to the user. Studies are combination of global and user created studies.
 
 
 ## Create Study
 ```shell
-curl -X POST https://hubapi.adventistchurch.com/api/studies
--H "Authorization: Bearer token"
+curl -X POST https://hubapi.adventistchurch.com/api/account/studies
+-H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"study": {"name": "Where did all the sheep go?"}}'
@@ -78,13 +78,13 @@ curl -X POST https://hubapi.adventistchurch.com/api/studies
 }
 ```
 
-`POST /api/studies`
+`POST /api/account/studies`
 
 ## Update Study
 
 ```shell
-curl -X PATCH https://hubapi.adventistchurch.com/api/studies/52
--H "Authorization: Bearer token"
+curl -X PATCH https://hubapi.adventistchurch.com/api/account/studies/52
+-H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"study": {"name": "Finding the sheep"}}'
@@ -105,12 +105,12 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/studies/52
 }
 ```
 
-`PATCH /api/studies/{study-id}`
+`PATCH /api/account/studies/{study-id}`
 
 ## Delete Study
 ```shell
-curl -X DELETE https://hubapi.adventistchurch.com/api/studies/52
--H "Authorization: Bearer token"
+curl -X DELETE https://hubapi.adventistchurch.com/api/account/studies/52
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
@@ -129,4 +129,4 @@ curl -X DELETE https://hubapi.adventistchurch.com/api/studies/52
 }
 ```
 
-`DELETE /api/studies/{study-id}`
+`DELETE /api/account/studies/{study-id}`

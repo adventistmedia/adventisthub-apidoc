@@ -20,7 +20,7 @@ updated_at<br>*datetime* | When the event was last updated | Read-only
 ## List Hub Teams
 ```shell
 curl https://hubapi.adventistchurch.com/api/hub_teams/all
--H "Authorization: Bearer token"
+-H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 
@@ -70,7 +70,7 @@ An array of Hub teams the user has membership too.
 
 ```shell
 curl https://hubapi.adventistchurch.com/api/hub_teams
--H "Authorization: Bearer token"
+-H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json

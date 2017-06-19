@@ -13,7 +13,7 @@ updated_at<br> *datetime* | When the brand was last updated | Read-only
 ## List Brands
 ```shell
 curl https://hubapi.adventistchurch.com/api/brands
--H "Authorization: Bearer token"
+-H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json

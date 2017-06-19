@@ -18,7 +18,7 @@ updated_at<br>*datetime* | When the alert was last updated | Read-only
 ## List Alerts
 ```shell
 curl https://hubapi.adventistchurch.com/api/account/alerts
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 
@@ -62,7 +62,7 @@ An array of alert objects.
 
 ```shell
 curl https://hubapi.adventistchurch.com/api/account/alerts/48
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
@@ -90,7 +90,7 @@ Show an alert.
 ## Accept Alert
 ```shell
 curl -X PATCH https://hubapi.adventistchurch.com/api/account/alerts/31/accept
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
@@ -116,7 +116,7 @@ Accept an alert that has an accept callback.
 ## Decline Alert
 ```shell
 curl -X PATCH https://hubapi.adventistchurch.com/api/account/alerts/31/decline
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
@@ -142,7 +142,7 @@ Accept an alert that has an decline callback.
 ## Delete Alert
 ```shell
 curl -X DELETE https://hubapi.adventistchurch.com/api/account/alerts/48
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json

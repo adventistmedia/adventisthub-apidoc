@@ -13,8 +13,8 @@ updated_at<br> *datetime* | When the religion was last updated | Read-only
 
 ## List Religions
 ```shell
-curl https://hubapi.adventistchurch.com/api/religions
--H "Authorization: Bearer token"
+curl https://hubapi.adventistchurch.com/api/app/religions
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
@@ -44,6 +44,6 @@ curl https://hubapi.adventistchurch.com/api/religions
 }
 ```
 
-`GET /api/religions`
+`GET /api/app/religions`
 
 An array of all religions.

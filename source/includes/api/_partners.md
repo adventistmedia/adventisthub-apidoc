@@ -17,7 +17,7 @@ updated_at<br> *datetime* | When the partner was last updated | Read-only
 
 ```shell
 curl https://hubapi.adventistchurch.com/api/account/partner
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
@@ -57,7 +57,7 @@ Read the current users partner
 ## Create Partner
 ```shell
 curl -X POST https://hubapi.adventistchurch.com/api/account/partner
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"partner": {"name": "Sam Beagul", "email": "sam@email.com"}}'
@@ -83,7 +83,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/account/partner
 
 ```shell
 curl -X PATCH https://hubapi.adventistchurch.com/api/account/partner
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"partner": {"name": "John Backster"}}'
@@ -108,7 +108,7 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/account/partner
 ## Delete Partner
 ```shell
 curl -X DELETE https://hubapi.adventistchurch.com/api/account/partner
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
