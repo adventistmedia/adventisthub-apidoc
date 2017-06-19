@@ -130,7 +130,7 @@ provider_uid<br> *datetime* | Providers unique user ID | Required
 ## Sign out
 ```shell
 curl -x DELETE https://hubapi.adventistchurch.com/api/signout
--H "Authorization: Bearer token"
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
 ```json
