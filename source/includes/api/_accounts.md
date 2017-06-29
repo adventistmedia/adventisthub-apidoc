@@ -21,6 +21,7 @@ country<br> *string* | Official country name for users residence
 hub_teams_count<br> *integer* | Number of Hub Teams the user is a member of | Read-only
 lat<br> *float* | Home address latitude | Read-only
 lng<br> *float* | Home address longitude | Read-only
+avatar_url<br>*string* | Avatar image URL for account | Read-only
 calendar_url<br> *string* | The unique private iCal URL for the users calendar to subscribe to | Read-only
 
 ## Show Account
@@ -50,6 +51,7 @@ curl https://hubapi.adventistchurch.com/api/account
       "hub_teams_count": 2,
       "lat": null,
       "lng": null,
+      "avatar_url": "https://res-1.cloudinary.com/image/avatar-1.jpg",
       "calendar_url": "webcal://hub.adventistchurch.com/contacts/1/calendars/kaQaKqcMHX63ScxrA9gJhk91/feed.ics"
     },
     "links": {
@@ -93,6 +95,7 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/account
       "hub_teams_count": 2,
       "lat": null,
       "lng": null,
+      "avatar_url": "https://res-1.cloudinary.com/image/avatar-1.jpg",
       "calendar_url": "webcal://hub.adventistchurch.com/contacts/1/calendars/kaQaKqcMHX63ScxrA9gJhk91/feed.ics"
     },
     "links": {

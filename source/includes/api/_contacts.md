@@ -22,6 +22,7 @@ last_visit<br>*date* | Date the contact last had a completed activity of type vi
 approach_id<br>*integer* | ID of the approach the contact belongs too
 brand_id<br>*integer* | ID of the brand the contact belongs too
 campaign_id<br>*integer* | ID of the campaign the contact belongs too
+avatar_url<br>*string* | Avatar image URL for contact | Read-only
 created_at<br>*datetime* | When the contact was created | Read-only
 updated_at<br>*datetime* | When the contact was last updated | Read-only
 
@@ -58,7 +59,8 @@ curl https://hubapi.adventistchurch.com/api/contacts
         "religion_id":25,
         "campaign_id":null,
         "approach_id":null,
-        "brand_id":null
+        "brand_id":null,
+        "avatar_url": "https://res-1.cloudinary.com/image/avatar-33.jpg"
       },
       "links": {
         "self": "/api/contacts/33"
@@ -103,7 +105,8 @@ curl https://hubapi.adventistchurch.com/api/contacts/33
       "religion_id":25,
       "campaign_id":null,
       "approach_id":null,
-      "brand_id":null
+      "brand_id":null,
+      "avatar_url": "https://res-1.cloudinary.com/image/avatar-33.jpg"
     },
     "links": {
       "self": "/api/contacts/33"
@@ -149,7 +152,8 @@ curl -X POST https://hubapi.adventistchurch.com/api/contacts
       "religion_id":null,
       "campaign_id":null,
       "approach_id":null,
-      "brand_id":null
+      "brand_id":null,
+      "avatar_url": "https://res-1.cloudinary.com/image/avatar-46.jpg"
     },
     "links": {
       "self": "/api/contacts/46"
@@ -193,7 +197,8 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/46
       "religion_id":null,
       "campaign_id":null,
       "approach_id":null,
-      "brand_id":null
+      "brand_id":null,
+      "avatar_url": "https://res-1.cloudinary.com/image/avatar-46.jpg"
     },
     "links": {
       "self": "/api/contacts/46"

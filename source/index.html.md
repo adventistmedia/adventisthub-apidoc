@@ -33,6 +33,7 @@ includes:
   - api/hub_teams
   - api/languages
   - api/memberships
+  - api/notes
   - api/partners
   - api/religions
   - api/studies
