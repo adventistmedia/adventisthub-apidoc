@@ -159,7 +159,7 @@
 <h1 id="authentication">Authentication</h1>
 
 <h2 id="sign-in">Sign In</h2>
-<pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/signin
+<pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/account/signin
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 -H <span class="s2">"X-Api-Key: adventisthub_app_key"</span>
 -H <span class="s2">"X-Api-Secret: adventisthub_app_secret"</span>
@@ -177,7 +177,7 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/signin</code></p>
+<p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/signin</code></p>
 
 <p>Before authenticating with AdHub, you&rsquo;ll first need to authenticate the user through myAdventist using OAuth 2.
 After authenticating the user through myAdventist, you will receive a myAdventist access token that can be exchanged for a AdHub API contact token for future requests.</p>
@@ -186,7 +186,7 @@ After authenticating the user through myAdventist, you will receive a myAdventis
 For more information on myAdventist, please consult the South Pacific Division of the Seventh-day Adventist Churches Information Services department.
 </aside>
 
-<p>To get the AdHub API contact token, send a POST request to <code class="prettyprint">https://adhubapi.adventistchurch.com/api/signin</code>.
+<p>To get the AdHub API contact token, send a POST request to <code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/signin</code>.
 The request must include the headers <code class="prettyprint">X-Api-Key</code> and <code class="prettyprint">X-Api-Secret</code> where the API key and secret will be provided by Adventist Media.</p>
 
 <p>The following fields are required:</p>
@@ -208,19 +208,19 @@ The request must include the headers <code class="prettyprint">X-Api-Key</code> 
 </tbody></table>
 
 <h2 id="sign-out">Sign out</h2>
-<pre class="highlight shell"><code>curl -x DELETE https://adhubapi.adventistchurch.com/api/signout
+<pre class="highlight shell"><code>curl -x DELETE https://adhubapi.adventistchurch.com/api/account/signout
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/signout</code></p>
+<p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/signout</code></p>
 
 <p>To sign out from AdHub send a DELETE request. This will delete all of the users tokens associated with the app. This has the effect that if the user was to have signed in on multiple devices, all devices would be signed out.</p>
 
 <h2 id="team-tokens">Team Tokens</h2>
-<pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/team_tokens
+<pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/team_tokens
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
 -H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -246,7 +246,7 @@ The request must include the headers <code class="prettyprint">X-Api-Key</code> 
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/team_tokens</code></p>
+<p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/team_tokens</code></p>
 
 <p>As a user can belong to multiple teams so your app should allow the user to switch between teams.
 Sending a request to team tokens will give you tokens for all active teams the contact has membership too with a role.</p>
