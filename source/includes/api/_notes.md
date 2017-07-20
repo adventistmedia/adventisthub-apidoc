@@ -17,7 +17,7 @@ updated_at<br> *datetime* | When the note was last updated | Read-only
 
 ## List Notes
 ```shell
-curl https://hubapi.adventistchurch.com/api/contacts/11/notes
+curl https://adhubapi.adventistchurch.com/api/contacts/11/notes
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -49,7 +49,7 @@ An array of a notes created by the user for the contact.
 
 ## Show Note
 ```shell
-curl https://hubapi.adventistchurch.com/api/contacts/11/notes/34
+curl https://adhubapi.adventistchurch.com/api/contacts/11/notes/34
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -78,7 +78,7 @@ Show a contacts note.
 ## Create Note
 
 ```shell
-curl -X POST https://hubapi.adventistchurch.com/api/contacts/11/notes
+curl -X POST https://adhubapi.adventistchurch.com/api/contacts/11/notes
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -107,7 +107,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/contacts/11/notes
 ## Update Note
 
 ```shell
-curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/11/notes/35
+curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/11/notes/35
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -136,7 +136,7 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/11/notes/35
 ## Delete Note
 
 ```shell
-curl -X DELETE https://hubapi.adventistchurch.com/api/contact/11/notes/35
+curl -X DELETE https://adhubapi.adventistchurch.com/api/contact/11/notes/35
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```

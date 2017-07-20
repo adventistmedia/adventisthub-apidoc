@@ -23,7 +23,7 @@ event_sessions_count<br>*integer* | The number of Event Sessions the event has |
 shared<br>*boolean* | true if the event is viewable with other team members
 ## List Events
 ```shell
-curl https://hubapi.adventistchurch.com/api/contacts
+curl https://adhubapi.adventistchurch.com/api/contacts
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -76,7 +76,7 @@ An array of event objects accessible to the user based on the tokens team.
 ## Show Event
 
 ```shell
-curl https://hubapi.adventistchurch.com/api/events/1
+curl https://adhubapi.adventistchurch.com/api/events/1
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -125,7 +125,7 @@ Read an event.
 
 ## Create Event
 ```shell
-curl -X POST https://hubapi.adventistchurch.com/api/events
+curl -X POST https://adhubapi.adventistchurch.com/api/events
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -174,7 +174,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/events
 
 ## Update Event
 ```shell
-curl -X PATCH https://hubapi.adventistchurch.com/api/events/2
+curl -X PATCH https://adhubapi.adventistchurch.com/api/events/2
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -223,7 +223,7 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/events/2
 
 ## Delete Event
 ```shell
-curl -X DELETE https://hubapi.adventistchurch.com/api/events/2
+curl -X DELETE https://adhubapi.adventistchurch.com/api/events/2
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```

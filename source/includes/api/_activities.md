@@ -33,7 +33,7 @@ updated_at<br> *datetime* | When the activity was last updated | Read-only
 
 ## List Activities
 ```shell
-curl https://hubapi.adventistchurch.com/api/contacts/3/activities
+curl https://adhubapi.adventistchurch.com/api/contacts/3/activities
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -110,7 +110,7 @@ An array of all activities for the contact.
 
 ## Show activity
 ```shell
-curl https://hubapi.adventistchurch.com/api/contacts/3/activities/3
+curl https://adhubapi.adventistchurch.com/api/contacts/3/activities/3
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -155,7 +155,7 @@ Show a contacts activity.
 
 ## Create Activity
 ```shell
-curl -X POST https://hubapi.adventistchurch.com/api/contacts/3/activities
+curl -X POST https://adhubapi.adventistchurch.com/api/contacts/3/activities
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -203,7 +203,7 @@ Completed activities can only be created for the activity types: visit, call, ba
 
 ## Update activity
 ```shell
-curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/3/activities/4
+curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/3/activities/4
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -249,7 +249,7 @@ Update activities that are not auto-generated.
 
 ## Delete activity
 ```shell
-curl -X DELETE https://hubapi.adventistchurch.com/api/contacts/17/activities/4
+curl -X DELETE https://adhubapi.adventistchurch.com/api/contacts/17/activities/4
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```

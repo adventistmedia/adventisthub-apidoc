@@ -1,6 +1,6 @@
-# Hub Team
+# Team
 
-Represents a Hub team.
+Represents a team.
 
 ## Fields
 
@@ -20,7 +20,7 @@ updated_at<br>*datetime* | When the event was last updated | Read-only
 
 ## Search Hub Teams
 ```shell
-curl https://hubapi.adventistchurch.com/api/hub_teams/search
+curl https://adhubapi.adventistchurch.com/api/teams/search
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 -d '{"q": "Bay"}'
@@ -31,7 +31,7 @@ curl https://hubapi.adventistchurch.com/api/hub_teams/search
   "data": [
     {
       "id": "7",
-      "type": "hub_teams",
+      "type": "teams",
       "attributes": {
         "name": "Bonnells Bays Church",
         "time_zone": "Sydney",
@@ -48,7 +48,7 @@ curl https://hubapi.adventistchurch.com/api/hub_teams/search
     },
     {
       "id": "6",
-      "type": "hub_teams",
+      "type": "teams",
       "attributes": {
         "name": "Chad Bay Church",
         "time_zone": "Sydney",
@@ -66,9 +66,9 @@ curl https://hubapi.adventistchurch.com/api/hub_teams/search
   ]
 }
 ```
-`GET /api/hub_teams/search`
+`GET /api/teams/search`
 
-Search for any team on Adventist Hub using fuzzy search to compensate for misspellings such as letters around the wrong way. The 10 best matches will be returned.
+Search for any team on AdHub using fuzzy search to compensate for misspellings such as letters around the wrong way. The 10 best matches will be returned.
 
 Parameter | Description | Notes
 --------- | ------- | -------
@@ -76,10 +76,10 @@ q<br> *string* | Any query string | Required
 exclude_ids<br> *string* | A comma seperated list of the team ids to exclude from search e.g. 3,4,5 |
 
 
-## Show Hub Team
+## Show Team
 
 ```shell
-curl https://hubapi.adventistchurch.com/api/hub_teams/2
+curl https://adhubapi.adventistchurch.com/api/teams/2
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -87,7 +87,7 @@ curl https://hubapi.adventistchurch.com/api/hub_teams/2
 {
   "data": {
     "id": "6",
-    "type": "hub_teams",
+    "type": "teams",
     "attributes": {
       "name": "3am Church",
       "time_zone": "Sydney",
@@ -105,6 +105,6 @@ curl https://hubapi.adventistchurch.com/api/hub_teams/2
 }
 ```
 
-`GET /api/hub_teams/{team-id}`
+`GET /api/teams/{team-id}`
 
-Read the current Hub team based on the users token.
+Read the current team based on the users token.

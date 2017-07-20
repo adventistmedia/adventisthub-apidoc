@@ -1,5 +1,5 @@
 ---
-title: Adventist Hub API
+title: AdHub API
 
 language_tabs:
   - shell: cURL
@@ -12,7 +12,6 @@ includes:
   - endpoints
   - api/account_addresses
   - api/account_notifications
-  - api/account_phone_numbers
   - api/accounts
   - api/activities
   - api/affiliations
@@ -25,12 +24,11 @@ includes:
   - api/categories
   - api/contact_addresses
   - api/contact_notifications
-  - api/contact_phone_numbers
   - api/contacts
   - api/event_series
   - api/event_sessions
   - api/events
-  - api/hub_teams
+  - api/teams
   - api/languages
   - api/memberships
   - api/notes
@@ -43,13 +41,13 @@ search: true
 
 # Introduction
 
-Welcome to the Adventist Hub API documentation. You can use the API to access Hub Team related endpoints. The API doesn't cover endpoints specific to Hub team managers, mentors, or HQ teams.
+Welcome to the AdHub API documentation. You can use the API to access Team related endpoints. The API doesn't cover endpoints specific to organisations.
 
 To begin, you'll need to contact [Adventist Media](http://adventistmedia.org.au) to request an application key and secret.
 
 # Good to know
 
-Adventist Hub is focused around the idea of a contact - a person who is either a church member or a non-church member.
+AdHub is focused around the idea of a contact - a person who is either a church member or a non-church member.
 
 A contact can be sent an invitation to activate their account allowing them to view all teams they memberships to with a role of team_member, leader or owner. (By default they will have the role "no_role")
 
@@ -58,7 +56,7 @@ Throughout the documentation we will refer to a contact with an activated accoun
 # Making Requests
 
 ## Headers
-When writing your own Adventist Hub client, please ensure you set the *Accept* header to `Accept: application/vnd.adventisthub.v1+json` where v1 represents the API's version number. The latest version is currently v1
+When writing your own AdHub client, please ensure you set the *Accept* header to `Accept: application/vnd.adventisthub.v1+json` where v1 represents the API's version number. The latest version is currently v1
 
 If you do not set the Accept header, the API will still work however you may get unexpected data or errors.
 
@@ -85,7 +83,7 @@ All requests will return a JSON response using the [JSON API](http://jsonapi.org
 
 ## Sign In
 ```shell
-curl -X POST https://hubapi.adventistchurch.com/api/signin
+curl -X POST https://adhubapi.adventistchurch.com/api/signin
 -H "Accept: application/vnd.adventisthub.v1+json"
 -H "X-Api-Key: adventisthub_app_key"
 -H "X-Api-Secret: adventisthub_app_secret"
@@ -105,16 +103,16 @@ curl -X POST https://hubapi.adventistchurch.com/api/signin
   }
 }
 ```
-`https://hubapi.adventistchurch.com/api/signin`
+`https://adhubapi.adventistchurch.com/api/signin`
 
-Before authenticating with Adventist Hub, you'll first need to authenticate the user through myAdventist using OAuth 2.
-After authenticating the user through myAdventist, you will receive a myAdventist access token that can be exchanged for a Adventist Hub API contact token for future requests.
+Before authenticating with AdHub, you'll first need to authenticate the user through myAdventist using OAuth 2.
+After authenticating the user through myAdventist, you will receive a myAdventist access token that can be exchanged for a AdHub API contact token for future requests.
 
 <aside class="notice">
 For more information on myAdventist, please consult the South Pacific Division of the Seventh-day Adventist Churches Information Services department.
 </aside>
 
-To get the Adventist Hub API contact token, send a POST request to `https://hubapi.adventistchurch.com/api/signin`.
+To get the AdHub API contact token, send a POST request to `https://adhubapi.adventistchurch.com/api/signin`.
 The request must include the headers `X-Api-Key` and `X-Api-Secret` where the API key and secret will be provided by Adventist Media.
 
 The following fields are required:
@@ -130,7 +128,7 @@ provider_uid<br> *datetime* | Providers unique user ID | Required
 
 ## Sign out
 ```shell
-curl -x DELETE https://hubapi.adventistchurch.com/api/signout
+curl -x DELETE https://adhubapi.adventistchurch.com/api/signout
 -H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -139,13 +137,13 @@ curl -x DELETE https://hubapi.adventistchurch.com/api/signout
   "success": true
 }
 ```
-`https://hubapi.adventistchurch.com/api/signout`
+`https://adhubapi.adventistchurch.com/api/signout`
 
-To sign out from Adventist Hub send a DELETE request. This will delete all of the users tokens associated with the app. This has the effect that if the user was to have signed in on multiple devices, all devices would be signed out.
+To sign out from AdHub send a DELETE request. This will delete all of the users tokens associated with the app. This has the effect that if the user was to have signed in on multiple devices, all devices would be signed out.
 
 ## Team Tokens
 ```shell
-curl https://hubapi.adventistchurch.com/api/team_tokens
+curl https://adhubapi.adventistchurch.com/api/team_tokens
 -H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -173,7 +171,7 @@ curl https://hubapi.adventistchurch.com/api/team_tokens
     ]
 }
 ```
-`https://hubapi.adventistchurch.com/api/team_tokens`
+`https://adhubapi.adventistchurch.com/api/team_tokens`
 
 As a user can belong to multiple teams so your app should allow the user to switch between teams.
 Sending a request to team tokens will give you tokens for all active teams the contact has membership too with a role.

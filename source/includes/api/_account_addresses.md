@@ -28,7 +28,7 @@ updated_at<br> *datetime* | When the address was last updated | Read-only
 
 ## List Addresses
 ```shell
-curl https://hubapi.adventistchurch.com/api/account/addresses
+curl https://adhubapi.adventistchurch.com/api/account/addresses
 -H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -67,7 +67,7 @@ An array of a users home and mailing addresses.
 
 ## Show Address
 ```shell
-curl https://hubapi.adventistchurch.com/api/account/addresses/9
+curl https://adhubapi.adventistchurch.com/api/account/addresses/9
 -H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -106,7 +106,7 @@ Show a user address.
 ## Create Address
 
 ```shell
-curl -X POST https://hubapi.adventistchurch.com/api/account/addresses
+curl -X POST https://adhubapi.adventistchurch.com/api/account/addresses
 -H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -144,7 +144,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/account/addresses
 ## Update Address
 
 ```shell
-curl -X PATCH https://hubapi.adventistchurch.com/api/account/addresses/33
+curl -X PATCH https://adhubapi.adventistchurch.com/api/account/addresses/33
 -H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -182,7 +182,7 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/account/addresses/33
 ## Delete Address
 
 ```shell
-curl -X DELETE https://hubapi.adventistchurch.com/api/account/addresses/33
+curl -X DELETE https://adhubapi.adventistchurch.com/api/account/addresses/33
 -H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```

@@ -18,7 +18,7 @@ updated_at<br> *datetime* | When account or a relationship was last updated | Re
 time_zone<br> *string* | Time zone
 country_code<br> *string* | Two letter uppercase country code for users residence
 country<br> *string* | Official country name for users residence
-hub_teams_count<br> *integer* | Number of Hub Teams the user is a member of | Read-only
+memberships_count<br> *integer* | Number of Teams the user has membership too | Read-only
 lat<br> *float* | Home address latitude | Read-only
 lng<br> *float* | Home address longitude | Read-only
 avatar_url<br>*string* | Avatar image URL for account | Read-only
@@ -26,7 +26,7 @@ calendar_url<br> *string* | The unique private iCal URL for the users calendar t
 
 ## Show Account
 ```shell
-curl https://hubapi.adventistchurch.com/api/account
+curl https://adhubapi.adventistchurch.com/api/account
 -H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -48,7 +48,7 @@ curl https://hubapi.adventistchurch.com/api/account
       "time_zone": "Sydney",
       "country_code": "AU",
       "country": "Australia",
-      "hub_teams_count": 2,
+      "memberships_count": 2,
       "lat": null,
       "lng": null,
       "avatar_url": "https://res-1.cloudinary.com/image/avatar-1.jpg",
@@ -68,7 +68,7 @@ Show the users account.
 ## Update Account
 
 ```shell
-curl -X PATCH https://hubapi.adventistchurch.com/api/account
+curl -X PATCH https://adhubapi.adventistchurch.com/api/account
 -H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -92,7 +92,7 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/account
       "time_zone": "Sydney",
       "country_code": "AU",
       "country": "Australia",
-      "hub_teams_count": 2,
+      "memberships_count": 2,
       "lat": null,
       "lng": null,
       "avatar_url": "https://res-1.cloudinary.com/image/avatar-1.jpg",

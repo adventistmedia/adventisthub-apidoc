@@ -14,7 +14,7 @@ updated_at<br>*datetime* | When the event sessions was last updated | Read-only
 
 ## List Event Sessions
 ```shell
-curl https://hubapi.adventistchurch.com/api/events/24/event_sessions
+curl https://adhubapi.adventistchurch.com/api/events/24/event_sessions
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -47,7 +47,7 @@ An array of event sessions for an event.
 ## Show Event Session
 
 ```shell
-curl https://hubapi.adventistchurch.com/api/events/24/event_sessions/13
+curl https://adhubapi.adventistchurch.com/api/events/24/event_sessions/13
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -77,7 +77,7 @@ Read an event session.
 
 ## Create Event Session
 ```shell
-curl -X POST https://hubapi.adventistchurch.com/api/events/24/event_sessions
+curl -X POST https://adhubapi.adventistchurch.com/api/events/24/event_sessions
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -108,7 +108,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/events/24/event_sessions
 ## Update Event Sessions
 
 ```shell
-curl -X PATCH https://hubapi.adventistchurch.com/api/events/24/event_sessions/15
+curl -X PATCH https://adhubapi.adventistchurch.com/api/events/24/event_sessions/15
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -139,7 +139,7 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/events/24/event_sessions/15
 
 ## Delete Event Session
 ```shell
-curl -X DELETE https://hubapi.adventistchurch.com/api/events/24/event_sessions/15
+curl -X DELETE https://adhubapi.adventistchurch.com/api/events/24/event_sessions/15
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```

@@ -10,7 +10,7 @@ name<br> *string* | Name of Event | Required
 summary<br> *string* | Summary of the event
 location<br> *string* | Where the event is happening
 event_type<br>*enum* {bible_study, seminar} | The type of the event | Required
-team_id<br>*integer* | ID of the Hub or HQ team the event belongs too | Read-only
+team_id<br>*integer* | ID of the team the event belongs too | Read-only
 contact_id<br>*integer* | ID of the contact who owns the event | Read-only
 category_id<br>*integer* | ID of the category the event belongs too | Required
 events_count<br>*integer* | Number of events associated with the event series | Read-only
@@ -24,7 +24,7 @@ updated_at<br>*datetime* | When the event series was last updated | Read-only
 
 ## List Event Series
 ```shell
-curl https://hubapi.adventistchurch.com/api/event_series
+curl https://adhubapi.adventistchurch.com/api/event_series
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -90,7 +90,7 @@ An array of event series accessible to the user based on the tokens team.
 ## Show Event Series
 
 ```shell
-curl https://hubapi.adventistchurch.com/api/event_series/3
+curl https://adhubapi.adventistchurch.com/api/event_series/3
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -129,7 +129,7 @@ Read an event series.
 
 ## Create Event Series
 ```shell
-curl -X POST https://hubapi.adventistchurch.com/api/event_series
+curl -X POST https://adhubapi.adventistchurch.com/api/event_series
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -168,7 +168,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/event_series
 
 ## Update Event Series
 ```shell
-curl -X PATCH https://hubapi.adventistchurch.com/api/event_series/11
+curl -X PATCH https://adhubapi.adventistchurch.com/api/event_series/11
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -207,7 +207,7 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/event_series/11
 
 ## Delete Event Series
 ```shell
-curl -X DELETE https://hubapi.adventistchurch.com/api/event_series/11
+curl -X DELETE https://adhubapi.adventistchurch.com/api/event_series/11
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```

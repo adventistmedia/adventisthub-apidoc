@@ -15,7 +15,7 @@ updated_at<br> *datetime* | When the affiliation was last updated | Read-only
 
 ## List Affiliations
 ```shell
-curl https://hubapi.adventistchurch.com/api/contacts/17/affiliations
+curl https://adhubapi.adventistchurch.com/api/contacts/17/affiliations
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -44,7 +44,7 @@ An array of all affiliations for the contact.
 
 ## Show Affiliation
 ```shell
-curl https://hubapi.adventistchurch.com/api/contacts/17/affiliations/12
+curl https://adhubapi.adventistchurch.com/api/contacts/17/affiliations/12
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -71,7 +71,7 @@ Show a contacts affiliation.
 
 ## Create Affiliation
 ```shell
-curl -X POST https://hubapi.adventistchurch.com/api/contacts/17/affiliations
+curl -X POST https://adhubapi.adventistchurch.com/api/contacts/17/affiliations
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -98,7 +98,7 @@ curl -X POST https://hubapi.adventistchurch.com/api/contacts/17/affiliations
 
 ## Update Affiliation
 ```shell
-curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/17/affiliations/13
+curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/17/affiliations/13
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adventisthub.v1+json"
@@ -125,7 +125,7 @@ curl -X PATCH https://hubapi.adventistchurch.com/api/contacts/17/affiliations/13
 
 ## Delete Affiliation
 ```shell
-curl -X DELETE https://hubapi.adventistchurch.com/api/contacts/17/affiliations/13
+curl -X DELETE https://adhubapi.adventistchurch.com/api/contacts/17/affiliations/13
 -H "Authorization: Bearer team_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
