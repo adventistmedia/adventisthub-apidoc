@@ -83,7 +83,7 @@ All requests will return a JSON response using the [JSON API](http://jsonapi.org
 
 ## Sign In
 ```shell
-curl -X POST https://adhubapi.adventistchurch.com/api/signin
+curl -X POST https://adhubapi.adventistchurch.com/api/account/signin
 -H "Accept: application/vnd.adventisthub.v1+json"
 -H "X-Api-Key: adventisthub_app_key"
 -H "X-Api-Secret: adventisthub_app_secret"
@@ -103,7 +103,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/signin
   }
 }
 ```
-`https://adhubapi.adventistchurch.com/api/signin`
+`https://adhubapi.adventistchurch.com/api/account/signin`
 
 Before authenticating with AdHub, you'll first need to authenticate the user through myAdventist using OAuth 2.
 After authenticating the user through myAdventist, you will receive a myAdventist access token that can be exchanged for a AdHub API contact token for future requests.
@@ -112,7 +112,7 @@ After authenticating the user through myAdventist, you will receive a myAdventis
 For more information on myAdventist, please consult the South Pacific Division of the Seventh-day Adventist Churches Information Services department.
 </aside>
 
-To get the AdHub API contact token, send a POST request to `https://adhubapi.adventistchurch.com/api/signin`.
+To get the AdHub API contact token, send a POST request to `https://adhubapi.adventistchurch.com/api/account/signin`.
 The request must include the headers `X-Api-Key` and `X-Api-Secret` where the API key and secret will be provided by Adventist Media.
 
 The following fields are required:
@@ -127,7 +127,7 @@ provider_token<br> *datetime* | The OAuth access token you received from myAdven
 
 ## Sign out
 ```shell
-curl -x DELETE https://adhubapi.adventistchurch.com/api/signout
+curl -x DELETE https://adhubapi.adventistchurch.com/api/account/signout
 -H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -136,13 +136,13 @@ curl -x DELETE https://adhubapi.adventistchurch.com/api/signout
   "success": true
 }
 ```
-`https://adhubapi.adventistchurch.com/api/signout`
+`https://adhubapi.adventistchurch.com/api/account/signout`
 
 To sign out from AdHub send a DELETE request. This will delete all of the users tokens associated with the app. This has the effect that if the user was to have signed in on multiple devices, all devices would be signed out.
 
 ## Team Tokens
 ```shell
-curl https://adhubapi.adventistchurch.com/api/team_tokens
+curl https://adhubapi.adventistchurch.com/api/account/team_tokens
 -H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adventisthub.v1+json"
 ```
@@ -170,7 +170,7 @@ curl https://adhubapi.adventistchurch.com/api/team_tokens
     ]
 }
 ```
-`https://adhubapi.adventistchurch.com/api/team_tokens`
+`https://adhubapi.adventistchurch.com/api/account/team_tokens`
 
 As a user can belong to multiple teams so your app should allow the user to switch between teams.
 Sending a request to team tokens will give you tokens for all active teams the contact has membership too with a role.
