@@ -88,7 +88,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/signin
 -H "X-Api-Key: adventisthub_app_key"
 -H "X-Api-Secret: adventisthub_app_secret"
 -H "Content-type: application/json"
--d '{"provider_token": "provider_access_token", "provider_uid": "provider_uid"}'
+-d '{"provider_token": "provider_access_token"}'
 ```
 ```json
 {
@@ -122,7 +122,6 @@ The following fields are required:
 Field | Description | Notes
 ----- | ----------- | -----
 provider_token<br> *datetime* | The OAuth access token you received from myAdventist after successfully logging the user in | Required
-provider_uid<br> *datetime* | Providers unique user ID | Required
 
 
 
