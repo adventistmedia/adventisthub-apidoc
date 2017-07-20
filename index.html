@@ -164,7 +164,7 @@
 -H <span class="s2">"X-Api-Key: adventisthub_app_key"</span>
 -H <span class="s2">"X-Api-Secret: adventisthub_app_secret"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--d <span class="s1">'{"provider_token": "provider_access_token", "provider_uid": "provider_uid"}'</span>
+-d <span class="s1">'{"provider_token": "provider_access_token"}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
@@ -203,11 +203,6 @@ The request must include the headers <code class="prettyprint">X-Api-Key</code> 
 <tr>
 <td>provider_token<br> <em>datetime</em></td>
 <td>The OAuth access token you received from myAdventist after successfully logging the user in</td>
-<td>Required</td>
-</tr>
-<tr>
-<td>provider_uid<br> <em>datetime</em></td>
-<td>Providers unique user ID</td>
 <td>Required</td>
 </tr>
 </tbody></table>
