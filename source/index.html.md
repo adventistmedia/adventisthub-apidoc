@@ -106,23 +106,19 @@ curl -X POST https://adhubapi.adventistchurch.com/api/account/signin
 `https://adhubapi.adventistchurch.com/api/account/signin`
 
 Before authenticating with AdHub, you'll first need to authenticate the user through myAdventist using OAuth 2.
-After authenticating the user through myAdventist, you will receive a myAdventist access token that can be exchanged for a AdHub API contact token for future requests.
+After authenticating the user through myAdventist, depending on the method used, you will receive either an access code or an access token, which can be exchanged for an AdHub API contact token for future requests.
 
-<aside class="notice">
-For more information on myAdventist, please consult the South Pacific Division of the Seventh-day Adventist Churches Information Services department.
-</aside>
+For more information on myAdventist OAuth, refer to its API reference in [production](https://myadventist.org.au/OAuth) or [test](https://test.myadventist.org.au/OAuth) or contact Adventist Church Technology Services.
 
 To get the AdHub API contact token, send a POST request to `https://adhubapi.adventistchurch.com/api/account/signin`.
-The request must include the headers `X-Api-Key` and `X-Api-Secret` where the API key and secret will be provided by Adventist Media.
-
-The following fields are required:
+The request must include the headers `X-Api-Key` and `X-Api-Secret` where the API key and secret will be provided by Adventist Media. The body of the request must contain either a token or a code. If you provide a token, code is ignored.
 
 ### Fields
 
 Field | Description | Notes
 ----- | ----------- | -----
-provider_token<br> *datetime* | The OAuth access token you received from myAdventist after successfully logging the user in | Required
-
+provider_token<br> *string* | The OAuth access token you received from myAdventist after successfully logging the user in |
+provider_code<br> *string* | The OAuth access code you received from myAdventist after successfully logging the user in |
 
 
 ## Sign out
@@ -172,5 +168,5 @@ curl https://adhubapi.adventistchurch.com/api/account/team_tokens
 ```
 `https://adhubapi.adventistchurch.com/api/account/team_tokens`
 
-As a user can belong to multiple teams so your app should allow the user to switch between teams.
-Sending a request to team tokens will give you tokens for all active teams the contact has membership too with a role.
+As a user can belong to multiple teams, so your app should allow the user to switch between teams.
+Sending a request to team tokens will give you tokens for all active teams the contact is a member of (with a role).
