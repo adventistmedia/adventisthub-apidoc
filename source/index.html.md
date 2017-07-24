@@ -106,12 +106,12 @@ curl -X POST https://adhubapi.adventistchurch.com/api/account/signin
 `https://adhubapi.adventistchurch.com/api/account/signin`
 
 Before authenticating with AdHub, you'll first need to authenticate the user through myAdventist using OAuth 2.
-After authenticating the user through myAdventist, depending on the method used, you will receive either an access code or an access token, which can be exchanged for an AdHub API contact token for future requests.
+Following a successful authentication with myAdventist, you will receive either an **access code** or an **access token** (depending on the method used) which can be exchanged for an AdHub API **contact token** for future requests.
 
 For more information on myAdventist OAuth, refer to its API reference in [production](https://myadventist.org.au/OAuth) or [test](https://test.myadventist.org.au/OAuth) or contact Adventist Church Technology Services.
 
-To get the AdHub API contact token, send a POST request to `https://adhubapi.adventistchurch.com/api/account/signin`.
-The request must include the headers `X-Api-Key` and `X-Api-Secret` where the API key and secret will be provided by Adventist Media. The body of the request must contain either a token or a code. If you provide a token, code is ignored.
+To get the AdHub API **contact token**, send a POST request to `https://adhubapi.adventistchurch.com/api/account/signin`.
+The request must include the headers `X-Api-Key` and `X-Api-Secret` where the API key and secret will be provided by Adventist Media. The body of the request must contain the **access code** or **access token** you received from myAdventist. If you provide a token, code is ignored.
 
 ### Fields
 
