@@ -180,16 +180,12 @@
 <p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/signin</code></p>
 
 <p>Before authenticating with AdHub, you&rsquo;ll first need to authenticate the user through myAdventist using OAuth 2.
-After authenticating the user through myAdventist, you will receive a myAdventist access token that can be exchanged for a AdHub API contact token for future requests.</p>
+After authenticating the user through myAdventist, depending on the method used, you will receive either an access code or an access token, which can be exchanged for an AdHub API contact token for future requests.</p>
 
-<aside class="notice">
-For more information on myAdventist, please consult the South Pacific Division of the Seventh-day Adventist Churches Information Services department.
-</aside>
+<p>For more information on myAdventist OAuth, refer to its API reference in <a href="https://myadventist.org.au/OAuth">production</a> or <a href="https://test.myadventist.org.au/OAuth">test</a> or contact Adventist Church Technology Services.</p>
 
 <p>To get the AdHub API contact token, send a POST request to <code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/signin</code>.
-The request must include the headers <code class="prettyprint">X-Api-Key</code> and <code class="prettyprint">X-Api-Secret</code> where the API key and secret will be provided by Adventist Media.</p>
-
-<p>The following fields are required:</p>
+The request must include the headers <code class="prettyprint">X-Api-Key</code> and <code class="prettyprint">X-Api-Secret</code> where the API key and secret will be provided by Adventist Media. The body of the request must contain either a token or a code. If you provide a token, code is ignored.</p>
 
 <h3 id="fields">Fields</h3>
 
@@ -201,9 +197,14 @@ The request must include the headers <code class="prettyprint">X-Api-Key</code> 
 </tr>
 </thead><tbody>
 <tr>
-<td>provider_token<br> <em>datetime</em></td>
+<td>provider_token<br> <em>string</em></td>
 <td>The OAuth access token you received from myAdventist after successfully logging the user in</td>
-<td>Required</td>
+<td></td>
+</tr>
+<tr>
+<td>provider_code<br> <em>string</em></td>
+<td>The OAuth access code you received from myAdventist after successfully logging the user in</td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -248,8 +249,8 @@ The request must include the headers <code class="prettyprint">X-Api-Key</code> 
 </span></code></pre>
 <p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/team_tokens</code></p>
 
-<p>As a user can belong to multiple teams so your app should allow the user to switch between teams.
-Sending a request to team tokens will give you tokens for all active teams the contact has membership too with a role.</p>
+<p>As a user can belong to multiple teams, so your app should allow the user to switch between teams.
+Sending a request to team tokens will give you tokens for all active teams the contact is a member of (with a role).</p>
 
           <h1 id="errors">Errors</h1>
 
