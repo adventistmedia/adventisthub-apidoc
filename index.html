@@ -134,7 +134,7 @@
 
 <h2 id="headers">Headers</h2>
 
-<p>When writing your own AdHub client, please ensure you set the <em>Accept</em> header to <code class="prettyprint">Accept: application/vnd.adventisthub.v1+json</code> where v1 represents the API&rsquo;s version number. The latest version is currently v1</p>
+<p>When writing your own AdHub client, please ensure you set the <em>Accept</em> header to <code class="prettyprint">Accept: application/vnd.adhub.v1+json</code> where v1 represents the API&rsquo;s version number. The latest version is currently v1</p>
 
 <p>If you do not set the Accept header, the API will still work however you may get unexpected data or errors.</p>
 
@@ -160,9 +160,9 @@
 
 <h2 id="sign-in">Sign In</h2>
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/account/signin
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
--H <span class="s2">"X-Api-Key: adventisthub_app_key"</span>
--H <span class="s2">"X-Api-Secret: adventisthub_app_secret"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
+-H <span class="s2">"X-Api-Key: adhub_app_key"</span>
+-H <span class="s2">"X-Api-Secret: adhub_app_secret"</span>
 -H <span class="s2">"Content-type: application/json"</span>
 -d <span class="s1">'{"provider_token": "provider_access_token"}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -170,7 +170,7 @@
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app_tokens"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"V4saems7F97MnCf7efDojfgC8qU6JsGTKfEgZz6RFf555dsQFM"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -211,7 +211,7 @@ The request must include the headers <code class="prettyprint">X-Api-Key</code> 
 <h2 id="sign-out">Sign out</h2>
 <pre class="highlight shell"><code>curl -x DELETE https://adhubapi.adventistchurch.com/api/account/signout
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -223,15 +223,15 @@ The request must include the headers <code class="prettyprint">X-Api-Key</code> 
 <h2 id="team-tokens">Team Tokens</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/team_tokens
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app_tokens"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KEE3Pwi9GfBopSeisFC9gdrNHdWRgG5pwY4Dfqjve2sjhT8YCC"</span><span class="w">
           </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
@@ -239,8 +239,8 @@ The request must include the headers <code class="prettyprint">X-Api-Key</code> 
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app_tokens"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NBYBeUG6PLAWaZs9WV5HgcreQpWYoTs4U899zs3z4ExsjSUrD9"</span><span class="w">
           </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -250,7 +250,64 @@ The request must include the headers <code class="prettyprint">X-Api-Key</code> 
 <p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/team_tokens</code></p>
 
 <p>As a user can belong to multiple teams, so your app should allow the user to switch between teams.
-Sending a request to team tokens will give you tokens for all active teams the contact is a member of (with a role).</p>
+Sending a request to team_tokens will give you tokens for all active teams the contact is a member of (with a role).</p>
+
+<h1 id="account-activation">Account Activation</h1>
+
+<p>The API allows you to activate a pending users account.</p>
+
+<p>Before trying to activate the account you will need the users invite token. You should first verify the invite token is valid with the <code class="prettyprint">invite_token_introspect</code> endpoint. Once the invite token is verified you can then the user sign in or create a myAdventist account (this process happens outside of the AdHub API) to retrieve a myAdventist token that can be used to activate the users AdHub Account.</p>
+
+<h2 id="invite-token-introspect">Invite Token Introspect</h2>
+<pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/invite_token_introspect
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
+-H <span class="s2">"X-Api-Key: adhub_app_key"</span>
+-H <span class="s2">"X-Api-Secret: adhub_app_secret"</span>
+-H <span class="s2">"Content-type: application/json"</span>
+-d <span class="s1">'{"invite_token": "vf6MdJefq7q4eT5fWSuTjmie"}'</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contacts"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sally"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bix"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sallybix@email.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"invite_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vf6MdJefq7q4eT5fWSuTjmie"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"invite_token_expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-02T23:59:59.999+10:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"invited_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James Randell"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"team"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/invite_token_introspect</code></p>
+
+<p>Verify a invite token for a pending user account is still valid. Invite tokens expire 30 days after they were created.</p>
+
+<h2 id="activate">Activate</h2>
+<pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/account/activate
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
+-H <span class="s2">"X-Api-Key: adhub_app_key"</span>
+-H <span class="s2">"X-Api-Secret: adhub_app_secret"</span>
+-H <span class="s2">"Content-type: application/json"</span>
+-d <span class="s1">'{"invite_token": "vf6MdJefq7q4eT5fWSuTjmie", "provider_token": "provider_access_token"}'</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app_tokens"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D1saemZz6RFf555dsQFMs7F97MnCf7efDojfgC8qU6JsGTKfEg"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/activate</code></p>
+
+<p>Providing a valid invite token and provider token will successfully activate a pending users account. The user will then be automatically signed in and the JSON response is the same as if you had called <code class="prettyprint">/api/account/signin</code></p>
 
           <h1 id="errors">Errors</h1>
 
@@ -288,6 +345,10 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <tr>
 <td>400</td>
 <td>Bad Request &ndash; Your request was not formatted correctly</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorised &ndash; The AdHub API key and secret were incorrect</td>
 </tr>
 <tr>
 <td>403</td>
@@ -441,7 +502,7 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <h2 id="list-addresses">List Addresses</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/addresses
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -476,7 +537,7 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <h2 id="show-address">Show Address</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/addresses/9
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
@@ -510,7 +571,7 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/account/addresses
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"address": {"location": "mailing", "country_code": "AU", "address1": "150 Fox Valley Road", "city": "Wahroonga", "region": "NSW", "postcode": "2076"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -543,7 +604,7 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/account/addresses/33
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"address": {"attention": "Adventist Media"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -575,7 +636,7 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <h2 id="delete-address">Delete Address</h2>
 <pre class="highlight shell"><code>curl -X DELETE https://adhubapi.adventistchurch.com/api/account/addresses/33
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"33"</span><span class="p">,</span><span class="w">
@@ -641,7 +702,7 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <h2 id="list-notifications">List Notifications</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/notifications
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -666,7 +727,7 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <p>Subscribe to a notification</p>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/account/notifications/5/subscribe
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
@@ -687,7 +748,7 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <p>Unsubscribe from a notification</p>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/account/notifications/5/unsubscribe
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
@@ -806,7 +867,7 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <h2 id="show-account">Show Account</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
@@ -844,7 +905,7 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/account
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"contact": {"first_name": "Wallaby"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1001,7 +1062,7 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <h2 id="list-activities">List Activities</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts/3/activities
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1009,8 +1070,8 @@ Sending a request to team tokens will give you tokens for all active teams the c
       </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"call"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1026,8 +1087,8 @@ Sending a request to team tokens will give you tokens for all active teams the c
         </span><span class="nt">"completed_by_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"todo"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1039,8 +1100,8 @@ Sending a request to team tokens will give you tokens for all active teams the c
       </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"decision"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1053,11 +1114,11 @@ Sending a request to team tokens will give you tokens for all active teams the c
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-23T07:57:46.223+10:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"autogenerated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nt">"study_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"completed_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"completed_by_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-23T08:00:00.000+10:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="s2">"created at visit for this"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1074,15 +1135,15 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <h2 id="show-activity">Show activity</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts/3/activities/3
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"call"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1098,8 +1159,8 @@ Sending a request to team tokens will give you tokens for all active teams the c
       </span><span class="nt">"completed_by_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"todo"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1116,7 +1177,7 @@ Sending a request to team tokens will give you tokens for all active teams the c
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/contacts/3/activities
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"activity": {"status": "todo", "due_at": "2017-01-01T09:00:00", "activity_type": "visit"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1124,8 +1185,8 @@ Sending a request to team tokens will give you tokens for all active teams the c
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visit"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1142,7 +1203,7 @@ Sending a request to team tokens will give you tokens for all active teams the c
       </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"todo"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1160,7 +1221,7 @@ Completed activities can only be created for the activity types: visit, call, ba
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/3/activities/4
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"activity": {"description": "Really enjoyed visit"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1168,8 +1229,8 @@ Completed activities can only be created for the activity types: visit, call, ba
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visit"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1186,7 +1247,7 @@ Completed activities can only be created for the activity types: visit, call, ba
       </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"todo"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1201,15 +1262,15 @@ Update activities that are not auto-generated.</p>
 <h2 id="delete-activity">Delete activity</h2>
 <pre class="highlight shell"><code>curl -X DELETE https://adhubapi.adventistchurch.com/api/contacts/17/activities/4
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activities"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visit"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1226,7 +1287,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"todo"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"assigned_to_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1287,7 +1348,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-affiliations">List Affiliations</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts/17/affiliations
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1297,7 +1358,7 @@ Update activities that are not auto-generated.</p>
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga Primary School"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"place_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"school"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:38:26.945+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:38:26.945+11:00"</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -1312,7 +1373,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="show-affiliation">Show Affiliation</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts/17/affiliations/12
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
@@ -1321,7 +1382,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga Primary School"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"place_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"school"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:38:26.945+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-29T11:38:26.945+11:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -1336,7 +1397,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/contacts/17/affiliations
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"affiliation": {"name": "Wahroonga Prison", "place_type": "prison"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1346,7 +1407,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga Prison"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"place_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prison"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T14:45:59.067+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T14:45:59.067+11:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -1359,7 +1420,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/17/affiliations/13
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"affiliation": {"name": "Wyee Prison", "identifier": "PN555891"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1369,7 +1430,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wyee Prison"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"place_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prison"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PN555891"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T14:45:59.067+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T14:49:47.067+11:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -1381,7 +1442,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="delete-affiliation">Delete Affiliation</h2>
 <pre class="highlight shell"><code>curl -X DELETE https://adhubapi.adventistchurch.com/api/contacts/17/affiliations/13
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
@@ -1390,7 +1451,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wyee Prison"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"place_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prison"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PN555891"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T14:45:59.067+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T14:49:47.067+11:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -1457,7 +1518,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-alerts">List Alerts</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/alerts
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1496,7 +1557,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="show-alert">Show Alert</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/alerts/48
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48"</span><span class="p">,</span><span class="w">
@@ -1520,7 +1581,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="accept-alert">Accept Alert</h2>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/account/alerts/31/accept
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alerts"</span><span class="p">,</span><span class="w">
@@ -1542,7 +1603,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="decline-alert">Decline Alert</h2>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/account/alerts/31/decline
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alerts"</span><span class="p">,</span><span class="w">
@@ -1564,7 +1625,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="delete-alert">Delete Alert</h2>
 <pre class="highlight shell"><code>curl -X DELETE https://adhubapi.adventistchurch.com/api/account/alerts/48
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48"</span><span class="p">,</span><span class="w">
@@ -1616,7 +1677,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-approaches">List Approaches</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/approaches
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1678,16 +1739,16 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-attendees">List Attendees</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/event_sessions/13/attendees
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attendees"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"event_session_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"event_session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T16:08:27.659+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T16:08:27.659+11:00"</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -1696,9 +1757,9 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attendees"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"event_session_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"event_session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T16:08:29.528+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T16:08:29.528+11:00"</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -1714,16 +1775,16 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/event_sessions/13/attendees
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"attendee": {"contact_id": 2}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attendees"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_session_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T16:08:27.659+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T16:08:27.659+11:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -1737,15 +1798,15 @@ Update activities that are not auto-generated.</p>
 <h2 id="delete-attendee">Delete Attendee</h2>
 <pre class="highlight shell"><code>curl -X DELETE https://adhubapi.adventistchurch.com/api/event_sessions/13/attendees/90
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attendees"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_session_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T16:08:27.659+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T16:08:27.659+11:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -1789,7 +1850,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-brands">List Brands</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/brands
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1882,7 +1943,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="calendar-listing">Calendar Listing</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/calendars
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1968,7 +2029,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-campaigns">List campaigns</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/campaigns
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1977,7 +2038,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Insight Sydney"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-23T15:10:44.225+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-23T15:10:44.225+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -1991,7 +2052,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Last Empire"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Marketing campaign for the upcoming event"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-17T07:47:40.680+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-05T14:27:07.873+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chatswood, NSW"</span><span class="p">,</span><span class="w">
@@ -2039,7 +2100,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-categories">List Categories</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/app/categories
 -H <span class="s2">"Authorization: Bearer token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -2167,7 +2228,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-addresses">List Addresses</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts/11/addresses
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -2202,7 +2263,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="show-address">Show Address</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts/11/addresses/34
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34"</span><span class="p">,</span><span class="w">
@@ -2236,7 +2297,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/contacts/11/addresses
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"address": {"location": "mailing", "country_code": "AU", "address1": "148 Fox Valley Road", "city": "Wahroonga", "region": "NSW", "postcode": "2076"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2269,7 +2330,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/11/addresses/35
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"address": {"attention": "Adventist Media"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2301,7 +2362,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="delete-address">Delete Address</h2>
 <pre class="highlight shell"><code>curl -X DELETE https://adhubapi.adventistchurch.com/api/contact/11/addresses/35
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35"</span><span class="p">,</span><span class="w">
@@ -2367,7 +2428,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-notifications">List Notifications</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts/45/notifications
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -2410,7 +2471,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="subscribe">Subscribe</h2>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/45/notifications/5/subscribe
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
@@ -2431,7 +2492,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="unsubscribe">Unsubscribe</h2>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/45/notifications/5/unsubscribe
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
@@ -2608,7 +2669,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-contacts">List Contacts</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -2626,10 +2687,10 @@ Update activities that are not auto-generated.</p>
         </span><span class="nt">"other_number_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(02) 9847 1122"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-14T16:53:52.738+10:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-19T14:21:59.189+10:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"last_visit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"available_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -2690,7 +2751,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="show-contact">Show Contact</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts/38
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38"</span><span class="p">,</span><span class="w">
@@ -2707,10 +2768,10 @@ Update activities that are not auto-generated.</p>
             </span><span class="nt">"other_number_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(02) 9871 1234"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20T10:10:01.491+10:00"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20T10:10:01.688+10:00"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">-33.7330045</span><span class="p">,</span><span class="w">
             </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">151.1010431</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"last_visit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nt">"available_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -2768,7 +2829,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/contacts
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"contact": {
 "first_name": "Roger",
 "last_name": "Fox",
@@ -2794,10 +2855,10 @@ Update activities that are not auto-generated.</p>
             </span><span class="nt">"other_number_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(02) 9871 1234"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20T10:10:01.491+10:00"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20T10:10:01.688+10:00"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"last_visit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nt">"available_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -2881,7 +2942,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/46
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"contact":{
 "first_name": "James",
 "home_address_attributes": {"address1": "12 Fox Valley Road", "city": "Wahroonga", "region": "NSW", "postcode": 2076, "country_code":"AU"},
@@ -2903,10 +2964,10 @@ Update activities that are not auto-generated.</p>
             </span><span class="nt">"other_number_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(02) 9871 1234"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20T11:00:00.157+10:00"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20T11:01:03.566+10:00"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">-33.7278971</span><span class="p">,</span><span class="w">
             </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">151.1184259</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"last_visit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nt">"available_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3056,7 +3117,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-event-series">List Event Series</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/event_series
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -3067,9 +3128,9 @@ Update activities that are not auto-generated.</p>
         </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Insights into the world of underground trafficking"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Locations throughout Sydney"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seminar"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"events_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3091,9 +3152,9 @@ Update activities that are not auto-generated.</p>
         </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bible_study"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"events_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
         </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3117,7 +3178,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="show-event-series">Show Event Series</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/event_series/3
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
@@ -3127,9 +3188,9 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bible_study"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"events_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3153,7 +3214,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/event_series
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"event_series": {"name": "Youth Bible Study", "event_type": "bible_study", "category_id":20, "summary": "Weekly Wednesday Study"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3164,9 +3225,9 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly Wednesday Study"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bible_study"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"events_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3188,7 +3249,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/event_series/11
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"event_series": {"shared": true}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3199,9 +3260,9 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly Wednesday Study"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bible_study"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"events_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3222,7 +3283,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="delete-event-series">Delete Event Series</h2>
 <pre class="highlight shell"><code>curl -X DELETE https://adhubapi.adventistchurch.com/api/event_series/11
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
@@ -3232,9 +3293,9 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly Wednesday Study"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bible_study"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"events_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3295,7 +3356,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-event-sessions">List Event Sessions</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/events/24/event_sessions
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -3304,7 +3365,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Session 1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T15:30:00.356+11:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"attendees_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T15:22:17.372+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T15:22:17.372+11:00"</span><span class="w">
@@ -3323,7 +3384,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="show-event-session">Show Event Session</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/events/24/event_sessions/13
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
@@ -3331,7 +3392,7 @@ Update activities that are not auto-generated.</p>
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Session 1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T15:30:00.356+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attendees_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T15:22:17.372+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T15:22:17.372+11:00"</span><span class="w">
@@ -3350,7 +3411,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/events/24/event_sessions
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"event_session": {"name": "Walking North", "start_time": "2017-01-05T18:30"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3359,7 +3420,7 @@ Update activities that are not auto-generated.</p>
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Walking North"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-05T18:30:00.000+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attendees_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T10:05:33.835+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T10:05:33.835+11:00"</span><span class="w">
@@ -3376,7 +3437,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/events/24/event_sessions/15
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"event_session": {"name": "The Great Walk"}}'</span>
 
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -3386,7 +3447,7 @@ Update activities that are not auto-generated.</p>
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Great Walk"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-05T18:30:00.000+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attendees_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T10:05:33.835+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T10:08:25.168+11:00"</span><span class="w">
@@ -3402,7 +3463,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="delete-event-session">Delete Event Session</h2>
 <pre class="highlight shell"><code>curl -X DELETE https://adhubapi.adventistchurch.com/api/events/24/event_sessions/15
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
@@ -3410,7 +3471,7 @@ Update activities that are not auto-generated.</p>
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Great Walk"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-05T18:30:00.000+11:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attendees_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T10:05:33.835+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T10:08:25.168+11:00"</span><span class="w">
@@ -3516,7 +3577,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-events">List Events</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -3564,7 +3625,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="show-event">Show Event</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/events/1
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
@@ -3610,7 +3671,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/events
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"event": {"event_type": "bible_study", "name": "Weekly Study", "start_time": "2017-01-16T09:00"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3655,7 +3716,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/events/2
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"event": {"name": "Weekly Study Jan"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3699,7 +3760,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="delete-event">Delete Event</h2>
 <pre class="highlight shell"><code>curl -X DELETE https://adhubapi.adventistchurch.com/api/events/2
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
@@ -3812,7 +3873,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="search-hub-teams">Search Hub Teams</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/teams/search
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"q": "Bay"}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -3879,7 +3940,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="show-team">Show Team</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/teams/2
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
@@ -3889,7 +3950,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sydney"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australia"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3932,7 +3993,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-languages">List languages</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/app/languages
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -4003,15 +4064,15 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-memberships">List Memberships</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/memberships
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"memberships"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team_member"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:26:36.690+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:26:36.690+11:00"</span><span class="w">
@@ -4027,14 +4088,14 @@ Update activities that are not auto-generated.</p>
 <h2 id="show-membership">Show Membership</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/memberships/20
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"memberships"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team_member"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:26:36.690+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:26:36.690+11:00"</span><span class="w">
@@ -4099,7 +4160,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-notes">List Notes</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts/11/notes
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -4127,7 +4188,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="show-note">Show Note</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts/11/notes/34
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34"</span><span class="p">,</span><span class="w">
@@ -4152,16 +4213,16 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/contacts/11/notes
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"note": {"description": "noted thanks"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"author_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"author_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noted thanks"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"private_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T17:22:48.363+11:00"</span><span class="p">,</span><span class="w">
@@ -4176,16 +4237,16 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/11/notes/35
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"note": {"description": "noted"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"author_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"author_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noted"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"private_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T17:22:48.363+11:00"</span><span class="p">,</span><span class="w">
@@ -4199,15 +4260,15 @@ Update activities that are not auto-generated.</p>
 <h2 id="delete-note">Delete Note</h2>
 <pre class="highlight shell"><code>curl -X DELETE https://adhubapi.adventistchurch.com/api/contact/11/notes/35
 -H <span class="s2">"Authorization: Bearer team_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"author_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"author_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noted"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"private_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-16T17:22:48.363+11:00"</span><span class="p">,</span><span class="w">
@@ -4258,7 +4319,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="show-partner">Show Partner</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/partner
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
@@ -4294,7 +4355,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/account/partner
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"partner": {"name": "Sam Beagul", "email": "sam@email.com"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4315,7 +4376,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/account/partner
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"partner": {"name": "John Backster"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4335,7 +4396,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="delete-partner">Delete Partner</h2>
 <pre class="highlight shell"><code>curl -X DELETE https://adhubapi.adventistchurch.com/api/account/partner
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
@@ -4389,7 +4450,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-religions">List Religions</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/app/religions
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -4407,7 +4468,7 @@ Update activities that are not auto-generated.</p>
       </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"religions"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Seventh-day Adventist Church"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:25:43.025+11:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-24T08:26:43.682+11:00"</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -4464,7 +4525,7 @@ Update activities that are not auto-generated.</p>
 <h2 id="list-studies">List Studies</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/studies
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -4500,7 +4561,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/account/studies
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"study": {"name": "Where did all the sheep go?"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4508,7 +4569,7 @@ Update activities that are not auto-generated.</p>
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"studies"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Where did all the sheep go?"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"study_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_study"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:05:15.817+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:05:15.817+11:00"</span><span class="w">
@@ -4522,7 +4583,7 @@ Update activities that are not auto-generated.</p>
 <pre class="highlight shell"><code>curl -X PATCH https://adhubapi.adventistchurch.com/api/account/studies/52
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -d <span class="s1">'{"study": {"name": "Finding the sheep"}}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4530,7 +4591,7 @@ Update activities that are not auto-generated.</p>
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"studies"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finding the sheep"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"study_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_study"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:05:15.817+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:09:44.464+11:00"</span><span class="w">
@@ -4543,14 +4604,14 @@ Update activities that are not auto-generated.</p>
 <h2 id="delete-study">Delete Study</h2>
 <pre class="highlight shell"><code>curl -X DELETE https://adhubapi.adventistchurch.com/api/account/studies/52
 -H <span class="s2">"Authorization: Bearer contact_token"</span>
--H <span class="s2">"Accept: application/vnd.adventisthub.v1+json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"studies"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finding the sheep"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"study_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_study"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:05:15.817+11:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-17T12:09:44.464+11:00"</span><span class="w">
