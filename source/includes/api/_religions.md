@@ -15,7 +15,7 @@ updated_at<br> *datetime* | When the religion was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/app/religions
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -35,7 +35,7 @@ curl https://adhubapi.adventistchurch.com/api/app/religions
       "type": "religions",
       "attributes": {
         "name": "Seventh-day Adventist Church",
-        "parent_id": 2,
+        "parent_id": "2",
         "created_at": "2016-10-24T08:25:43.025+11:00",
         "updated_at": "2016-10-24T08:26:43.682+11:00"
       }

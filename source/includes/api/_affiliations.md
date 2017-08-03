@@ -17,7 +17,7 @@ updated_at<br> *datetime* | When the affiliation was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/contacts/17/affiliations
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -29,7 +29,7 @@ curl https://adhubapi.adventistchurch.com/api/contacts/17/affiliations
         "name": "Wahroonga Primary School",
         "place_type": "school",
         "identifier": "",
-        "contact_id": 17,
+        "contact_id": "17",
         "created_at": "2016-11-29T11:38:26.945+11:00",
         "updated_at": "2016-11-29T11:38:26.945+11:00"
       }
@@ -46,7 +46,7 @@ An array of all affiliations for the contact.
 ```shell
 curl https://adhubapi.adventistchurch.com/api/contacts/17/affiliations/12
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -57,7 +57,7 @@ curl https://adhubapi.adventistchurch.com/api/contacts/17/affiliations/12
       "name": "Wahroonga Primary School",
       "place_type": "school",
       "identifier": "",
-      "contact_id": 17,
+      "contact_id": "17",
       "created_at": "2016-11-29T11:38:26.945+11:00",
       "updated_at": "2016-11-29T11:38:26.945+11:00"
     }
@@ -74,7 +74,7 @@ Show a contacts affiliation.
 curl -X POST https://adhubapi.adventistchurch.com/api/contacts/17/affiliations
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"affiliation": {"name": "Wahroonga Prison", "place_type": "prison"}}'
 ```
 ```json
@@ -86,7 +86,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/contacts/17/affiliations
       "name": "Wahroonga Prison",
       "place_type": "prison",
       "identifier": null,
-      "contact_id": 17,
+      "contact_id": "17",
       "created_at": "2017-01-16T14:45:59.067+11:00",
       "updated_at": "2017-01-16T14:45:59.067+11:00"
     }
@@ -101,7 +101,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/contacts/17/affiliations
 curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/17/affiliations/13
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"affiliation": {"name": "Wyee Prison", "identifier": "PN555891"}}'
 ```
 ```json
@@ -113,7 +113,7 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/17/affiliations/
       "name": "Wyee Prison",
       "place_type": "prison",
       "identifier": "PN555891",
-      "contact_id": 17,
+      "contact_id": "17",
       "created_at": "2017-01-16T14:45:59.067+11:00",
       "updated_at": "2017-01-16T14:49:47.067+11:00"
     }
@@ -127,7 +127,7 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/17/affiliations/
 ```shell
 curl -X DELETE https://adhubapi.adventistchurch.com/api/contacts/17/affiliations/13
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -138,7 +138,7 @@ curl -X DELETE https://adhubapi.adventistchurch.com/api/contacts/17/affiliations
       "name": "Wyee Prison",
       "place_type": "prison",
       "identifier": "PN555891",
-      "contact_id": 17,
+      "contact_id": "17",
       "created_at": "2017-01-16T14:45:59.067+11:00",
       "updated_at": "2017-01-16T14:49:47.067+11:00"
     }

@@ -28,7 +28,7 @@ calendar_url<br> *string* | The unique private iCal URL for the users calendar t
 ```shell
 curl https://adhubapi.adventistchurch.com/api/account
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -71,7 +71,7 @@ Show the users account.
 curl -X PATCH https://adhubapi.adventistchurch.com/api/account
 -H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"contact": {"first_name": "Wallaby"}}'
 ```
 ```json

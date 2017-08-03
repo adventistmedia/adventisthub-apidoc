@@ -25,7 +25,7 @@ shared<br>*boolean* | true if the event is viewable with other team members
 ```shell
 curl https://adhubapi.adventistchurch.com/api/contacts
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 
 ```json
@@ -78,7 +78,7 @@ An array of event objects accessible to the user based on the tokens team.
 ```shell
 curl https://adhubapi.adventistchurch.com/api/events/1
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -128,7 +128,7 @@ Read an event.
 curl -X POST https://adhubapi.adventistchurch.com/api/events
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"event": {"event_type": "bible_study", "name": "Weekly Study", "start_time": "2017-01-16T09:00"}}'
 ```
 ```json
@@ -177,7 +177,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/events
 curl -X PATCH https://adhubapi.adventistchurch.com/api/events/2
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"event": {"name": "Weekly Study Jan"}}'
 ```
 ```json
@@ -225,7 +225,7 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/events/2
 ```shell
 curl -X DELETE https://adhubapi.adventistchurch.com/api/events/2
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {

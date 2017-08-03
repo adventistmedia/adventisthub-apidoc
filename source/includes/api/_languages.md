@@ -13,7 +13,7 @@ code<br> *string* | 3 letter iso639-3 language code | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/app/languages
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {

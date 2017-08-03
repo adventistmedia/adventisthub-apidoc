@@ -16,7 +16,7 @@ updated_at<br> *datetime* | When the attendee was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/event_sessions/13/attendees
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -25,9 +25,9 @@ curl https://adhubapi.adventistchurch.com/api/event_sessions/13/attendees
       "id": "60",
       "type": "attendees",
       "attributes": {
-        "contact_id": 12,
-        "event_id": 24,
-        "event_session_id": 13,
+        "contact_id": "12",
+        "event_id": "24",
+        "event_session_id": "13",
         "created_at": "2017-01-12T16:08:27.659+11:00",
         "updated_at": "2017-01-12T16:08:27.659+11:00"
       }
@@ -36,9 +36,9 @@ curl https://adhubapi.adventistchurch.com/api/event_sessions/13/attendees
       "id": "61",
       "type": "attendees",
       "attributes": {
-        "contact_id": 17,
-        "event_id": 24,
-        "event_session_id": 13,
+        "contact_id": "17",
+        "event_id": "24",
+        "event_session_id": "13",
         "created_at": "2017-01-12T16:08:29.528+11:00",
         "updated_at": "2017-01-12T16:08:29.528+11:00"
       }
@@ -56,7 +56,7 @@ An array of all attendees for an event session.
 curl -X POST https://adhubapi.adventistchurch.com/api/event_sessions/13/attendees
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"attendee": {"contact_id": 2}}'
 ```
 ```json
@@ -65,9 +65,9 @@ curl -X POST https://adhubapi.adventistchurch.com/api/event_sessions/13/attendee
     "id": "90",
     "type": "attendees",
     "attributes": {
-      "contact_id": 2,
-      "event_id": 24,
-      "event_session_id": 13,
+      "contact_id": "2",
+      "event_id": "24",
+      "event_session_id": "13",
       "created_at": "2017-01-12T16:08:27.659+11:00",
       "updated_at": "2017-01-12T16:08:27.659+11:00"
     }
@@ -83,7 +83,7 @@ Add a new attendee to the event session.
 ```shell
 curl -X DELETE https://adhubapi.adventistchurch.com/api/event_sessions/13/attendees/90
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -91,9 +91,9 @@ curl -X DELETE https://adhubapi.adventistchurch.com/api/event_sessions/13/attend
     "id": "90",
     "type": "attendees",
     "attributes": {
-      "contact_id": 2,
-      "event_id": 24,
-      "event_session_id": 13,
+      "contact_id": "2",
+      "event_id": "24",
+      "event_session_id": "13",
       "created_at": "2017-01-12T16:08:27.659+11:00",
       "updated_at": "2017-01-12T16:08:27.659+11:00"
     }

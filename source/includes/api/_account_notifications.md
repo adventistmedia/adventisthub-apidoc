@@ -15,7 +15,7 @@ updated_at<br> *datetime* | When the notification was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/account/notifications
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -45,7 +45,7 @@ Subscribe to a notification
 ```shell
 curl -X PATCH https://adhubapi.adventistchurch.com/api/account/notifications/5/subscribe
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -71,7 +71,7 @@ Unsubscribe from a notification
 ```shell
 curl -X PATCH https://adhubapi.adventistchurch.com/api/account/notifications/5/unsubscribe
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {

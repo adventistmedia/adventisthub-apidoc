@@ -19,7 +19,7 @@ updated_at<br>*datetime* | When the alert was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/account/alerts
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 
 ```json
@@ -63,7 +63,7 @@ An array of alert objects.
 ```shell
 curl https://adhubapi.adventistchurch.com/api/account/alerts/48
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -91,7 +91,7 @@ Show an alert.
 ```shell
 curl -X PATCH https://adhubapi.adventistchurch.com/api/account/alerts/31/accept
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -117,7 +117,7 @@ Accept an alert that has an accept callback.
 ```shell
 curl -X PATCH https://adhubapi.adventistchurch.com/api/account/alerts/31/decline
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -143,7 +143,7 @@ Accept an alert that has an decline callback.
 ```shell
 curl -X DELETE https://adhubapi.adventistchurch.com/api/account/alerts/48
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {

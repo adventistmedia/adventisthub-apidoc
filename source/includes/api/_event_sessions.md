@@ -16,7 +16,7 @@ updated_at<br>*datetime* | When the event sessions was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/events/24/event_sessions
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 
 ```json
@@ -28,7 +28,7 @@ curl https://adhubapi.adventistchurch.com/api/events/24/event_sessions
       "attributes": {
         "name": "Session 1",
         "start_time": "2017-01-12T15:30:00.356+11:00",
-        "event_id": 24,
+        "event_id": "24",
         "attendees_count": 3,
         "created_at": "2017-01-12T15:22:17.372+11:00",
         "updated_at": "2017-01-12T15:22:17.372+11:00"
@@ -49,7 +49,7 @@ An array of event sessions for an event.
 ```shell
 curl https://adhubapi.adventistchurch.com/api/events/24/event_sessions/13
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -59,7 +59,7 @@ curl https://adhubapi.adventistchurch.com/api/events/24/event_sessions/13
     "attributes": {
       "name": "Session 1",
       "start_time": "2017-01-12T15:30:00.356+11:00",
-      "event_id": 24,
+      "event_id": "24",
       "attendees_count": 3,
       "created_at": "2017-01-12T15:22:17.372+11:00",
       "updated_at": "2017-01-12T15:22:17.372+11:00"
@@ -80,7 +80,7 @@ Read an event session.
 curl -X POST https://adhubapi.adventistchurch.com/api/events/24/event_sessions
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"event_session": {"name": "Walking North", "start_time": "2017-01-05T18:30"}}'
 ```
 ```json
@@ -91,7 +91,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/events/24/event_sessions
     "attributes": {
       "name": "Walking North",
       "start_time": "2017-01-05T18:30:00.000+11:00",
-      "event_id": 24,
+      "event_id": "24",
       "attendees_count": 0,
       "created_at": "2017-01-17T10:05:33.835+11:00",
       "updated_at": "2017-01-17T10:05:33.835+11:00"
@@ -111,7 +111,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/events/24/event_sessions
 curl -X PATCH https://adhubapi.adventistchurch.com/api/events/24/event_sessions/15
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"event_session": {"name": "The Great Walk"}}'
 
 ```
@@ -123,7 +123,7 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/events/24/event_sessions/
     "attributes": {
       "name": "The Great Walk",
       "start_time": "2017-01-05T18:30:00.000+11:00",
-      "event_id": 24,
+      "event_id": "24",
       "attendees_count": 0,
       "created_at": "2017-01-17T10:05:33.835+11:00",
       "updated_at": "2017-01-17T10:08:25.168+11:00"
@@ -141,7 +141,7 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/events/24/event_sessions/
 ```shell
 curl -X DELETE https://adhubapi.adventistchurch.com/api/events/24/event_sessions/15
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -151,7 +151,7 @@ curl -X DELETE https://adhubapi.adventistchurch.com/api/events/24/event_sessions
     "attributes": {
       "name": "The Great Walk",
       "start_time": "2017-01-05T18:30:00.000+11:00",
-      "event_id": 24,
+      "event_id": "24",
       "attendees_count": 0,
       "created_at": "2017-01-17T10:05:33.835+11:00",
       "updated_at": "2017-01-17T10:08:25.168+11:00"

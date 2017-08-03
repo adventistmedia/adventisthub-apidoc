@@ -30,7 +30,7 @@ updated_at<br> *datetime* | When the address was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/contacts/11/addresses
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -69,7 +69,7 @@ An array of a contacts home and mailing addresses.
 ```shell
 curl https://adhubapi.adventistchurch.com/api/contacts/11/addresses/34
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -108,7 +108,7 @@ Show a contacts address.
 curl -X POST https://adhubapi.adventistchurch.com/api/contacts/11/addresses
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"address": {"location": "mailing", "country_code": "AU", "address1": "148 Fox Valley Road", "city": "Wahroonga", "region": "NSW", "postcode": "2076"}}'
 ```
 ```json
@@ -146,7 +146,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/contacts/11/addresses
 curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/11/addresses/35
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"address": {"attention": "Adventist Media"}}'
 ```
 ```json
@@ -183,7 +183,7 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/11/addresses/35
 ```shell
 curl -X DELETE https://adhubapi.adventistchurch.com/api/contact/11/addresses/35
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {

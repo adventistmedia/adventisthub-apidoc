@@ -22,7 +22,7 @@ updated_at<br>*datetime* | When the source object was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/calendars
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {

@@ -26,7 +26,7 @@ updated_at<br>*datetime* | When the event series was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/event_series
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 
 ```json
@@ -40,9 +40,9 @@ curl https://adhubapi.adventistchurch.com/api/event_series
         "summary": "Insights into the world of underground trafficking",
         "location": "Locations throughout Sydney",
         "event_type": "seminar",
-        "team_id": 1,
-        "contact_id": 9,
-        "category_id": 10,
+        "team_id": "1",
+        "contact_id": "9",
+        "category_id": "10",
         "events_count": 0,
         "campaign_id": null,
         "brand_id": null,
@@ -64,9 +64,9 @@ curl https://adhubapi.adventistchurch.com/api/event_series
         "summary": "",
         "location": null,
         "event_type": "bible_study",
-        "team_id": 6,
-        "contact_id": 5,
-        "category_id": 4,
+        "team_id": "6",
+        "contact_id": "5",
+        "category_id": "4",
         "events_count": 4,
         "campaign_id": null,
         "brand_id": null,
@@ -92,7 +92,7 @@ An array of event series accessible to the user based on the tokens team.
 ```shell
 curl https://adhubapi.adventistchurch.com/api/event_series/3
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -104,9 +104,9 @@ curl https://adhubapi.adventistchurch.com/api/event_series/3
       "summary": "",
       "location": null,
       "event_type": "bible_study",
-      "team_id": 6,
-      "contact_id": 5,
-      "category_id": 4,
+      "team_id": "6",
+      "contact_id": "5",
+      "category_id": "4",
       "events_count": 4,
       "campaign_id": null,
       "brand_id": null,
@@ -132,7 +132,7 @@ Read an event series.
 curl -X POST https://adhubapi.adventistchurch.com/api/event_series
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"event_series": {"name": "Youth Bible Study", "event_type": "bible_study", "category_id":20, "summary": "Weekly Wednesday Study"}}'
 ```
 ```json
@@ -145,9 +145,9 @@ curl -X POST https://adhubapi.adventistchurch.com/api/event_series
       "summary": "Weekly Wednesday Study",
       "location": null,
       "event_type": "bible_study",
-      "team_id": 6,
-      "contact_id": 5,
-      "category_id": 20,
+      "team_id": "6",
+      "contact_id": "5",
+      "category_id": "20",
       "events_count": 0,
       "campaign_id": null,
       "brand_id": null,
@@ -171,7 +171,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/event_series
 curl -X PATCH https://adhubapi.adventistchurch.com/api/event_series/11
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"event_series": {"shared": true}}'
 ```
 ```json
@@ -184,9 +184,9 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/event_series/11
       "summary": "Weekly Wednesday Study",
       "location": null,
       "event_type": "bible_study",
-      "team_id": 6,
-      "contact_id": 5,
-      "category_id": 20,
+      "team_id": "6",
+      "contact_id": "5",
+      "category_id": "20",
       "events_count": 0,
       "campaign_id": null,
       "brand_id": null,
@@ -209,7 +209,7 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/event_series/11
 ```shell
 curl -X DELETE https://adhubapi.adventistchurch.com/api/event_series/11
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -221,9 +221,9 @@ curl -X DELETE https://adhubapi.adventistchurch.com/api/event_series/11
       "summary": "Weekly Wednesday Study",
       "location": null,
       "event_type": "bible_study",
-      "team_id": 6,
-      "contact_id": 5,
-      "category_id": 20,
+      "team_id": "6",
+      "contact_id": "5",
+      "category_id": "20",
       "events_count": 0,
       "campaign_id": null,
       "brand_id": null,

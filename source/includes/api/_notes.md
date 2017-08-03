@@ -19,7 +19,7 @@ updated_at<br> *datetime* | When the note was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/contacts/11/notes
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -51,7 +51,7 @@ An array of a notes created by the user for the contact.
 ```shell
 curl https://adhubapi.adventistchurch.com/api/contacts/11/notes/34
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -81,7 +81,7 @@ Show a contacts note.
 curl -X POST https://adhubapi.adventistchurch.com/api/contacts/11/notes
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"note": {"description": "noted thanks"}}'
 ```
 ```json
@@ -90,9 +90,9 @@ curl -X POST https://adhubapi.adventistchurch.com/api/contacts/11/notes
     "id": "35",
     "type": "notes",
     "attributes": {
-      "contact_id": 11,
-      "team_id": 2,
-      "author_id": 1,
+      "contact_id": "11",
+      "team_id": "2",
+      "author_id": "1",
       "description": "noted thanks",
       "private_note": true,
       "created_at": "2017-01-16T17:22:48.363+11:00",
@@ -110,7 +110,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/contacts/11/notes
 curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/11/notes/35
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"note": {"description": "noted"}}'
 ```
 ```json
@@ -119,9 +119,9 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/11/notes/35
     "id": "35",
     "type": "notes",
     "attributes": {
-      "contact_id": 11,
-      "team_id": 2,
-      "author_id": 1,
+      "contact_id": "11",
+      "team_id": "2",
+      "author_id": "1",
       "description": "noted",
       "private_note": true,
       "created_at": "2017-01-16T17:22:48.363+11:00",
@@ -138,7 +138,7 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/11/notes/35
 ```shell
 curl -X DELETE https://adhubapi.adventistchurch.com/api/contact/11/notes/35
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -146,9 +146,9 @@ curl -X DELETE https://adhubapi.adventistchurch.com/api/contact/11/notes/35
     "id": "35",
     "type": "notes",
     "attributes": {
-      "contact_id": 11,
-      "team_id": 2,
-      "author_id": 1,
+      "contact_id": "11",
+      "team_id": "2",
+      "author_id": "1",
       "description": "noted",
       "private_note": true,
       "created_at": "2017-01-16T17:22:48.363+11:00",

@@ -20,7 +20,7 @@ updated_at<br> *datetime* | When the campaign was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/campaigns
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -31,7 +31,7 @@ curl https://adhubapi.adventistchurch.com/api/campaigns
       "attributes": {
         "name": "Insight Sydney",
         "summary": "",
-        "category_id": 9,
+        "category_id": "9",
         "created_at": "2016-11-23T15:10:44.225+11:00",
         "updated_at": "2016-11-23T15:10:44.225+11:00",
         "location": "",
@@ -45,7 +45,7 @@ curl https://adhubapi.adventistchurch.com/api/campaigns
       "attributes": {
         "name": "Last Empire",
         "summary": "Marketing campaign for the upcoming event",
-        "category_id": 11,
+        "category_id": "11",
         "created_at": "2016-11-17T07:47:40.680+11:00",
         "updated_at": "2016-12-05T14:27:07.873+11:00",
         "location": "Chatswood, NSW",

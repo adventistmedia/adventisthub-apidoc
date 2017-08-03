@@ -56,7 +56,7 @@ Throughout the documentation we will refer to a contact with an activated accoun
 # Making Requests
 
 ## Headers
-When writing your own AdHub client, please ensure you set the *Accept* header to `Accept: application/vnd.adventisthub.v1+json` where v1 represents the API's version number. The latest version is currently v1
+When writing your own AdHub client, please ensure you set the *Accept* header to `Accept: application/vnd.adhub.v1+json` where v1 represents the API's version number. The latest version is currently v1
 
 If you do not set the Accept header, the API will still work however you may get unexpected data or errors.
 
@@ -84,9 +84,9 @@ All requests will return a JSON response using the [JSON API](http://jsonapi.org
 ## Sign In
 ```shell
 curl -X POST https://adhubapi.adventistchurch.com/api/account/signin
--H "Accept: application/vnd.adventisthub.v1+json"
--H "X-Api-Key: adventisthub_app_key"
--H "X-Api-Secret: adventisthub_app_secret"
+-H "Accept: application/vnd.adhub.v1+json"
+-H "X-Api-Key: adhub_app_key"
+-H "X-Api-Secret: adhub_app_secret"
 -H "Content-type: application/json"
 -d '{"provider_token": "provider_access_token"}'
 ```
@@ -96,7 +96,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/account/signin
     "id": "1",
     "type": "app_tokens",
     "attributes": {
-      "contact_id": 5,
+      "contact_id": "5",
       "team_id": null,
       "token": "V4saems7F97MnCf7efDojfgC8qU6JsGTKfEgZz6RFf555dsQFM"
     }
@@ -129,7 +129,7 @@ provider_token<br> *datetime* | The OAuth access token you received from myAdven
 ```shell
 curl -x DELETE https://adhubapi.adventistchurch.com/api/account/signout
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -144,7 +144,7 @@ To sign out from AdHub send a DELETE request. This will delete all of the users 
 ```shell
 curl https://adhubapi.adventistchurch.com/api/account/team_tokens
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -153,8 +153,8 @@ curl https://adhubapi.adventistchurch.com/api/account/team_tokens
           "id": "2",
           "type": "app_tokens",
           "attributes": {
-            "contact_id": 5,
-            "team_id": 2,
+            "contact_id": "5",
+            "team_id": "2",
             "token": "KEE3Pwi9GfBopSeisFC9gdrNHdWRgG5pwY4Dfqjve2sjhT8YCC"
           }
       },
@@ -162,8 +162,8 @@ curl https://adhubapi.adventistchurch.com/api/account/team_tokens
           "id": "3",
           "type": "app_tokens",
           "attributes": {
-            "contact_id": 5,
-            "team_id": 3,
+            "contact_id": "5",
+            "team_id": "3",
             "token": "NBYBeUG6PLAWaZs9WV5HgcreQpWYoTs4U899zs3z4ExsjSUrD9"
           }
       }
@@ -174,3 +174,69 @@ curl https://adhubapi.adventistchurch.com/api/account/team_tokens
 
 As a user can belong to multiple teams so your app should allow the user to switch between teams.
 Sending a request to team tokens will give you tokens for all active teams the contact has membership too with a role.
+
+
+# Account Activation
+
+The API allows you to activate a users account.
+
+Before trying to activate the account you will need the users invite token. You should first verify the invite token is valid with the `invite_token_introspect` endpoint. Once the invite token is verified you can then have the have the user sign in or create a myAdventist account (this process happens outside of the AdHub API) to retrieve a myAdventist token that can be used to activate the users AdHub Account.
+
+## Invite Token Introspect
+
+```shell
+curl https://adhubapi.adventistchurch.com/api/account/invite_token_introspect
+-H "Accept: application/vnd.adhub.v1+json"
+-H "X-Api-Key: adhub_app_key"
+-H "X-Api-Secret: adhub_app_secret"
+-H "Content-type: application/json"
+-d '{"invite_token": "vf6MdJefq7q4eT5fWSuTjmie"}'
+```
+```json
+{
+    "data": {
+        "id": "48",
+        "type": "contacts",
+        "attributes": {
+            "contact_id": "48",
+            "first_name": "Sally",
+            "last_name": "Bix",
+            "email": "sallybix@email.com",
+            "invite_token": "vf6MdJefq7q4eT5fWSuTjmie",
+            "invite_token_expires_at": "2017-09-02T23:59:59.999+10:00",
+            "invited_by": "James Randell",
+            "team": "Wahroonga"
+        }
+    }
+}
+```
+`https://adhubapi.adventistchurch.com/api/account/invite_token_introspect`
+
+Verify an invite token for a pending user account is still valid. Invite tokens expire 30 days after they were created.
+
+## Activate
+
+```shell
+curl -X POST https://adhubapi.adventistchurch.com/api/account/activate
+-H "Accept: application/vnd.adhub.v1+json"
+-H "X-Api-Key: adhub_app_key"
+-H "X-Api-Secret: adhub_app_secret"
+-H "Content-type: application/json"
+-d '{"invite_token": "vf6MdJefq7q4eT5fWSuTjmie", "provider_token": "provider_access_token"}'
+```
+```json
+{
+  "data": {
+    "id": "1",
+    "type": "app_tokens",
+    "attributes": {
+      "contact_id": "48",
+      "team_id": null,
+      "token": "D1saemZz6RFf555dsQFMs7F97MnCf7efDojfgC8qU6JsGTKfEg"
+    }
+  }
+}
+```
+`https://adhubapi.adventistchurch.com/api/account/activate`
+
+Providing a valid invite token and provider token will successfully activate a pending users account. The user will then be automatically signed in and the JSON response is the same as if you had called `/api/account/signin`

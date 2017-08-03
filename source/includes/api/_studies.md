@@ -18,7 +18,7 @@ updated_at<br>*datetime* | When the study was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/account/studies
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 
 ```json
@@ -59,7 +59,7 @@ An array of studies available to the user. Studies are combination of global and
 curl -X POST https://adhubapi.adventistchurch.com/api/account/studies
 -H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"study": {"name": "Where did all the sheep go?"}}'
 ```
 ```json
@@ -69,7 +69,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/account/studies
     "type": "studies",
     "attributes": {
       "name": "Where did all the sheep go?",
-      "contact_id": 5,
+      "contact_id": "5",
       "study_type": "user_study",
       "created_at": "2017-01-17T12:05:15.817+11:00",
       "updated_at": "2017-01-17T12:05:15.817+11:00"
@@ -86,7 +86,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/account/studies
 curl -X PATCH https://adhubapi.adventistchurch.com/api/account/studies/52
 -H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"study": {"name": "Finding the sheep"}}'
 ```
 ```json
@@ -96,7 +96,7 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/account/studies/52
     "type": "studies",
     "attributes": {
       "name": "Finding the sheep",
-      "contact_id": 5,
+      "contact_id": "5",
       "study_type": "user_study",
       "created_at": "2017-01-17T12:05:15.817+11:00",
       "updated_at": "2017-01-17T12:09:44.464+11:00"
@@ -111,7 +111,7 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/account/studies/52
 ```shell
 curl -X DELETE https://adhubapi.adventistchurch.com/api/account/studies/52
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -120,7 +120,7 @@ curl -X DELETE https://adhubapi.adventistchurch.com/api/account/studies/52
     "type": "studies",
     "attributes": {
       "name": "Finding the sheep",
-      "contact_id": 5,
+      "contact_id": "5",
       "study_type": "user_study",
       "created_at": "2017-01-17T12:05:15.817+11:00",
       "updated_at": "2017-01-17T12:09:44.464+11:00"

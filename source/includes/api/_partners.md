@@ -18,7 +18,7 @@ updated_at<br> *datetime* | When the partner was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/account/partner
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -59,7 +59,7 @@ Read the current users partner
 curl -X POST https://adhubapi.adventistchurch.com/api/account/partner
 -H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"partner": {"name": "Sam Beagul", "email": "sam@email.com"}}'
 ```
 ```json
@@ -85,7 +85,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/account/partner
 curl -X PATCH https://adhubapi.adventistchurch.com/api/account/partner
 -H "Authorization: Bearer contact_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"partner": {"name": "John Backster"}}'
 ```
 ```json
@@ -109,7 +109,7 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/account/partner
 ```shell
 curl -X DELETE https://adhubapi.adventistchurch.com/api/account/partner
 -H "Authorization: Bearer contact_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {

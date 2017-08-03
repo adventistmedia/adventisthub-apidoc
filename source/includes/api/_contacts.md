@@ -42,7 +42,7 @@ mailing_address_attributes<br>*JSON object* | Mailing address attributes. Set to
 ```shell
 curl https://adhubapi.adventistchurch.com/api/contacts
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 
 ```json
@@ -63,10 +63,10 @@ curl https://adhubapi.adventistchurch.com/api/contacts
         "other_number_local": "(02) 9847 1122",
         "created_at": "2017-06-14T16:53:52.738+10:00",
         "updated_at": "2017-07-19T14:21:59.189+10:00",
-        "created_by_id": 1,
+        "created_by_id": "1",
         "lat": null,
         "lng": null,
-        "language_id": 1,
+        "language_id": "1",
         "last_visit": null,
         "available": true,
         "available_until": null,
@@ -129,7 +129,7 @@ An array of contacts the user has assigned to them.
 ```shell
 curl https://adhubapi.adventistchurch.com/api/contacts/38
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -148,10 +148,10 @@ curl https://adhubapi.adventistchurch.com/api/contacts/38
             "other_number_local": "(02) 9871 1234",
             "created_at": "2017-07-20T10:10:01.491+10:00",
             "updated_at": "2017-07-20T10:10:01.688+10:00",
-            "created_by_id": 1,
+            "created_by_id": "1",
             "lat": -33.7330045,
             "lng": 151.1010431,
-            "language_id": 1,
+            "language_id": "1",
             "last_visit": null,
             "available": true,
             "available_until": null,
@@ -211,7 +211,7 @@ Show a contact.
 curl -X POST https://adhubapi.adventistchurch.com/api/contacts
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"contact": {
 "first_name": "Roger",
 "last_name": "Fox",
@@ -239,10 +239,10 @@ curl -X POST https://adhubapi.adventistchurch.com/api/contacts
             "other_number_local": "(02) 9871 1234",
             "created_at": "2017-07-20T10:10:01.491+10:00",
             "updated_at": "2017-07-20T10:10:01.688+10:00",
-            "created_by_id": 1,
+            "created_by_id": "1",
             "lat": null,
             "lng": null,
-            "language_id": 1,
+            "language_id": "1",
             "last_visit": null,
             "available": true,
             "available_until": null,
@@ -328,7 +328,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/contacts
 curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/46
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"contact":{
 "first_name": "James",
 "home_address_attributes": {"address1": "12 Fox Valley Road", "city": "Wahroonga", "region": "NSW", "postcode": 2076, "country_code":"AU"},
@@ -352,10 +352,10 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/46
             "other_number_local": "(02) 9871 1234",
             "created_at": "2017-07-20T11:00:00.157+10:00",
             "updated_at": "2017-07-20T11:01:03.566+10:00",
-            "created_by_id": 1,
+            "created_by_id": "1",
             "lat": -33.7278971,
             "lng": 151.1184259,
-            "language_id": 1,
+            "language_id": "1",
             "last_visit": null,
             "available": true,
             "available_until": null,

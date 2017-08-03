@@ -18,7 +18,7 @@ updated_at<br> *datetime* | When the membership was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/memberships
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -27,8 +27,8 @@ curl https://adhubapi.adventistchurch.com/api/memberships
       "id": "20",
       "type": "memberships",
       "attributes": {
-        "contact_id": 5,
-        "team_id": 3,
+        "contact_id": "5",
+        "team_id": "3",
         "role": "team_member",
         "created_at": "2016-10-24T08:26:36.690+11:00",
         "updated_at": "2016-10-24T08:26:36.690+11:00"
@@ -46,7 +46,7 @@ An array of all team memberships.
 ```shell
 curl https://adhubapi.adventistchurch.com/api/memberships/20
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -54,8 +54,8 @@ curl https://adhubapi.adventistchurch.com/api/memberships/20
     "id": "20",
     "type": "memberships",
     "attributes": {
-      "contact_id": 5,
-      "team_id": 3,
+      "contact_id": "5",
+      "team_id": "3",
       "role": "team_member",
       "created_at": "2016-10-24T08:26:36.690+11:00",
       "updated_at": "2016-10-24T08:26:36.690+11:00"

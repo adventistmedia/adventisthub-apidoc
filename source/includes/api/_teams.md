@@ -22,7 +22,7 @@ updated_at<br>*datetime* | When the event was last updated | Read-only
 ```shell
 curl https://adhubapi.adventistchurch.com/api/teams/search
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 -d '{"q": "Bay"}'
 ```
 
@@ -81,7 +81,7 @@ exclude_ids<br> *string* | A comma seperated list of the team ids to exclude fro
 ```shell
 curl https://adhubapi.adventistchurch.com/api/teams/2
 -H "Authorization: Bearer team_token"
--H "Accept: application/vnd.adventisthub.v1+json"
+-H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
 {
@@ -93,7 +93,7 @@ curl https://adhubapi.adventistchurch.com/api/teams/2
       "time_zone": "Sydney",
       "country_code": "AU",
       "country": "Australia",
-      "language_id": 1,
+      "language_id": "1",
       "status": "active",
       "lat": null,
       "lng": null,
