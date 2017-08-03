@@ -29,7 +29,7 @@ The API uses the following error codes:
 Error Code | Meaning
 ---------- | -------
 400 | Bad Request -- Your request was not formatted correctly
-401 | Unauthorised -- The authorization key and secret were incorrect
+401 | Unauthorised -- The AdHub API key and secret were incorrect
 403 | Forbidden -- The user does not have access to an endpoint or object
 404 | Not Found -- The specified object could not be found for the user
 406 | Not Acceptable -- Request format was not JSON
