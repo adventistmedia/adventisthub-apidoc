@@ -259,12 +259,11 @@ Sending a request to team_tokens will give you tokens for all active teams the c
 <p>Before trying to activate the account you will need the users invite token. You should first verify the invite token is valid with the <code class="prettyprint">invite_token_introspect</code> endpoint. Once the invite token is verified you can then the user sign in or create a myAdventist account (this process happens outside of the AdHub API) to retrieve a myAdventist token that can be used to activate the users AdHub Account.</p>
 
 <h2 id="invite-token-introspect">Invite Token Introspect</h2>
-<pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/invite_token_introspect
+<pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/invite_token_introspect?invite_token<span class="o">=</span>vf6MdJefq7q4eT5fWSuTjmie
 -H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 -H <span class="s2">"X-Api-Key: adhub_app_key"</span>
 -H <span class="s2">"X-Api-Secret: adhub_app_secret"</span>
 -H <span class="s2">"Content-type: application/json"</span>
--d <span class="s1">'{"invite_token": "vf6MdJefq7q4eT5fWSuTjmie"}'</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48"</span><span class="p">,</span><span class="w">
@@ -282,7 +281,7 @@ Sending a request to team_tokens will give you tokens for all active teams the c
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/invite_token_introspect</code></p>
+<p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/invite_token_introspect?invite_token=token</code></p>
 
 <p>Verify a invite token for a pending user account is still valid. Invite tokens expire 30 days after they were created.</p>
 
