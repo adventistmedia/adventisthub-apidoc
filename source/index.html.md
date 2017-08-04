@@ -180,12 +180,11 @@ Before trying to activate the account you will need the users invite token. You 
 ## Invite Token Introspect
 
 ```shell
-curl https://adhubapi.adventistchurch.com/api/account/invite_token_introspect
+curl https://adhubapi.adventistchurch.com/api/account/invite_token_introspect?invite_token=vf6MdJefq7q4eT5fWSuTjmie
 -H "Accept: application/vnd.adhub.v1+json"
 -H "X-Api-Key: adhub_app_key"
 -H "X-Api-Secret: adhub_app_secret"
 -H "Content-type: application/json"
--d '{"invite_token": "vf6MdJefq7q4eT5fWSuTjmie"}'
 ```
 ```json
 {
@@ -205,7 +204,7 @@ curl https://adhubapi.adventistchurch.com/api/account/invite_token_introspect
     }
 }
 ```
-`https://adhubapi.adventistchurch.com/api/account/invite_token_introspect`
+`https://adhubapi.adventistchurch.com/api/account/invite_token_introspect?invite_token=token`
 
 Verify a invite token for a pending user account is still valid. Invite tokens expire 30 days after they were created.
 
