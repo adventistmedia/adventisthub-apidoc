@@ -30,7 +30,7 @@ campaign_id<br>*integer* | ID of the campaign the contact belongs too
 approach_id<br>*integer* | ID of the approach the contact belongs too
 brand_id<br>*integer* | ID of the brand the contact belongs too
 avatar_url<br>*string* | Avatar image URL for contact | Read-only
-
+assignor_ids<br>*array* | ID's of contacts who have been assigned to this contact
 The following nested attributes can optionally be set on a contact. See contact addresses for fields.
 
 Field | Description | Notes
@@ -38,7 +38,7 @@ Field | Description | Notes
 home_address_attributes<br>*JSON object* | Home address attributes. Set to nil to delete home_address
 mailing_address_attributes<br>*JSON object* | Mailing address attributes. Set to nil to delete mailing_address
 
-## List Contacts
+## My Contacts
 ```shell
 curl https://adhubapi.adventistchurch.com/api/contacts
 -H "Authorization: Bearer team_token"
@@ -76,7 +76,8 @@ curl https://adhubapi.adventistchurch.com/api/contacts
         "campaign_id": null,
         "approach_id": null,
         "brand_id": null,
-        "avatar_url": "https://res-1.cloudinary.com/image/avatar-33.jpg"
+        "avatar_url": "https://res-1.cloudinary.com/image/avatar-33.jpg",
+        "assignor_ids": []
       },
       "relationships": {
         "home_address": {
@@ -124,6 +125,45 @@ curl https://adhubapi.adventistchurch.com/api/contacts
 
 An array of contacts the user has assigned to them.
 
+## List Contacts
+```shell
+curl https://adhubapi.adventistchurch.com/api/contacts/list
+-H "Authorization: Bearer team_token"
+-H "Accept: application/vnd.adhub.v1+json"
+```
+
+```json
+{
+  "data": [
+    {
+        "id": "27",
+        "type": "contacts",
+        "attributes": {
+            "first_name": "Jill",
+            "last_name": "Pharrell",
+            "name": "Jill Pharrell",
+            "avatar_url": "https://res-4.cloudinary.com/amn-dev/image/upload/c_fill,f_auto,h_200,w_200/avatar-27.png",
+            "assignor_ids": ["1", "7"]
+        }
+    },
+    {
+        "id": "28",
+        "type": "contacts",
+        "attributes": {
+          "first_name": "Claire",
+          "last_name": "Underwood",
+          "name": "Claire Underwood",
+          "avatar_url": "https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:CU,co_white/avatar_pink.jpg",
+          "assignor_ids": []
+        }
+    }
+  ]
+}
+```
+`GET /api/contacts/list`
+
+An array of all contacts in the team with only minimum information about each.
+
 ## Show Contact
 
 ```shell
@@ -161,7 +201,8 @@ curl https://adhubapi.adventistchurch.com/api/contacts/38
             "campaign_id": null,
             "approach_id": null,
             "brand_id": null,
-            "avatar_url": "https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:RF,co_white/avatar_blue.jpg"
+            "avatar_url": "https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:RF,co_white/avatar_blue.jpg",
+            "assignor_ids": []
         },
         "relationships": {
             "home_address": {
@@ -252,7 +293,8 @@ curl -X POST https://adhubapi.adventistchurch.com/api/contacts
             "campaign_id": null,
             "approach_id": null,
             "brand_id": null,
-            "avatar_url": "https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:RF,co_white/avatar_blue.jpg"
+            "avatar_url": "https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:RF,co_white/avatar_blue.jpg",
+            "assignor_ids": []
         },
         "relationships": {
             "home_address": {
@@ -365,7 +407,8 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/46
             "campaign_id": null,
             "approach_id": null,
             "brand_id": null,
-            "avatar_url": "https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:JF,co_white/avatar_blue.jpg"
+            "avatar_url": "https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:JF,co_white/avatar_blue.jpg",
+            "assignor_ids": []
         },
         "relationships": {
             "home_address": {

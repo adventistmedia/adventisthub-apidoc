@@ -23,6 +23,7 @@ includes:
   - api/campaigns
   - api/categories
   - api/contact_addresses
+  - api/contact_assignments
   - api/contact_notifications
   - api/contacts
   - api/event_series
@@ -175,7 +176,7 @@ Sending a request to team_tokens will give you tokens for all active teams the c
 
 The API allows you to activate a pending users account.
 
-Before trying to activate the account you will need the users invite token. You should first verify the invite token is valid with the `invite_token_introspect` endpoint. Once the invite token is verified you can then the user sign in or create a myAdventist account (this process happens outside of the AdHub API) to retrieve a myAdventist token that can be used to activate the users AdHub Account.
+Before trying to activate the account you will need the users invite token. You should first verify the invite token is valid with the `invite_token_introspect` endpoint. Once the invite token is verified you can then have the user sign in or create a myAdventist account (this process happens outside of the AdHub API) to retrieve a myAdventist token that can be used to activate the users AdHub account.
 
 ## Invite Token Introspect
 
@@ -206,7 +207,7 @@ curl https://adhubapi.adventistchurch.com/api/account/invite_token_introspect?in
 ```
 `https://adhubapi.adventistchurch.com/api/account/invite_token_introspect?invite_token=token`
 
-Verify a invite token for a pending user account is still valid. Invite tokens expire 30 days after they were created.
+Verify an invite token for a pending user account is still valid. Invite tokens expire 30 days after they were created.
 
 ## Activate
 

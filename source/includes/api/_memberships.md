@@ -1,8 +1,8 @@
 # Membership
 
-Memberships to Hub teams.
+Memberships to the users teams.
 
-It's important to know the users team role after they've signed in to avoid calling endpoints the user doesn't have access to or showing the UI components that are not applicable.
+It's important to know the users team role after they've signed in to avoid calling endpoints the user doesn't have access too or showing the UI components that are not applicable.
 
 ## Fields
 
@@ -16,8 +16,8 @@ updated_at<br> *datetime* | When the membership was last updated | Read-only
 
 ## List Memberships
 ```shell
-curl https://adhubapi.adventistchurch.com/api/memberships
--H "Authorization: Bearer team_token"
+curl https://adhubapi.adventistchurch.com/api/acccount/memberships
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
@@ -38,14 +38,14 @@ curl https://adhubapi.adventistchurch.com/api/memberships
 }
 ```
 
-`GET /api/memberships`
+`GET /api/account/memberships`
 
 An array of all team memberships.
 
 ## Show Membership
 ```shell
-curl https://adhubapi.adventistchurch.com/api/memberships/20
--H "Authorization: Bearer team_token"
+curl https://adhubapi.adventistchurch.com/api/account/memberships/20
+-H "Authorization: Bearer contact_token"
 -H "Accept: application/vnd.adhub.v1+json"
 ```
 ```json
@@ -64,6 +64,6 @@ curl https://adhubapi.adventistchurch.com/api/memberships/20
 }
 ```
 
-`GET /api/memberships/{membership-id}`
+`GET /api/account/memberships/{membership-id}`
 
 A team membership
