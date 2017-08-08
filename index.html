@@ -256,7 +256,7 @@ Sending a request to team_tokens will give you tokens for all active teams the c
 
 <p>The API allows you to activate a pending users account.</p>
 
-<p>Before trying to activate the account you will need the users invite token. You should first verify the invite token is valid with the <code class="prettyprint">invite_token_introspect</code> endpoint. Once the invite token is verified you can then the user sign in or create a myAdventist account (this process happens outside of the AdHub API) to retrieve a myAdventist token that can be used to activate the users AdHub Account.</p>
+<p>Before trying to activate the account you will need the users invite token. You should first verify the invite token is valid with the <code class="prettyprint">invite_token_introspect</code> endpoint. Once the invite token is verified you can then have the user sign in or create a myAdventist account (this process happens outside of the AdHub API) to retrieve a myAdventist token that can be used to activate the users AdHub account.</p>
 
 <h2 id="invite-token-introspect">Invite Token Introspect</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/invite_token_introspect?invite_token<span class="o">=</span>vf6MdJefq7q4eT5fWSuTjmie
@@ -283,7 +283,7 @@ Sending a request to team_tokens will give you tokens for all active teams the c
 </span></code></pre>
 <p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/invite_token_introspect?invite_token=token</code></p>
 
-<p>Verify a invite token for a pending user account is still valid. Invite tokens expire 30 days after they were created.</p>
+<p>Verify an invite token for a pending user account is still valid. Invite tokens expire 30 days after they were created.</p>
 
 <h2 id="activate">Activate</h2>
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/account/activate
@@ -2389,6 +2389,108 @@ Update activities that are not auto-generated.</p>
 </span></code></pre>
 <p><code class="prettyprint">DELETE /api/contact/{contact-id}/addresses/{address-id}</code></p>
 
+          <h1 id="contact-assignments">Contact Assignments</h1>
+
+<p>Manage who is assigned to a contact.</p>
+
+<p>These endpoints are restricted to contacts with the role of leader or owner.</p>
+
+<h2 id="assignable">Assignable</h2>
+<pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts/27/assignments/assignable
+-H <span class="s2">"Authorization: Bearer team_token"</span>
+-H <span class="s2">"Content-type: application/json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contacts"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James Green"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:SS,co_white/avatar_green.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"commonality"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contacts"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sally Rogers"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:SS,co_white/avatar_green.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"commonality"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"0km away"</span><span class="p">],</span><span class="w">
+        </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p><code class="prettyprint">GET /api/contacts/{contact-id}/assignments/assignable</code></p>
+
+<p>A list of team contacts who can be assigned to a contact.</p>
+
+<p>A higher score indicates a better match based on commonalities between the two contacts.</p>
+
+<h2 id="batch-manage">Batch Manage</h2>
+<pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/contacts/27/assignments/batch
+-H <span class="s2">"Authorization: Bearer team_token"</span>
+-H <span class="s2">"Content-type: application/json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
+-d <span class="s1">'{"assignor_ids": [3,14]}'</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contacts"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Haven"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue Haven"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bluehave@adventistmedia.org.au"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non_member"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"other_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+61298472252"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"mobile_number_local"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"other_number_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(02) 9847 2252"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-19T09:51:16.107+10:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-19T14:21:59.202+10:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">-33.7309925</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">151.1042444</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_visit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-19"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"date_of_birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-30"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gender_unknown"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"religion_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res-4.cloudinary.com/amn-dev/image/upload/c_fill,f_auto,h_200,w_200/avatar-27.png"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"assignor_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"14"</span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"home_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addresses"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"mailing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/27"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code class="prettyprint">POST /api/contacts/{contact-id}/assignments/batch</code></p>
+
+<p>Batch set the zero or more contacts that have the status of member to be assigned to have access to the contact.</p>
+
           <h1 id="contact-notifications">Contact Notifications</h1>
 
 <p>The contacts notifications.</p>
@@ -2642,6 +2744,11 @@ Update activities that are not auto-generated.</p>
 <td>Avatar image URL for contact</td>
 <td>Read-only</td>
 </tr>
+<tr>
+<td>assignor_ids<br><em>array</em></td>
+<td>ID&rsquo;s of contacts who have been assigned to this contact</td>
+<td></td>
+</tr>
 </tbody></table>
 
 <p>The following nested attributes can optionally be set on a contact. See contact addresses for fields.</p>
@@ -2665,7 +2772,7 @@ Update activities that are not auto-generated.</p>
 </tr>
 </tbody></table>
 
-<h2 id="list-contacts">List Contacts</h2>
+<h2 id="my-contacts">My Contacts</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts
 -H <span class="s2">"Authorization: Bearer team_token"</span>
 -H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
@@ -2699,7 +2806,8 @@ Update activities that are not auto-generated.</p>
         </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res-1.cloudinary.com/image/avatar-33.jpg"</span><span class="w">
+        </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res-1.cloudinary.com/image/avatar-33.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"assignor_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"home_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2747,6 +2855,41 @@ Update activities that are not auto-generated.</p>
 
 <p>An array of contacts the user has assigned to them.</p>
 
+<h2 id="list-contacts">List Contacts</h2>
+<pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts/list
+-H <span class="s2">"Authorization: Bearer team_token"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contacts"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jill"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pharrell"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jill Pharrell"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res-4.cloudinary.com/amn-dev/image/upload/c_fill,f_auto,h_200,w_200/avatar-27.png"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"assignor_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"7"</span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contacts"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Claire"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Underwood"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Claire Underwood"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:CU,co_white/avatar_pink.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"assignor_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code class="prettyprint">GET /api/contacts/list</code></p>
+
+<p>An array of all contacts in the team with only minimum information about each.</p>
+
 <h2 id="show-contact">Show Contact</h2>
 <pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/contacts/38
 -H <span class="s2">"Authorization: Bearer team_token"</span>
@@ -2780,7 +2923,8 @@ Update activities that are not auto-generated.</p>
             </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:RF,co_white/avatar_blue.jpg"</span><span class="w">
+            </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:RF,co_white/avatar_blue.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"assignor_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nt">"home_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2867,7 +3011,8 @@ Update activities that are not auto-generated.</p>
             </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:RF,co_white/avatar_blue.jpg"</span><span class="w">
+            </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:RF,co_white/avatar_blue.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"assignor_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nt">"home_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2976,7 +3121,8 @@ Update activities that are not auto-generated.</p>
             </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:JF,co_white/avatar_blue.jpg"</span><span class="w">
+            </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:JF,co_white/avatar_blue.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"assignor_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nt">"home_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4020,9 +4166,9 @@ Update activities that are not auto-generated.</p>
 
           <h1 id="membership">Membership</h1>
 
-<p>Memberships to Hub teams.</p>
+<p>Memberships to the users teams.</p>
 
-<p>It&rsquo;s important to know the users team role after they&rsquo;ve signed in to avoid calling endpoints the user doesn&rsquo;t have access to or showing the UI components that are not applicable.</p>
+<p>It&rsquo;s important to know the users team role after they&rsquo;ve signed in to avoid calling endpoints the user doesn&rsquo;t have access too or showing the UI components that are not applicable.</p>
 
 <h2 id="fields">Fields</h2>
 
@@ -4061,8 +4207,8 @@ Update activities that are not auto-generated.</p>
 </tbody></table>
 
 <h2 id="list-memberships">List Memberships</h2>
-<pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/memberships
--H <span class="s2">"Authorization: Bearer team_token"</span>
+<pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/acccount/memberships
+-H <span class="s2">"Authorization: Bearer contact_token"</span>
 -H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -4080,13 +4226,13 @@ Update activities that are not auto-generated.</p>
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code class="prettyprint">GET /api/memberships</code></p>
+<p><code class="prettyprint">GET /api/account/memberships</code></p>
 
 <p>An array of all team memberships.</p>
 
 <h2 id="show-membership">Show Membership</h2>
-<pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/memberships/20
--H <span class="s2">"Authorization: Bearer team_token"</span>
+<pre class="highlight shell"><code>curl https://adhubapi.adventistchurch.com/api/account/memberships/20
+-H <span class="s2">"Authorization: Bearer contact_token"</span>
 -H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4102,7 +4248,7 @@ Update activities that are not auto-generated.</p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code class="prettyprint">GET /api/memberships/{membership-id}</code></p>
+<p><code class="prettyprint">GET /api/account/memberships/{membership-id}</code></p>
 
 <p>A team membership</p>
 
