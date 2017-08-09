@@ -276,14 +276,35 @@ Sending a request to team_tokens will give you tokens for all active teams the c
             </span><span class="nt">"invite_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vf6MdJefq7q4eT5fWSuTjmie"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"invite_token_expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-02T23:59:59.999+10:00"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"invited_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James Randell"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"team"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga"</span><span class="w">
+        </span><span class="err">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"relationships"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"invited_to"</span><span class="p">:{</span><span class="w">
+          </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"teams"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"included"</span><span class="p">:[{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"teams"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Roseville Church"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"time_zone"</span><span class="p">:</span><span class="s2">"Sydney"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country_code"</span><span class="p">:</span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"Australia"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"language_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lat"</span><span class="p">:</span><span class="err">nil</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lng"</span><span class="p">:</span><span class="err">nil</span><span class="p">,</span><span class="w"> </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="s2">"https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:NUM,co_white/avatar_green.jpg"</span><span class="p">,</span><span class="w"> </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2017-08-09T14:46:18.279+10:00"</span><span class="p">,</span><span class="w"> </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2017-08-09T14:46:18.514+10:00"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><code class="prettyprint">https://adhubapi.adventistchurch.com/api/account/invite_token_introspect?invite_token=token</code></p>
 
 <p>Verify an invite token for a pending user account is still valid. Invite tokens expire 30 days after they were created.</p>
+
+<p>An invalid or expired token will return an error.</p>
 
 <h2 id="activate">Activate</h2>
 <pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/account/activate
