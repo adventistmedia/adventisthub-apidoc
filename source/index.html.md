@@ -200,14 +200,35 @@ curl https://adhubapi.adventistchurch.com/api/account/invite_token_introspect?in
             "invite_token": "vf6MdJefq7q4eT5fWSuTjmie",
             "invite_token_expires_at": "2017-09-02T23:59:59.999+10:00",
             "invited_by": "James Randell",
-            "team": "Wahroonga"
         }
-    }
+    },
+    "relationships":{
+        "invited_to":{
+          "data":{
+            "id":"1", "type":"teams"
+          }
+        }
+      },
+    "included":[{
+      "id":"1",
+      "type":"teams",
+      "attributes":{
+        "name":"Roseville Church",
+        "time_zone":"Sydney",
+        "country_code":"AU",
+        "country":"Australia",
+        "language_id":"1",
+        "lat":nil,
+        "lng":nil, "avatar_url":"https://res-1.cloudinary.com/amn-dev/image/upload/w_200,h_200/l_text:Arial_50_bold:NUM,co_white/avatar_green.jpg", "created_at":"2017-08-09T14:46:18.279+10:00", "updated_at":"2017-08-09T14:46:18.514+10:00"
+      }
+    }]
 }
 ```
 `https://adhubapi.adventistchurch.com/api/account/invite_token_introspect?invite_token=token`
 
 Verify an invite token for a pending user account is still valid. Invite tokens expire 30 days after they were created.
+
+An invalid or expired token will return an error.
 
 ## Activate
 
