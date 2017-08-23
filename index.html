@@ -3205,7 +3205,104 @@ Update activities that are not auto-generated.</p>
 </span></code></pre>
 <p><code class="prettyprint">PATCH /api/contacts/{contact-id}</code></p>
 
-<p>In this example we updating the contacts name, deleting the mailing address and editing the home addresses address1 attribute.</p>
+<p>In this example we are updating the contacts name, deleting the mailing address and editing the home addresses address1 attribute.</p>
+
+<h2 id="set-avatar">Set Avatar</h2>
+<pre class="highlight shell"><code>curl -X POST https://adhubapi.adventistchurch.com/api/contacts/46/avatar
+-H <span class="s2">"Authorization: Bearer team_token"</span>
+-H <span class="s2">"Content-type: application/json"</span>
+-H <span class="s2">"Accept: application/vnd.adhub.v1+json"</span>
+-d <span class="s1">'{"public_id":"avatar-572"
+,"version":1503388932
+,"signature":"c0ea30fe99ca4101fac18401fdbe55a1d3a70f04"
+,"width":400
+,"height":645
+,"format":"jpg"
+,"resource_type":"image"
+,"created_at":"2017-08-22T08:02:12Z"
+,"tags":[]
+,"bytes":153418
+,"type":"upload"
+,"url":"http://res.cloudinary.com/mycloud/image/upload/v1503388932/avatar-572.jpg"
+,"secure_url":"https://res.cloudinary.com/mycloud/image/upload/v1503388932/avatar-572.jpg"
+,"existing":true
+}'</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contacts"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fox"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James Fox"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non_member"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+61450123456"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"other_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+61298711234"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"mobile_number_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0450 123 456"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"other_number_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(02) 9871 1234"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20T11:00:00.157+10:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20T11:01:03.566+10:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">-33.7278971</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">151.1184259</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last_visit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"available_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date_of_birth"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"male"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"religion_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"approach_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://res.cloudinary.com/mycloud/image/upload/v1503388932/avatar-572.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"assignor_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"home_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addresses"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"mailing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/contacts/40"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"included"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addresses"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"attention"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12 Fox Valley Road"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"address2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wahroonga"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSW"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2076"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AU"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australia"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"full_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12 Fox Valley Road, Wahroonga NSW 2076, Australia"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">-33.7278971</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">151.1184259</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"home"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20T11:00:00.173+10:00"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20T11:01:03.556+10:00"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code class="prettyprint">POST /api/contacts/{contact-id}/avatar</code></p>
+
+<p>To set an avatar for a contact, upload the avatar directly to Cloudinary. Then POST the response received from Cloudinary to this endpoint, to update the contact to reference this avatar.</p>
 
           <h1 id="event-series">Event Series</h1>
 
