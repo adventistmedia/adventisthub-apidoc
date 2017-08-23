@@ -454,4 +454,91 @@ curl -X PATCH https://adhubapi.adventistchurch.com/api/contacts/46
 
 `PATCH /api/contacts/{contact-id}`
 
-In this example we updating the contacts name, deleting the mailing address and editing the home addresses address1 attribute.
+In this example we are updating the contacts name, deleting the mailing address and editing the home addresses address1 attribute.
+
+## Set Avatar
+```shell
+curl -X POST https://adhubapi.adventistchurch.com/api/contacts/46/avatar
+-H "Authorization: Bearer team_token"
+-H "Content-type: application/json"
+-H "Accept: application/vnd.adhub.v1+json"
+-d '{"public_id":"a_new_folder/avatar-572","version":1503388932,"signature":"c0ea30fe99ca4101fac18401fdbe55a1d3a70f04","width":400,"height":645,"format":"jpg","resource_type":"image","created_at":"2017-08-22T08:02:12Z","tags":[],"bytes":153418,"type":"upload","url":"http://res.cloudinary.com/mycloud/image/upload/v1503388932/new_folder/avatar-572.jpg","secure_url":"https://res.cloudinary.com/mycloud/image/upload/v1503388932/new_folder/avatar-572.jpg","existing":true}'
+```
+```json
+{
+    "data": {
+        "id": "40",
+        "type": "contacts",
+        "attributes": {
+            "first_name": "James",
+            "last_name": "Fox",
+            "name": "James Fox",
+            "email": null,
+            "status": "non_member",
+            "mobile_number": "+61450123456",
+            "other_number": "+61298711234",
+            "mobile_number_local": "0450 123 456",
+            "other_number_local": "(02) 9871 1234",
+            "created_at": "2017-07-20T11:00:00.157+10:00",
+            "updated_at": "2017-07-20T11:01:03.566+10:00",
+            "created_by_id": "1",
+            "lat": -33.7278971,
+            "lng": 151.1184259,
+            "language_id": "1",
+            "last_visit": null,
+            "available": true,
+            "available_until": null,
+            "date_of_birth": null,
+            "gender": "male",
+            "religion_id": null,
+            "campaign_id": null,
+            "approach_id": null,
+            "brand_id": null,
+            "avatar_url": "https://res.cloudinary.com/mycloud/image/upload/v1503388932/new_folder/avatar-572.jpg",
+            "assignor_ids": []
+        },
+        "relationships": {
+            "home_address": {
+                "data": {
+                    "id": "27",
+                    "type": "addresses"
+                }
+            },
+            "mailing_address": {
+                "data": null
+            }
+        },
+        "links": {
+            "self": "/api/contacts/40"
+        }
+    },
+    "included": [
+        {
+            "id": "27",
+            "type": "addresses",
+            "attributes": {
+                "attention": null,
+                "address1": "12 Fox Valley Road",
+                "address2": null,
+                "address3": null,
+                "city": "Wahroonga",
+                "region": "NSW",
+                "postcode": "2076",
+                "country_code": "AU",
+                "country": "Australia",
+                "full_address": "12 Fox Valley Road, Wahroonga NSW 2076, Australia",
+                "status": "active",
+                "lat": -33.7278971,
+                "lng": 151.1184259,
+                "location": "home",
+                "created_at": "2017-07-20T11:00:00.173+10:00",
+                "updated_at": "2017-07-20T11:01:03.556+10:00"
+            }
+        }
+    ]
+}
+```
+
+`POST /api/contacts/{contact-id}/avatar`
+
+To set an avatar for a contact, upload the avatar directly to Cloudinary. Then POST the response received from Cloudinary to this endpoint, to update the contact to reference this avatar.
