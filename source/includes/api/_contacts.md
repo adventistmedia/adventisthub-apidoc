@@ -462,7 +462,21 @@ curl -X POST https://adhubapi.adventistchurch.com/api/contacts/46/avatar
 -H "Authorization: Bearer team_token"
 -H "Content-type: application/json"
 -H "Accept: application/vnd.adhub.v1+json"
--d '{"public_id":"a_new_folder/avatar-572","version":1503388932,"signature":"c0ea30fe99ca4101fac18401fdbe55a1d3a70f04","width":400,"height":645,"format":"jpg","resource_type":"image","created_at":"2017-08-22T08:02:12Z","tags":[],"bytes":153418,"type":"upload","url":"http://res.cloudinary.com/mycloud/image/upload/v1503388932/new_folder/avatar-572.jpg","secure_url":"https://res.cloudinary.com/mycloud/image/upload/v1503388932/new_folder/avatar-572.jpg","existing":true}'
+-d '{"public_id":"avatar-572"
+,"version":1503388932
+,"signature":"c0ea30fe99ca4101fac18401fdbe55a1d3a70f04"
+,"width":400
+,"height":645
+,"format":"jpg"
+,"resource_type":"image"
+,"created_at":"2017-08-22T08:02:12Z"
+,"tags":[]
+,"bytes":153418
+,"type":"upload"
+,"url":"http://res.cloudinary.com/mycloud/image/upload/v1503388932/avatar-572.jpg"
+,"secure_url":"https://res.cloudinary.com/mycloud/image/upload/v1503388932/avatar-572.jpg"
+,"existing":true
+}'
 ```
 ```json
 {
@@ -494,7 +508,7 @@ curl -X POST https://adhubapi.adventistchurch.com/api/contacts/46/avatar
             "campaign_id": null,
             "approach_id": null,
             "brand_id": null,
-            "avatar_url": "https://res.cloudinary.com/mycloud/image/upload/v1503388932/new_folder/avatar-572.jpg",
+            "avatar_url": "https://res.cloudinary.com/mycloud/image/upload/v1503388932/avatar-572.jpg",
             "assignor_ids": []
         },
         "relationships": {
